@@ -1508,6 +1508,24 @@ function deterministicBracket(year,groupRows,bestThirds,P,s){
   const third=detGame(sfLosers[0],sfLosers[1],P,s);
   return {rounds,third};
 }
+function validateGroupProjection(pred){
+  const errors=[];
+  const bestThirdGroups={};
+  for(const b of pred.bestThirds||[]){
+    const group=String(b.group||'');
+    bestThirdGroups[group]=(bestThirdGroups[group]||0)+1;
+  }
+  for(const [group,count] of Object.entries(bestThirdGroups)){
+    if(count>1)errors.push('Group '+group+' has '+count+' best-third picks.');
+  }
+  for(const g of pred.groups||[]){
+    const marked=(g.teams||[]).map((t,i)=>({t,i})).filter(x=>x.t.best_third);
+    const bad=marked.filter(x=>x.i!==2);
+    if(marked.length>1)errors.push('Group '+g.group+' marks more than one best-third team.');
+    if(bad.length)errors.push('Group '+g.group+' marks best-third outside rank 3.');
+  }
+  return errors;
+}
 function evaluate(pred,year){
   const actual=DATA.TOURNAMENTS[year].actual||{};
   const rows=[];
@@ -1569,8 +1587,23 @@ function run(year,sims,seed,s){
     groupsObj[g]={winner:rows[0].team,second:rows[1].team,top2:[rows[0].team,rows[1].team]};
   }
   const thirdLimit=tournament.format===24?4:(tournament.format===48?8:0);
-  const bestThirds=Object.entries(thirdQual).map(([team,c])=>({team,group:P[team].group,third_prob:c/sims,r32_prob:c/sims,power:P[team].koPower})).sort((a,b)=>b.third_prob-a.third_prob||b.power-a.power).slice(0,thirdLimit);
-  for(const g of groups)for(const t of g.teams)t.best_third=bestThirds.some(b=>sameTeamName(b.team,t.team));
+  const thirdCandidates=groups.map(g=>{
+    const row=g.teams&&g.teams[2];
+    if(!row?.team)return null;
+    return {
+      team:row.team,
+      group:g.group,
+      third_prob:Number(row.third_prob||0),
+      r32_prob:Number(row.r32_prob||0),
+      rankScore:Number(row.rankScore||0),
+      power:Number(P[row.team]?.koPower||0)
+    };
+  }).filter(Boolean);
+  const bestThirds=thirdCandidates
+    .sort((a,b)=>b.third_prob-a.third_prob||b.r32_prob-a.r32_prob||b.rankScore-a.rankScore||b.power-a.power||String(a.group).localeCompare(String(b.group)))
+    .slice(0,thirdLimit);
+  const bestThirdKeys=new Set(bestThirds.map(x=>teamKey(x.team)));
+  for(const g of groups)for(let i=0;i<g.teams.length;i++)g.teams[i].best_third=i===2&&bestThirdKeys.has(teamKey(g.teams[i].team));
 
   const bracket=deterministicBracket(year,groups,bestThirds,P,s);
   const pick=bracketProjection(bracket,tournament.format);
@@ -1587,6 +1620,7 @@ function run(year,sims,seed,s){
   for(const t of teams){
     pred.team_probs[t]={r32:(counts.r32[t]||0)/sims,r16:(counts.r16[t]||0)/sims,qf:(counts.qf[t]||0)/sims,sf:(counts.sf[t]||0)/sims,final:(counts.finalists[t]||0)/sims,champ:(counts.champ[t]||0)/sims,third:(counts.third[t]||0)/sims};
   }
+  pred.validationErrors=validateGroupProjection(pred);
   pred.accuracy=evaluate(pred,year);
   pred.overall=pred.accuracy.reduce((a,r)=>[a[0]+r.correct,a[1]+r.total],[0,0]);
   pred.cutoff=tournament.start;
@@ -2714,7 +2748,7 @@ function resetDialsToCurrentPreset(){
 }
 function queueRun(delay=350){clearTimeout(pendingTimer);pendingTimer=setTimeout(runNow,delay)}
 function runNow(){if(!ready){status('Engine loading...');return}const sims=Number($('sims').value)||5000;const fast=$('fast').checked;const finalSims=fast?Math.min(sims,6000):sims;const id=++runId;status('Running '+finalSims.toLocaleString()+' simulations...');const btn=$('runBtn');if(btn)btn.disabled=true;worker.postMessage({id,year:Number($('year').value),sims:finalSims,seed:Number($('seed').value)||1,settings:settings()})}
-function initWorker(){worker=new Worker(URL.createObjectURL(new Blob([WORKER_CODE],{type:'text/javascript'})));worker.onmessage=e=>{const m=e.data;if(m.type==='ready'){ready=true;if(initialDataReady){status('Ready','ok');queueRun(25)}else status('Checking data before first prediction...')}else if(m.type==='result'){if(m.id!==runId)return;if(m.result&&m.result.manualRevision!==manualRevision){const btn=$('runBtn');if(btn)btn.disabled=false;status('My Odds changed. Re-running...');queueRun(10);return}lastResult=m.result;render(m.result,m.ms);const btn=$('runBtn');if(btn)btn.disabled=false;status('Done in '+(m.ms/1000).toFixed(2)+'s','ok')}else if(m.type==='error'){if(m.id&&m.id!==runId)return;status('Error','err');const btn=$('runBtn');if(btn)btn.disabled=false;console.error(m.error);$('overview').innerHTML='<div class="card"><h2 class="danger">Error</h2><pre>'+esc(m.error)+'</pre></div>'}};worker.postMessage({type:'init',data:DATA})}
+function initWorker(){worker=new Worker(URL.createObjectURL(new Blob([WORKER_CODE],{type:'text/javascript'})));worker.onmessage=e=>{const m=e.data;if(m.type==='ready'){ready=true;if(initialDataReady){status('Ready','ok');queueRun(25)}else status('Checking data before first prediction...')}else if(m.type==='result'){if(m.id!==runId)return;if(m.result&&m.result.manualRevision!==manualRevision){const btn=$('runBtn');if(btn)btn.disabled=false;status('My Odds changed. Re-running...');queueRun(10);return}lastResult=m.result;if(m.result?.validationErrors?.length)console.warn('Prediction validation warnings:',m.result.validationErrors);render(m.result,m.ms);const btn=$('runBtn');if(btn)btn.disabled=false;status('Done in '+(m.ms/1000).toFixed(2)+'s','ok')}else if(m.type==='error'){if(m.id&&m.id!==runId)return;status('Error','err');const btn=$('runBtn');if(btn)btn.disabled=false;console.error(m.error);$('overview').innerHTML='<div class="card"><h2 class="danger">Error</h2><pre>'+esc(m.error)+'</pre></div>'}};worker.postMessage({type:'init',data:DATA})}
 function badges(flags){return (flags||[]).map(f=>`<span class="pill signal ${esc(f)}" title="${signalTitle(f)}">${esc(f)}</span>`).join('')||'<span class="muted">—</span>'}
 function signalTitle(f){return {LOW_EVENT:'Defensive/keeper profile that increases draw and penalty risk.',SCAR_TISSUE:'Prior tournament trauma or redemption pressure.',FAVORITE_TRAP:'High reputation with fragility or disruption.',DARK_HORSE:'Tighter dark-horse filter: under-the-radar team with strong defensive and penalty-game survival traits.',HOST:'Host or home-region advantage.',CLOSER:'Recent trophy/final proof.',MY_ODDS:'Manual My Odds override is active for this team.'}[f]||f}
 function flagCodeForTeam(team){
@@ -2989,7 +3023,8 @@ function renderGroups(d){
   const rules=`<div class="card group-phase-intro"><div><h2>Group phase outlook</h2><div class="note">Team names stay primary. The numbers are grouped underneath each team so the row does not fight the flag/name area.</div><div class="group-rules"><span class="group-rule direct">Top 2</span>${thirdLimit?`<span class="group-rule third">${thirdLimit} best 3rd</span>`:''}${actualKnown?`<span class="group-rule actual">${statusMark('ok')} correct</span><span class="group-rule wrong">${statusMark('bad')} missed</span>`:`<span class="group-rule direct">Q projected</span>`}</div></div></div>`;
   const thirds=d.bestThirds?.length?`<details class="card thirds-details smooth-details"><summary>${thirdTitle}</summary><div class="details-body"><div class="group-caption">Supporting detail only. Group cards remain the primary view.</div><table><thead><tr><th>Group</th><th>Team</th><th class="num">${thirdProbLabel}</th><th class="num">KO power</th></tr></thead><tbody>${d.bestThirds.map(x=>`<tr><td>${esc(x.group)}</td><td>${teamLabel(x.team)}</td><td class="num">${pct(x.third_prob)}</td><td class="num">${x.power.toFixed(3)}</td></tr>`).join('')}</tbody></table></div></details>`:'';
   const groups=`<div class="groups">${d.groups.map(g=>`<div class="group"><div class="group-title"><span>Group ${esc(g.group)}</span><small>projection</small></div><div class="group-standings">${g.teams.map((t,i)=>{
-    const info=groupAdvanceInfo(d,g.group,t.team,i,t.best_third);
+    const isRenderedBestThird=i===2&&!!t.best_third;
+    const info=groupAdvanceInfo(d,g.group,t.team,i,isRenderedBestThird);
     const chip=advanceChip(info);
     return `<div class="teamrow ${info.cls} ${previewTeamClass(t.team)}" data-preview-team="${esc(canonicalTeamName(t.team))}" ${pickStyle(info.cls)}><div class="group-team-line"><span class="rank">${i+1}</span><span class="group-team-name ${info.predictedAdvance?'winner':''}">${teamLabel(t.team)}</span><span class="group-status-slot">${chip||''}</span></div><div class="group-probs"><span>Win <b>${pct(t.winner_prob)}</b></span><span>Adv <b>${pct(t.r32_prob)}</b></span><span>Top 2 <b>${pct(t.qual_prob)}</b></span>${thirdLimit?`<span>3rd <b>${pct(t.third_prob)}</b></span>`:''}</div></div>`;
   }).join('')}</div></div>`).join('')}</div>`;
