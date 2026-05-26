@@ -1010,7 +1010,8 @@ body:not(.manual-preview-open) .manual-preview-team{outline:none!important;box-s
 @media(max-width:390px){.header-controls{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr) 36px 36px!important;gap:5px!important}.header-controls #shareBtn,.header-settings-wrap,.settings-gear-btn{width:36px!important;min-width:36px!important}.preset-tuning-row{grid-template-columns:minmax(0,1fr) 36px!important}.tuning-btn{width:36px!important;min-width:36px!important}.quick-field label{font-size:9px!important}.quick-field select{font-size:12px!important;padding-left:6px!important;padding-right:6px!important}}
 
 
-/* v104 snapshot creator, better PNG flags, stable Teams search, cleaner odds drawer */
+/* v105 preserve group third-place details during odds edits */
+/* v106 isolate Monte Carlo random streams so unrelated groups do not move when one team is tuned */
 .share-top-actions{grid-template-columns:minmax(0,1fr)!important;align-items:stretch!important}
 .snapshot-file-field{display:grid;gap:7px;min-width:0;width:100%}
 .snapshot-file-field label{display:flex!important;align-items:center!important;justify-content:space-between!important;margin:0!important;font-size:13px!important;font-weight:900!important;color:#e0f2fe!important}
@@ -1023,7 +1024,7 @@ body:not(.manual-preview-open) .manual-preview-team{outline:none!important;box-s
 @media(max-width:520px){.snapshot-file-row{grid-template-columns:minmax(0,1fr) 44px}.snapshot-file-input{height:44px;font-size:12px}.snapshot-file-field label{font-size:12px!important}.snapshot-file-hint{font-size:10.5px}.share-top-actions{padding:9px!important}}
 
 
-/* v104 focused fixes */
+/* v105 focused fixes */
 @media(min-width:1001px){
   body.manual-preview-open .main{
     width:calc(100vw - var(--manual-drawer-width) - 20px)!important;
@@ -1044,7 +1045,7 @@ body:not(.manual-preview-open) .manual-preview-team{outline:none!important;box-s
 </head>
 <body>
 <header class="app-header">
-  <div class="brand-block"><h1>🏆 World Cup Prediktor <span class="brand-by">by kia</span></h1><div class="subtitle">Pick a year, adjust odds if needed, then save or share your prediction.</div><div class="app-version">v104</div></div>
+  <div class="brand-block"><h1>🏆 World Cup Prediktor <span class="brand-by">by kia</span></h1><div class="subtitle">Pick a year, adjust odds if needed, then save or share your prediction.</div><div class="app-version">v106</div></div>
   <div class="header-right">
     <div class="header-controls" aria-label="Main controls">
       <div class="header-year-control quick-field year-field"><label><span id="yearMode">Predict</span> year</label><select id="year"></select></div>
@@ -1373,7 +1374,9 @@ function sameTeamName(a,b){return teamKey(a)===teamKey(b)}
 function includesTeam(list,team){return Array.isArray(list)&&list.some(x=>sameTeamName(x,team))}
 function setHasTeam(set,team){return !!set&&[...set].some(x=>sameTeamName(x,team))}
 function clamp(x,lo=0,hi=1){return Math.max(lo,Math.min(hi,x))}
-function rng(seed){let a=(seed>>>0)||1;return function(){a+=0x6D2B79F5;let t=a;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return ((t^t>>>14)>>>0)/4294967296}}
+function hash32(str){let h=2166136261>>>0;str=String(str);for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function rng(seed){let a=(Number(seed)>>>0)||1;return function(){a+=0x6D2B79F5;let t=a;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return ((t^t>>>14)>>>0)/4294967296}}
+function rngFor(seed,label){return rng(hash32(String(seed)+'|'+String(label)))}
 function inc(o,k,n=1){o[k]=(o[k]||0)+n}
 function topKey(o){let best=null,bv=-1;for(const [k,v] of Object.entries(o)){if(v>bv){best=k;bv=v}}return best}
 function confed(team){return DATA.CONFEDS[team]||DATA.CONFEDS[canonicalTeamName(team)]||'OTHER'}
@@ -1402,7 +1405,7 @@ function matchProb(a,b,P,ko,s){const pa=power(P[a],ko),pb=power(P[b],ko);const s
 function poisson(mu,r){mu=Math.max(.05,mu);let L=Math.exp(-mu),p=1,k=0;while(p>L){k++;p*=r()}return k-1}
 function score(a,b,w,P,r,ko){const A=P[a],B=P[b];let mu=2.65-.48*((A.lowEvent+B.lowEvent)/2)+.18*(A.attack+B.attack);let sh=clamp(.5+.28*(power(A,ko)-power(B,ko))+.10*(A.attack-B.attack),.18,.82);let ga=poisson(mu*sh,r),gb=poisson(mu*(1-sh),r),pens=false;if(w===a&&ga<=gb){if(ko&&r()<.18){ga=gb;pens=true}else ga=gb+1}else if(w===b&&gb<=ga){if(ko&&r()<.18){gb=ga;pens=true}else gb=ga+1}else if(!w){let g=Math.min(4,Math.round((ga+gb)/2));ga=gb=g}return {ga,gb,pens}}
 function play(a,b,P,r,ko,s){const p=matchProb(a,b,P,ko,s),x=r();let w=null;if(x<p.a)w=a;else if(!ko&&x<p.a+p.draw)w=null;else w=b;const sc=score(a,b,w,P,r,ko);return {winner:w,a,b,ga:sc.ga,gb:sc.gb,pens:sc.pens,prob:p}}
-function simGroups(groups,P,r,s){let ranks={},tables={};for(const [g,teams] of Object.entries(groups)){let table={};for(const t of teams)table[t]={pts:0,gf:0,ga:0,gd:0};for(let i=0;i<teams.length;i++)for(let j=i+1;j<teams.length;j++){const a=teams[i],b=teams[j],m=play(a,b,P,r,false,s);table[a].gf+=m.ga;table[a].ga+=m.gb;table[a].gd+=m.ga-m.gb;table[b].gf+=m.gb;table[b].ga+=m.ga;table[b].gd+=m.gb-m.ga;if(m.winner===a)table[a].pts+=3;else if(m.winner===b)table[b].pts+=3;else{table[a].pts++;table[b].pts++}}ranks[g]=[...teams].sort((a,b)=>table[b].pts-table[a].pts||table[b].gd-table[a].gd||table[b].gf-table[a].gf||P[b].groupPower-P[a].groupPower);tables[g]=table}return {ranks,tables}}
+function simGroups(groups,P,seed,simIndex,s){let ranks={},tables={};for(const [g,teams] of Object.entries(groups)){let table={};for(const t of teams)table[t]={pts:0,gf:0,ga:0,gd:0};for(let i=0;i<teams.length;i++)for(let j=i+1;j<teams.length;j++){const a=teams[i],b=teams[j],r=rngFor(seed,simIndex+'|group|'+g+'|'+i+'|'+j+'|'+a+'|'+b),m=play(a,b,P,r,false,s);table[a].gf+=m.ga;table[a].ga+=m.gb;table[a].gd+=m.ga-m.gb;table[b].gf+=m.gb;table[b].ga+=m.ga;table[b].gd+=m.gb-m.ga;if(m.winner===a)table[a].pts+=3;else if(m.winner===b)table[b].pts+=3;else{table[a].pts++;table[b].pts++}}ranks[g]=[...teams].sort((a,b)=>table[b].pts-table[a].pts||table[b].gd-table[a].gd||table[b].gf-table[a].gf||P[b].groupPower-P[a].groupPower);tables[g]=table}return {ranks,tables}}
 function pair32(R){return [[R.A[0],R.B[1]],[R.C[0],R.D[1]],[R.E[0],R.F[1]],[R.G[0],R.H[1]],[R.B[0],R.A[1]],[R.D[0],R.C[1]],[R.F[0],R.E[1]],[R.H[0],R.G[1]]]}
 const R16_24_SLOTS=[
   ['1A','3x0'],['2C','2D'],['1E','2F'],['1B','3x1'],
@@ -1474,8 +1477,8 @@ function deterministicThirdsForBracket(groupRows,bestThirds,P,limit){
 }
 function pair24(R,T,P){return pairsFromSlots(R,bestThirdsFromRanks(R,T,P,4),R16_24_SLOTS)}
 function pair48(R,T,P){return pairsFromSlots(R,bestThirdsFromRanks(R,T,P,8),R32_48_SLOTS)}
-function koRound(pairs,P,r,s){let winners=[],losers=[],games=[];for(const [a,b] of pairs){const m=play(a,b,P,r,true,s),w=m.winner;winners.push(w);losers.push(w===a?b:a);games.push(m)}return {winners,losers,games}}
-function simTournament(year,P,r,s){const d=DATA.TOURNAMENTS[year];const gr=simGroups(d.groups,P,r,s);let r32set=new Set(),r16pairs;if(d.format===48){const p32=pair48(gr.ranks,gr.tables,P);for(const p of p32){r32set.add(p[0]);r32set.add(p[1])}const r32=koRound(p32,P,r,s);r16pairs=[];for(let i=0;i<16;i+=2)r16pairs.push([r32.winners[i],r32.winners[i+1]])}else if(d.format===24){r16pairs=pair24(gr.ranks,gr.tables,P);r32set=new Set(r16pairs.flat())}else{r16pairs=pair32(gr.ranks);r32set=new Set(r16pairs.flat())}let r16set=new Set(r16pairs.flat());const r16=koRound(r16pairs,P,r,s);let qfp=[];for(let i=0;i<8;i+=2)qfp.push([r16.winners[i],r16.winners[i+1]]);const qfset=new Set(r16.winners);const qf=koRound(qfp,P,r,s);const sfp=[[qf.winners[0],qf.winners[1]],[qf.winners[2],qf.winners[3]]];const sfset=new Set(qf.winners);const sf=koRound(sfp,P,r,s);const thirdM=play(sf.losers[0],sf.losers[1],P,r,true,s);const finalM=play(sf.winners[0],sf.winners[1],P,r,true,s);const champ=finalM.winner,runner=champ===sf.winners[0]?sf.winners[1]:sf.winners[0];const third=thirdM.winner,fourth=third===sf.losers[0]?sf.losers[1]:sf.losers[0];return {ranks:gr.ranks,r32set,r16set,qfset,sfset,finalists:new Set(sf.winners),champ,runner,third,fourth,finalM,thirdM}}
+function koRound(pairs,P,seed,simIndex,stage,s){let winners=[],losers=[],games=[];pairs.forEach(([a,b],idx)=>{const r=rngFor(seed,simIndex+'|ko|'+stage+'|'+idx+'|'+a+'|'+b),m=play(a,b,P,r,true,s),w=m.winner;winners.push(w);losers.push(w===a?b:a);games.push(m)});return {winners,losers,games}}
+function simTournament(year,P,seed,simIndex,s){const d=DATA.TOURNAMENTS[year];const gr=simGroups(d.groups,P,seed,simIndex,s);let r32set=new Set(),r16pairs;if(d.format===48){const p32=pair48(gr.ranks,gr.tables,P);for(const p of p32){r32set.add(p[0]);r32set.add(p[1])}const r32=koRound(p32,P,seed,simIndex,'r32',s);r16pairs=[];for(let i=0;i<16;i+=2)r16pairs.push([r32.winners[i],r32.winners[i+1]])}else if(d.format===24){r16pairs=pair24(gr.ranks,gr.tables,P);r32set=new Set(r16pairs.flat())}else{r16pairs=pair32(gr.ranks);r32set=new Set(r16pairs.flat())}let r16set=new Set(r16pairs.flat());const r16=koRound(r16pairs,P,seed,simIndex,'r16',s);let qfp=[];for(let i=0;i<8;i+=2)qfp.push([r16.winners[i],r16.winners[i+1]]);const qfset=new Set(r16.winners);const qf=koRound(qfp,P,seed,simIndex,'qf',s);const sfp=[[qf.winners[0],qf.winners[1]],[qf.winners[2],qf.winners[3]]];const sfset=new Set(qf.winners);const sf=koRound(sfp,P,seed,simIndex,'sf',s);const thirdM=play(sf.losers[0],sf.losers[1],P,rngFor(seed,simIndex+'|ko|third-place'),true,s);const finalM=play(sf.winners[0],sf.winners[1],P,rngFor(seed,simIndex+'|ko|final'),true,s);const champ=finalM.winner,runner=champ===sf.winners[0]?sf.winners[1]:sf.winners[0];const third=thirdM.winner,fourth=third===sf.losers[0]?sf.losers[1]:sf.losers[0];return {ranks:gr.ranks,r32set,r16set,qfset,sfset,finalists:new Set(sf.winners),champ,runner,third,fourth,finalM,thirdM}}
 function hash01(str){let h=2166136261>>>0;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0)/4294967295}
 function projectedGoal(xg,salt){const base=Math.floor(xg),frac=xg-base;return Math.max(0,Math.min(5,base+(salt<frac?1:0)))}
 function detGame(a,b,P,s){
@@ -1611,13 +1614,12 @@ function evaluate(pred,year){
 }
 function run(year,sims,seed,s){
   const P=buildProfiles(year,s);
-  let r=rng(seed);
   let counts={r32:{},r16:{},qf:{},sf:{},finalists:{},champ:{},runner:{},third:{},fourth:{}};
   let gw={},gq={},rankCounts={},thirdQual={},finalScores={};
   const tournament=DATA.TOURNAMENTS[year];
   for(const g of Object.keys(tournament.groups)){gw[g]={};gq[g]={};rankCounts[g]={}}
   for(let n=0;n<sims;n++){
-    const res=simTournament(year,P,r,s);
+    const res=simTournament(year,P,seed,n,s);
     for(const [g,rank] of Object.entries(res.ranks)){
       inc(gw[g],rank[0]);inc(gq[g],rank[0]);inc(gq[g],rank[1]);
       rank.forEach((t,i)=>{rankCounts[g][t]=rankCounts[g][t]||[0,0,0,0];rankCounts[g][t][i]++});
@@ -1690,6 +1692,7 @@ function bestFinalScore(champ,runner,scoreCounts){let best=topKey(scoreCounts);r
 onmessage=e=>{try{if(e.data.type==='init'){DATA=e.data.data;postMessage({type:'ready'});return}const {id,year,sims,seed,settings}=e.data;const start=Date.now();const result=run(year,Math.max(100,Math.floor(sims)),Math.floor(seed||1),settings);postMessage({type:'result',id,result,ms:Date.now()-start})}catch(err){postMessage({type:'error',id:e.data&&e.data.id,error:err&&err.stack?err.stack:String(err)})}}
 `;
 let worker=null,ready=false,pendingTimer=null,runId=0,lastResult=null;
+let thirdQualifiersDetailsOpen=null;
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const ONLINE_GROUPS_URL='https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
 const FIFA_RANKING_CSV_URL='https://raw.githubusercontent.com/Dato-Futbol/fifa-ranking/refs/heads/master/ranking_fifa_historical.csv';
@@ -3092,8 +3095,10 @@ function renderGroups(d){
   const thirdLimit=d.format===24?4:(d.format===48?8:0);
   const thirdTitle='Projected best third-place qualifiers';
   const thirdProbLabel=d.format===48?'R32 chance':'First KO chance';
+  const priorThirdDetails=document.querySelector('#groups .thirds-details');
+  const keepThirdDetailsOpen=thirdQualifiersDetailsOpen!==null?thirdQualifiersDetailsOpen:!!priorThirdDetails?.open;
   const rules=`<div class="card group-phase-intro"><div><h2>Group phase outlook</h2><div class="note">Team names stay primary. The numbers are grouped underneath each team so the row does not fight the flag/name area.</div><div class="group-rules"><span class="group-rule direct">Top 2</span>${thirdLimit?`<span class="group-rule third">${thirdLimit} best 3rd</span>`:''}${actualKnown?`<span class="group-rule actual">${statusMark('ok')} correct</span><span class="group-rule wrong">${statusMark('bad')} missed</span>`:`<span class="group-rule direct">Q projected</span>`}</div></div></div>`;
-  const thirds=d.bestThirds?.length?`<details class="card thirds-details smooth-details"><summary>${thirdTitle}</summary><div class="details-body"><div class="group-caption">Supporting detail only. Group cards remain the primary view.</div><table><thead><tr><th>Group</th><th>Team</th><th class="num">${thirdProbLabel}</th><th class="num">KO power</th></tr></thead><tbody>${d.bestThirds.map(x=>`<tr><td>${esc(x.group)}</td><td>${teamLabel(x.team)}</td><td class="num">${pct(x.third_prob)}</td><td class="num">${x.power.toFixed(3)}</td></tr>`).join('')}</tbody></table></div></details>`:'';
+  const thirds=d.bestThirds?.length?`<details class="card thirds-details smooth-details"${keepThirdDetailsOpen?' open':''}><summary>${thirdTitle}</summary><div class="details-body"><div class="group-caption">Supporting detail only. Group cards remain the primary view.</div><table><thead><tr><th>Group</th><th>Team</th><th class="num">${thirdProbLabel}</th><th class="num">KO power</th></tr></thead><tbody>${d.bestThirds.map(x=>`<tr><td>${esc(x.group)}</td><td>${teamLabel(x.team)}</td><td class="num">${pct(x.third_prob)}</td><td class="num">${x.power.toFixed(3)}</td></tr>`).join('')}</tbody></table></div></details>`:'';
   const groups=`<div class="groups">${d.groups.map(g=>`<div class="group"><div class="group-title"><span>Group ${esc(g.group)}</span><small>projection</small></div><div class="group-standings">${g.teams.map((t,i)=>{
     const isRenderedBestThird=i===2&&!!t.best_third;
     const info=groupAdvanceInfo(d,g.group,t.team,i,isRenderedBestThird);
@@ -4141,6 +4146,7 @@ function setupSmoothDetails(){
     body.style.overflow='hidden';
     body.style.transition=`height ${duration}ms ease, opacity ${Math.round(duration*.78)}ms ease`;
     if(d.open){
+      if(d.classList.contains('thirds-details'))thirdQualifiersDetailsOpen=false;
       body.style.height=body.offsetHeight+'px';
       body.style.opacity='1';
       requestAnimationFrame(()=>{
@@ -4156,6 +4162,7 @@ function setupSmoothDetails(){
         delete d.dataset.animating;
       },duration);
     }else{
+      if(d.classList.contains('thirds-details'))thirdQualifiersDetailsOpen=true;
       d.open=true;
       body.style.height='0px';
       body.style.opacity='0';
