@@ -1070,6 +1070,15 @@ body:not(.manual-preview-open) .manual-preview-team{outline:none!important;box-s
 @media(max-width:520px){.manual-presets button[data-tip]:after{max-width:min(205px,calc(100vw - 30px));font-size:10.5px}}
 @media(max-width:380px){.manual-presets button[data-tip]:after{max-width:min(185px,calc(100vw - 24px));font-size:10px}}
 
+/* v126: shared hover/focus popups for signals and Teams table headers */
+.signal[data-ui-tip],#teamTable th[data-ui-tip]{cursor:help}
+#teamTable th[data-sort]{user-select:none}
+.app-hover-pop{position:fixed;z-index:1000;display:none;max-width:min(245px,calc(100vw - 24px));padding:7px 9px;border:1px solid #38bdf866;border-radius:10px;background:#020617f7;color:#dbeafe;box-shadow:0 10px 28px #000b;font-size:11px;font-weight:700;line-height:1.25;text-align:left;white-space:normal;overflow-wrap:anywhere;pointer-events:none;box-sizing:border-box}
+.app-hover-pop:before{content:"";position:absolute;left:var(--tip-arrow-x,50%);transform:translateX(-50%);border:5px solid transparent}
+.app-hover-pop[data-place="top"]:before{bottom:-10px;border-top-color:#38bdf866}
+.app-hover-pop[data-place="bottom"]:before{top:-10px;border-bottom-color:#38bdf866}
+@media(max-width:520px){.app-hover-pop{max-width:min(215px,calc(100vw - 20px));font-size:10.5px}}
+
 
 /* Final canonical UI layer: keep layout fixes here instead of adding scattered vXX patches. */
 .validation-alert{border-color:#f59e0bcc!important;background:linear-gradient(135deg,#78350f88,#0b1222 72%)!important;box-shadow:0 12px 34px #0005,0 0 0 1px #f59e0b22!important}
@@ -1249,11 +1258,55 @@ body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-
 @media(max-width:900px){#teams .teams-actions .lincoln-label{width:100%!important;height:auto!important;margin:2px 0 0!important}}
 @media(max-width:520px){#teams .teams-actions #myOddsNerfAll,#teams .teams-actions #myOddsMaxAll{min-width:72px!important;height:32px!important;font-size:10.5px!important}}
 
+
+/* v124: Lincoln button group border + version sync */
+#teams .teams-actions .lincoln-buttons-group{display:inline-flex!important;align-items:center!important;gap:6px!important;height:42px!important;padding:3px 6px!important;border:1px solid #64748bcc!important;border-radius:13px!important;background:#0b1222!important;box-shadow:inset 0 0 0 1px #02061766!important;white-space:nowrap!important}
+#teams .teams-actions .lincoln-buttons-group .lincoln-label{height:auto!important;margin:0 2px 0 0!important}
+#teams .teams-actions .lincoln-buttons-group #myOddsNerfAll,#teams .teams-actions .lincoln-buttons-group #myOddsMaxAll{height:32px!important}
+@media(max-width:900px){#teams .teams-actions .lincoln-buttons-group{height:auto!important;flex-wrap:wrap!important;align-items:center!important;padding:6px!important}.teams-actions .lincoln-buttons-group .lincoln-label{width:100%!important;margin:0!important}}
+@media(max-width:520px){#teams .teams-actions .lincoln-buttons-group{width:100%!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:6px!important}.teams-actions .lincoln-buttons-group .lincoln-label{grid-column:1/-1!important}.teams-actions .lincoln-buttons-group #myOddsNerfAll,.teams-actions .lincoln-buttons-group #myOddsMaxAll{width:100%!important;min-width:0!important}}
+
+
+/* v125: separate Teams utility buttons + sortable Teams table */
+#teams .teams-actions .teams-util-group{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:6px!important;
+  height:42px!important;
+  margin-left:8px!important;
+  padding-left:10px!important;
+  border-left:1px solid #475569aa!important;
+  white-space:nowrap!important;
+}
+#teams #teamTable th[data-sort]{
+  cursor:pointer!important;
+  user-select:none!important;
+}
+#teams #teamTable th[data-sort]:after{
+  content:"↕";
+  display:inline-block;
+  margin-left:5px;
+  color:#64748b;
+  font-size:10px;
+  line-height:1;
+}
+#teams #teamTable th[data-sort].sort-asc:after{content:"▲";color:#7dd3fc}
+#teams #teamTable th[data-sort].sort-desc:after{content:"▼";color:#7dd3fc}
+#teams #teamTable th[data-sort]:hover{color:#e0f2fe!important}
+@media(max-width:900px){
+  #teams .teams-actions .teams-util-group{height:auto!important;margin-left:0!important;padding-left:0!important;border-left:0!important;border-top:1px solid #47556988!important;padding-top:6px!important;width:100%!important}
+}
+@media(max-width:520px){
+  #teams .teams-actions .teams-util-group{display:grid!important;grid-template-columns:1fr 1fr!important;gap:6px!important}
+  #teams .teams-actions .teams-util-group #myOddsCopyYear,
+  #teams .teams-actions .teams-util-group #csvBtn{width:100%!important;min-width:0!important}
+}
+
 </style>
 </head>
 <body>
 <header class="app-header">
-  <div class="brand-block"><h1>🏆 World Cup Prediktor <span class="brand-by">by kia</span></h1><div class="subtitle">Pick a year, adjust odds if needed, then save or share your prediction.</div><div class="app-version">v121</div></div>
+  <div class="brand-block"><h1>🏆 World Cup Prediktor <span class="brand-by">by kia</span></h1><div class="subtitle">Pick a year, adjust odds if needed, then save or share your prediction.</div><div class="app-version">v125</div></div>
   <div class="header-right">
     <div class="header-controls" aria-label="Main controls">
       <div class="header-year-control quick-field year-field"><label><span id="yearMode">Predict</span> year</label><select id="year"></select></div>
@@ -1341,6 +1394,7 @@ body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-
 </div>
 <div id="toast" class="toast" hidden></div>
 <script>
+const APP_VERSION = 'v126';
 const DATA = {"TOURNAMENTS":{"1994":{"start":"1994-06-17","hosts":["United States"],"host_confed":"CONCACAF","format":24,"groups":{"A":["United States","Switzerland","Colombia","Romania"],"B":["Brazil","Russia","Cameroon","Sweden"],"C":["Germany","Bolivia","Spain","South Korea"],"D":["Argentina","Greece","Nigeria","Bulgaria"],"E":["Italy","Ireland","Norway","Mexico"],"F":["Belgium","Morocco","Netherlands","Saudi Arabia"]},"actual":{"group_top2":{"A":["Romania","Switzerland"],"B":["Brazil","Sweden"],"C":["Germany","Spain"],"D":["Nigeria","Bulgaria"],"E":["Mexico","Ireland"],"F":["Netherlands","Saudi Arabia"]},"r16":["Germany","Belgium","Spain","Switzerland","Saudi Arabia","Sweden","Romania","Argentina","Netherlands","Ireland","Brazil","United States","Nigeria","Italy","Mexico","Bulgaria"],"quarter_finalists":["Germany","Spain","Sweden","Romania","Netherlands","Brazil","Italy","Bulgaria"],"semi_finalists":["Brazil","Sweden","Bulgaria","Italy"],"finalists":["Brazil","Italy"],"champion":"Brazil","runner_up":"Italy","third":"Sweden","fourth":"Bulgaria"}},"1998":{"start":"1998-06-10","hosts":["France"],"host_confed":"UEFA","format":32,"groups":{"A":["Brazil","Scotland","Morocco","Norway"],"B":["Italy","Chile","Cameroon","Austria"],"C":["France","South Africa","Saudi Arabia","Denmark"],"D":["Spain","Nigeria","Paraguay","Bulgaria"],"E":["Netherlands","Belgium","South Korea","Mexico"],"F":["Germany","United States","Yugoslavia","Iran"],"G":["Romania","Colombia","England","Tunisia"],"H":["Argentina","Japan","Jamaica","Croatia"]},"actual":{"group_top2":{"A":["Brazil","Norway"],"B":["Italy","Chile"],"C":["France","Denmark"],"D":["Nigeria","Paraguay"],"E":["Netherlands","Mexico"],"F":["Germany","Yugoslavia"],"G":["Romania","England"],"H":["Argentina","Croatia"]},"r16":["Brazil","Chile","Denmark","Nigeria","Netherlands","Yugoslavia","Argentina","England","Italy","Norway","France","Paraguay","Germany","Mexico","Romania","Croatia"],"quarter_finalists":["Brazil","Denmark","Netherlands","Argentina","Italy","France","Germany","Croatia"],"semi_finalists":["Brazil","Netherlands","France","Croatia"],"finalists":["France","Brazil"],"champion":"France","runner_up":"Brazil","third":"Croatia","fourth":"Netherlands"}},"2002":{"start":"2002-05-31","hosts":["South Korea","Japan"],"host_confed":"AFC","format":32,"groups":{"A":["France","Senegal","Uruguay","Denmark"],"B":["Spain","Slovenia","Paraguay","South Africa"],"C":["Brazil","Turkey","China","Costa Rica"],"D":["South Korea","Poland","United States","Portugal"],"E":["Germany","Saudi Arabia","Ireland","Cameroon"],"F":["Argentina","Nigeria","England","Sweden"],"G":["Italy","Ecuador","Croatia","Mexico"],"H":["Japan","Belgium","Russia","Tunisia"]},"actual":{"group_top2":{"A":["Denmark","Senegal"],"B":["Spain","Paraguay"],"C":["Brazil","Turkey"],"D":["South Korea","United States"],"E":["Germany","Ireland"],"F":["Sweden","England"],"G":["Mexico","Italy"],"H":["Japan","Belgium"]},"r16":["Denmark","Senegal","Spain","Paraguay","Brazil","Turkey","South Korea","United States","Germany","Ireland","Sweden","England","Mexico","Italy","Japan","Belgium"],"quarter_finalists":["Senegal","Turkey","Brazil","England","Germany","United States","Spain","South Korea"],"semi_finalists":["Germany","South Korea","Brazil","Turkey"],"finalists":["Brazil","Germany"],"champion":"Brazil","runner_up":"Germany","third":"Turkey","fourth":"South Korea"}},"2006":{"start":"2006-06-09","hosts":["Germany"],"host_confed":"UEFA","format":32,"groups":{"A":["Germany","Costa Rica","Poland","Ecuador"],"B":["England","Paraguay","Trinidad and Tobago","Sweden"],"C":["Argentina","Ivory Coast","Serbia and Montenegro","Netherlands"],"D":["Mexico","Iran","Angola","Portugal"],"E":["Italy","Ghana","United States","Czech Republic"],"F":["Brazil","Croatia","Australia","Japan"],"G":["France","Switzerland","South Korea","Togo"],"H":["Spain","Ukraine","Tunisia","Saudi Arabia"]},"actual":{"group_top2":{"A":["Germany","Ecuador"],"B":["England","Sweden"],"C":["Argentina","Netherlands"],"D":["Portugal","Mexico"],"E":["Italy","Ghana"],"F":["Brazil","Australia"],"G":["Switzerland","France"],"H":["Spain","Ukraine"]},"r16":["Germany","Ecuador","England","Sweden","Argentina","Netherlands","Portugal","Mexico","Italy","Ghana","Brazil","Australia","Switzerland","France","Spain","Ukraine"],"quarter_finalists":["Germany","Argentina","Italy","Ukraine","England","Portugal","Brazil","France"],"semi_finalists":["Germany","Italy","Portugal","France"],"finalists":["Italy","France"],"champion":"Italy","runner_up":"France","third":"Germany","fourth":"Portugal"}},"2010":{"start":"2010-06-11","hosts":["South Africa"],"host_confed":"CAF","format":32,"groups":{"A":["South Africa","Mexico","Uruguay","France"],"B":["Argentina","Nigeria","South Korea","Greece"],"C":["England","United States","Algeria","Slovenia"],"D":["Germany","Australia","Serbia","Ghana"],"E":["Netherlands","Denmark","Japan","Cameroon"],"F":["Italy","Paraguay","New Zealand","Slovakia"],"G":["Brazil","North Korea","Ivory Coast","Portugal"],"H":["Spain","Switzerland","Honduras","Chile"]},"actual":{"group_top2":{"A":["Uruguay","Mexico"],"B":["Argentina","South Korea"],"C":["United States","England"],"D":["Germany","Ghana"],"E":["Netherlands","Japan"],"F":["Paraguay","Slovakia"],"G":["Brazil","Portugal"],"H":["Spain","Chile"]},"r16":["Uruguay","Mexico","Argentina","South Korea","United States","England","Germany","Ghana","Netherlands","Japan","Paraguay","Slovakia","Brazil","Portugal","Spain","Chile"],"quarter_finalists":["Uruguay","Ghana","Netherlands","Brazil","Argentina","Germany","Paraguay","Spain"],"semi_finalists":["Uruguay","Netherlands","Germany","Spain"],"finalists":["Netherlands","Spain"],"champion":"Spain","runner_up":"Netherlands","third":"Germany","fourth":"Uruguay"}},"2014":{"start":"2014-06-12","hosts":["Brazil"],"host_confed":"CONMEBOL","format":32,"groups":{"A":["Brazil","Croatia","Mexico","Cameroon"],"B":["Spain","Netherlands","Chile","Australia"],"C":["Colombia","Greece","Ivory Coast","Japan"],"D":["Uruguay","Costa Rica","England","Italy"],"E":["Switzerland","Ecuador","France","Honduras"],"F":["Argentina","Bosnia and Herzegovina","Iran","Nigeria"],"G":["Germany","Portugal","Ghana","United States"],"H":["Belgium","Algeria","Russia","South Korea"]},"actual":{"group_top2":{"A":["Brazil","Mexico"],"B":["Netherlands","Chile"],"C":["Colombia","Greece"],"D":["Costa Rica","Uruguay"],"E":["France","Switzerland"],"F":["Argentina","Nigeria"],"G":["Germany","United States"],"H":["Belgium","Algeria"]},"r16":["Brazil","Mexico","Netherlands","Chile","Colombia","Greece","Costa Rica","Uruguay","France","Switzerland","Argentina","Nigeria","Germany","United States","Belgium","Algeria"],"quarter_finalists":["Brazil","Colombia","France","Germany","Netherlands","Costa Rica","Argentina","Belgium"],"semi_finalists":["Brazil","Germany","Netherlands","Argentina"],"finalists":["Germany","Argentina"],"champion":"Germany","runner_up":"Argentina","third":"Netherlands","fourth":"Brazil"}},"2018":{"start":"2018-06-14","hosts":["Russia"],"host_confed":"UEFA","format":32,"groups":{"A":["Russia","Saudi Arabia","Egypt","Uruguay"],"B":["Portugal","Spain","Morocco","Iran"],"C":["France","Australia","Peru","Denmark"],"D":["Argentina","Iceland","Croatia","Nigeria"],"E":["Brazil","Switzerland","Costa Rica","Serbia"],"F":["Germany","Mexico","Sweden","South Korea"],"G":["Belgium","Panama","Tunisia","England"],"H":["Poland","Senegal","Colombia","Japan"]},"actual":{"group_top2":{"A":["Uruguay","Russia"],"B":["Spain","Portugal"],"C":["France","Denmark"],"D":["Croatia","Argentina"],"E":["Brazil","Switzerland"],"F":["Sweden","Mexico"],"G":["Belgium","England"],"H":["Colombia","Japan"]},"r16":["Uruguay","Russia","Spain","Portugal","France","Denmark","Croatia","Argentina","Brazil","Switzerland","Sweden","Mexico","Belgium","England","Colombia","Japan"],"quarter_finalists":["Uruguay","France","Brazil","Belgium","Sweden","England","Russia","Croatia"],"semi_finalists":["France","Belgium","Croatia","England"],"finalists":["France","Croatia"],"champion":"France","runner_up":"Croatia","third":"Belgium","fourth":"England"}},"2022":{"start":"2022-11-20","hosts":["Qatar"],"host_confed":"AFC","format":32,"groups":{"A":["Qatar","Ecuador","Senegal","Netherlands"],"B":["England","Iran","United States","Wales"],"C":["Argentina","Saudi Arabia","Mexico","Poland"],"D":["France","Australia","Denmark","Tunisia"],"E":["Spain","Costa Rica","Germany","Japan"],"F":["Belgium","Canada","Morocco","Croatia"],"G":["Brazil","Serbia","Switzerland","Cameroon"],"H":["Portugal","Ghana","Uruguay","South Korea"]},"actual":{"group_top2":{"A":["Netherlands","Senegal"],"B":["England","United States"],"C":["Argentina","Poland"],"D":["France","Australia"],"E":["Japan","Spain"],"F":["Morocco","Croatia"],"G":["Brazil","Switzerland"],"H":["Portugal","South Korea"]},"r16":["Netherlands","Senegal","England","United States","Argentina","Poland","France","Australia","Japan","Spain","Morocco","Croatia","Brazil","Switzerland","Portugal","South Korea"],"quarter_finalists":["Netherlands","Argentina","Croatia","Brazil","England","France","Morocco","Portugal"],"semi_finalists":["Argentina","Croatia","France","Morocco"],"finalists":["Argentina","France"],"champion":"Argentina","runner_up":"France","third":"Croatia","fourth":"Morocco"}},"2026":{"start":"2026-06-11","hosts":["Canada","Mexico","United States"],"host_confed":"CONCACAF","format":48,"groups":{"A":["Mexico","South Africa","South Korea","Czech Republic"],"B":["Canada","Bosnia and Herzegovina","Qatar","Switzerland"],"C":["Brazil","Morocco","Haiti","Scotland"],"D":["United States","Paraguay","Australia","Turkey"],"E":["Germany","Cura\u00e7ao","Ivory Coast","Ecuador"],"F":["Netherlands","Japan","Sweden","Tunisia"],"G":["Belgium","Egypt","Iran","New Zealand"],"H":["Spain","Cape Verde","Saudi Arabia","Uruguay"],"I":["France","Senegal","Iraq","Norway"],"J":["Argentina","Algeria","Austria","Jordan"],"K":["Portugal","DR Congo","Uzbekistan","Colombia"],"L":["England","Croatia","Ghana","Panama"]},"actual":{}}},"YEAR_ELO_PRIOR":{"1994":{"Brazil":1785,"Italy":1765,"Germany":1755,"Argentina":1740,"Netherlands":1715,"Spain":1700,"Sweden":1660,"Romania":1645,"Bulgaria":1630,"Nigeria":1625,"Mexico":1620,"Belgium":1615,"Colombia":1605,"Norway":1600,"Ireland":1585,"Russia":1580,"United States":1545,"Switzerland":1540,"Saudi Arabia":1490},"1998":{"Brazil":1840,"France":1785,"Italy":1765,"Netherlands":1755,"Argentina":1745,"Germany":1735,"Spain":1710,"England":1695,"Croatia":1665,"Yugoslavia":1660,"Denmark":1655,"Mexico":1640,"Norway":1635,"Nigeria":1625,"Romania":1620,"Paraguay":1605,"Chile":1600,"Morocco":1580},"2002":{"Brazil":1810,"France":1785,"Argentina":1775,"Italy":1740,"Germany":1710,"Spain":1705,"England":1695,"Portugal":1685,"Turkey":1635,"South Korea":1575},"2006":{"Brazil":1825,"Argentina":1765,"Italy":1755,"France":1735,"Germany":1730,"England":1725,"Netherlands":1715,"Portugal":1710,"Spain":1705,"Mexico":1660},"2010":{"Spain":1900,"Brazil":1720,"Netherlands":1840,"Germany":1790,"Argentina":1720,"Portugal":1720,"England":1705,"Uruguay":1695,"Italy":1680,"France":1625,"Ghana":1605,"Paraguay":1600},"2014":{"Germany":1830,"Argentina":1810,"Brazil":1785,"Netherlands":1760,"Spain":1740,"France":1740,"Belgium":1725,"Colombia":1715,"Chile":1690,"Uruguay":1680,"Costa Rica":1565},"2018":{"France":1820,"Brazil":1790,"Belgium":1785,"Croatia":1755,"England":1745,"Spain":1740,"Uruguay":1715,"Argentina":1705,"Portugal":1705,"Germany":1695,"Russia":1600},"2022":{"Argentina":1835,"France":1815,"Brazil":1790,"England":1765,"Netherlands":1760,"Spain":1745,"Portugal":1735,"Croatia":1725,"Morocco":1675,"Belgium":1665,"Germany":1660},"2026":{"Spain":1840,"Argentina":1830,"France":1825,"England":1810,"Brazil":1800,"Portugal":1785,"Netherlands":1775,"Germany":1760,"Croatia":1735,"Morocco":1720,"Colombia":1710,"Uruguay":1705,"Japan":1680,"United States":1665,"Mexico":1655,"Canada":1585}},"FIFA_RANKS":{"2026":{"Spain":1,"Argentina":2,"France":3,"England":4,"Brazil":5,"Portugal":6,"Netherlands":7,"Belgium":8,"Germany":9,"Croatia":10,"Morocco":11,"Colombia":13,"United States":14,"Mexico":15,"Uruguay":16,"Switzerland":17,"Japan":18,"Senegal":19,"Iran":20,"South Korea":22,"Ecuador":23,"Austria":24,"Australia":26,"Canada":27,"Norway":29,"Panama":30,"Egypt":34,"Algeria":35,"Scotland":36,"Paraguay":39,"Tunisia":40,"Ivory Coast":42,"Czech Republic":44,"Uzbekistan":50,"Qatar":51,"Saudi Arabia":60,"South Africa":61,"Jordan":66,"Cape Verde":68,"Ghana":72,"Cura\u00e7ao":82,"Haiti":84,"New Zealand":86,"Bosnia and Herzegovina":70,"Turkey":28,"Sweden":32,"Iraq":58,"DR Congo":63}},"TEAM_FLAG_CODES":{"Argentina":"ar","Brazil":"br","Uruguay":"uy","Paraguay":"py","Chile":"cl","Colombia":"co","Ecuador":"ec","Peru":"pe","Venezuela":"ve","Bolivia":"bo","Mexico":"mx","United States":"us","Canada":"ca","Costa Rica":"cr","Panama":"pa","Honduras":"hn","Trinidad and Tobago":"tt","Haiti":"ht","Jamaica":"jm","Cura\u00e7ao":"cw","Spain":"es","Germany":"de","France":"fr","England":"gb-eng","Netherlands":"nl","Portugal":"pt","Italy":"it","Belgium":"be","Croatia":"hr","Switzerland":"ch","Sweden":"se","Denmark":"dk","Poland":"pl","Serbia":"rs","Serbia and Montenegro":"rs","Russia":"ru","Ukraine":"ua","Greece":"gr","Slovenia":"si","Slovakia":"sk","Czech Republic":"cz","Turkey":"tr","Norway":"no","Austria":"at","Scotland":"gb-sct","Wales":"gb-wls","Bosnia and Herzegovina":"ba","Ireland":"ie","Romania":"ro","Kosovo":"xk","Japan":"jp","South Korea":"kr","North Korea":"kp","Australia":"au","Iran":"ir","Saudi Arabia":"sa","Qatar":"qa","Iraq":"iq","Jordan":"jo","Uzbekistan":"uz","China":"cn","Morocco":"ma","Senegal":"sn","Ghana":"gh","Ivory Coast":"ci","Cameroon":"cm","Nigeria":"ng","South Africa":"za","Tunisia":"tn","Algeria":"dz","Egypt":"eg","Angola":"ao","Togo":"tg","Cape Verde":"cv","DR Congo":"cd","New Zealand":"nz","Bulgaria":"bg","Yugoslavia":"rs","Iceland":"is","USA":"us","US":"us","U.S.A.":"us","United States of America":"us","Bosnia & Herzegovina":"ba","Bosnia-Herzegovina":"ba","Bosnia and Herz.":"ba","Czechia":"cz","T\u00fcrkiye":"tr","Korea Republic":"kr","Korea DPR":"kp","Congo DR":"cd","Democratic Republic of Congo":"cd","C\u00f4te d\u2019Ivoire":"ci","C\u00f4te d'Ivoire":"ci","Cote d'Ivoire":"ci","Curacao":"cw","Cape Verde Islands":"cv"},"CONFEDS":{"Argentina":"CONMEBOL","Brazil":"CONMEBOL","Uruguay":"CONMEBOL","Paraguay":"CONMEBOL","Chile":"CONMEBOL","Colombia":"CONMEBOL","Ecuador":"CONMEBOL","Peru":"CONMEBOL","Venezuela":"CONMEBOL","Bolivia":"CONMEBOL","Mexico":"CONCACAF","United States":"CONCACAF","Canada":"CONCACAF","Costa Rica":"CONCACAF","Panama":"CONCACAF","Honduras":"CONCACAF","Trinidad and Tobago":"CONCACAF","Haiti":"CONCACAF","Jamaica":"CONCACAF","Cura\u00e7ao":"CONCACAF","Spain":"UEFA","Germany":"UEFA","France":"UEFA","England":"UEFA","Netherlands":"UEFA","Portugal":"UEFA","Italy":"UEFA","Belgium":"UEFA","Croatia":"UEFA","Switzerland":"UEFA","Sweden":"UEFA","Denmark":"UEFA","Poland":"UEFA","Serbia":"UEFA","Serbia and Montenegro":"UEFA","Russia":"UEFA","Ukraine":"UEFA","Greece":"UEFA","Slovenia":"UEFA","Slovakia":"UEFA","Czech Republic":"UEFA","Turkey":"UEFA","Norway":"UEFA","Austria":"UEFA","Scotland":"UEFA","Wales":"UEFA","Bosnia and Herzegovina":"UEFA","Ireland":"UEFA","Romania":"UEFA","Kosovo":"UEFA","Japan":"AFC","South Korea":"AFC","North Korea":"AFC","Australia":"AFC","Iran":"AFC","Saudi Arabia":"AFC","Qatar":"AFC","Iraq":"AFC","Jordan":"AFC","Uzbekistan":"AFC","China":"AFC","Morocco":"CAF","Senegal":"CAF","Ghana":"CAF","Ivory Coast":"CAF","Cameroon":"CAF","Nigeria":"CAF","South Africa":"CAF","Tunisia":"CAF","Algeria":"CAF","Egypt":"CAF","Angola":"CAF","Togo":"CAF","Cape Verde":"CAF","DR Congo":"CAF","New Zealand":"OFC","Bulgaria":"UEFA","Yugoslavia":"UEFA","Iceland":"UEFA","USA":"CONCACAF","US":"CONCACAF","U.S.A.":"CONCACAF","United States of America":"CONCACAF","Bosnia & Herzegovina":"UEFA","Bosnia-Herzegovina":"UEFA","Bosnia and Herz.":"UEFA","Czechia":"UEFA","T\u00fcrkiye":"UEFA","Korea Republic":"AFC","Korea DPR":"AFC","Congo DR":"CAF","Democratic Republic of Congo":"CAF","C\u00f4te d\u2019Ivoire":"CAF","C\u00f4te d'Ivoire":"CAF","Cote d'Ivoire":"CAF","Curacao":"CONCACAF","Cape Verde Islands":"CAF"},"BASE_PRIOR":{"Brazil":1780,"Argentina":1775,"France":1765,"Spain":1760,"Germany":1745,"England":1725,"Netherlands":1720,"Portugal":1715,"Italy":1710,"Belgium":1695,"Uruguay":1685,"Croatia":1680,"Colombia":1665,"Morocco":1645,"Switzerland":1640,"Mexico":1635,"United States":1620,"Japan":1615,"Senegal":1605,"Denmark":1600,"Sweden":1595,"Chile":1590,"Serbia":1585,"Ecuador":1580,"Paraguay":1575,"Austria":1570,"Turkey":1570,"South Korea":1565,"Iran":1560,"Australia":1555,"Poland":1550,"Ghana":1545,"Ivory Coast":1545,"Nigeria":1545,"Cameroon":1535,"Tunisia":1530,"Algeria":1530,"Egypt":1530,"Canada":1525,"Scotland":1525,"Norway":1525,"Czech Republic":1525,"Wales":1515,"Qatar":1500,"Saudi Arabia":1490,"South Africa":1485,"New Zealand":1465,"Panama":1465,"Haiti":1455,"Cape Verde":1450,"Cura\u00e7ao":1445,"Jordan":1440,"Iraq":1470,"Uzbekistan":1480,"DR Congo":1495,"Bulgaria":1545,"Yugoslavia":1605,"Jamaica":1445,"Romania":1585,"Russia":1580,"Bolivia":1465,"Iceland":1510},"SCAR_EVENTS":{"2010|France":0.7,"2010|Italy":0.45,"2010|Brazil":0.45,"2014|Spain":0.55,"2018|Brazil":0.85,"2018|Germany":0.3,"2022|Germany":0.8,"2022|Belgium":0.4,"2026|Brazil":0.35,"2026|Germany":0.25,"2026|Belgium":0.3,"1994|Argentina":0.2,"1998|Brazil":0.25,"1998|Germany":0.2},"PRE_CONTEXT":{"1994":{"Brazil":{"player":0.92,"closer":0.88,"cycle":0.86},"Italy":{"player":0.9,"closer":0.82,"cycle":0.78},"Germany":{"player":0.87,"closer":0.82,"cycle":0.76,"burden":0.25},"Argentina":{"player":0.91,"closer":0.78,"cycle":0.76,"disruption":0.35},"Netherlands":{"player":0.86,"closer":0.76,"cycle":0.78},"Sweden":{"player":0.78,"closer":0.7,"cycle":0.78,"dark":0.62},"Bulgaria":{"player":0.74,"closer":0.62,"cycle":0.76,"dark":0.76},"Romania":{"player":0.76,"closer":0.66,"cycle":0.78,"dark":0.72},"Spain":{"player":0.83,"closer":0.72,"cycle":0.76},"Nigeria":{"player":0.73,"closer":0.6,"cycle":0.78,"dark":0.7},"United States":{"player":0.58,"closer":0.45,"cycle":0.68,"hostPulse":0.8},"Mexico":{"player":0.72,"closer":0.65,"cycle":0.72},"Belgium":{"player":0.76,"closer":0.68,"cycle":0.7},"Colombia":{"player":0.78,"closer":0.7,"cycle":0.72,"pressure":0.7}},"1998":{"France":{"player":0.92,"closer":0.82,"cycle":0.88},"Brazil":{"player":0.96,"closer":0.92,"cycle":0.86,"pressure":0.85},"Netherlands":{"player":0.9,"closer":0.82,"cycle":0.84},"Croatia":{"player":0.78,"closer":0.68,"cycle":0.78,"dark":0.78},"Italy":{"player":0.91,"closer":0.84,"cycle":0.8},"Germany":{"player":0.86,"closer":0.74,"cycle":0.7,"burden":0.35},"Argentina":{"player":0.88,"closer":0.74,"cycle":0.8},"Denmark":{"player":0.8,"closer":0.7,"cycle":0.76,"dark":0.62},"England":{"player":0.83,"closer":0.68,"cycle":0.72},"Yugoslavia":{"player":0.8,"closer":0.68,"cycle":0.74},"Norway":{"player":0.76,"closer":0.65,"cycle":0.74,"dark":0.65},"Nigeria":{"player":0.78,"closer":0.64,"cycle":0.72,"dark":0.66},"Paraguay":{"player":0.72,"closer":0.58,"cycle":0.7,"dark":0.68},"Mexico":{"player":0.74,"closer":0.68,"cycle":0.74},"Romania":{"player":0.77,"closer":0.68,"cycle":0.76},"Chile":{"player":0.75,"closer":0.66,"cycle":0.72}},"2002":{"Brazil":{"player":0.94,"closer":0.82,"cycle":0.78},"Germany":{"player":0.78,"closer":0.66,"cycle":0.64},"France":{"player":0.92,"closer":0.8,"cycle":0.7,"disruption":0.25},"Argentina":{"player":0.9,"closer":0.74,"cycle":0.68},"Senegal":{"player":0.62,"closer":0.45,"cycle":0.68,"dark":0.8},"Turkey":{"player":0.7,"closer":0.55,"cycle":0.67,"dark":0.72},"South Korea":{"player":0.64,"closer":0.5,"cycle":0.7,"dark":0.74}},"2006":{"Italy":{"player":0.91,"closer":0.8,"cycle":0.76},"France":{"player":0.89,"closer":0.7,"cycle":0.68},"Brazil":{"player":0.96,"closer":0.78,"cycle":0.72,"pressure":0.85},"Germany":{"player":0.83,"closer":0.7,"cycle":0.74},"Portugal":{"player":0.84,"closer":0.69,"cycle":0.72},"Argentina":{"player":0.89,"closer":0.73,"cycle":0.75},"Spain":{"player":0.86,"closer":0.7,"cycle":0.72}},"2010":{"Spain":{"player":0.96,"closer":0.95,"cycle":0.93},"Netherlands":{"player":0.91,"closer":0.82,"cycle":0.84},"Germany":{"player":0.88,"closer":0.78,"cycle":0.8},"Uruguay":{"player":0.78,"closer":0.72,"cycle":0.76,"dark":0.68},"Ghana":{"player":0.7,"closer":0.6,"cycle":0.7,"dark":0.74},"Brazil":{"player":0.93,"closer":0.78,"cycle":0.76},"Argentina":{"player":0.9,"closer":0.76,"cycle":0.75},"Italy":{"player":0.82,"closer":0.6,"cycle":0.48,"disruption":0.3},"France":{"player":0.78,"closer":0.5,"cycle":0.42,"disruption":0.8}},"2014":{"Germany":{"player":0.96,"closer":0.86,"cycle":0.88},"Argentina":{"player":0.92,"closer":0.82,"cycle":0.85},"Netherlands":{"player":0.86,"closer":0.78,"cycle":0.8},"Brazil":{"player":0.9,"closer":0.78,"cycle":0.8,"pressure":0.94,"disruption":0.2},"Spain":{"player":0.91,"closer":0.82,"cycle":0.62,"burden":0.65},"Colombia":{"player":0.8,"closer":0.72,"cycle":0.82,"dark":0.7},"Costa Rica":{"player":0.58,"closer":0.45,"cycle":0.66,"dark":0.86},"France":{"player":0.85,"closer":0.7,"cycle":0.76},"Belgium":{"player":0.84,"closer":0.68,"cycle":0.78}},"2018":{"France":{"player":0.95,"closer":0.84,"cycle":0.87},"Croatia":{"player":0.86,"closer":0.76,"cycle":0.8,"dark":0.66},"Belgium":{"player":0.92,"closer":0.78,"cycle":0.84},"England":{"player":0.86,"closer":0.72,"cycle":0.78},"Brazil":{"player":0.94,"closer":0.78,"cycle":0.79,"pressure":0.9},"Germany":{"player":0.9,"closer":0.68,"cycle":0.58,"burden":0.7,"disruption":0.35},"Argentina":{"player":0.87,"closer":0.66,"cycle":0.6,"disruption":0.45},"Russia":{"player":0.64,"closer":0.5,"cycle":0.68,"dark":0.76}},"2022":{"Argentina":{"player":0.94,"closer":0.97,"cycle":0.96},"France":{"player":0.96,"closer":0.88,"cycle":0.88,"burden":0.18},"Brazil":{"player":0.95,"closer":0.78,"cycle":0.83,"pressure":0.92},"Croatia":{"player":0.86,"closer":0.84,"cycle":0.82,"dark":0.7},"Morocco":{"player":0.78,"closer":0.66,"cycle":0.78,"dark":0.88},"England":{"player":0.9,"closer":0.8,"cycle":0.82},"Netherlands":{"player":0.88,"closer":0.76,"cycle":0.82},"Portugal":{"player":0.89,"closer":0.72,"cycle":0.76,"disruption":0.2},"Spain":{"player":0.89,"closer":0.7,"cycle":0.78},"Germany":{"player":0.88,"closer":0.6,"cycle":0.55,"disruption":0.42},"Belgium":{"player":0.85,"closer":0.6,"cycle":0.52,"disruption":0.54}},"2026":{"Spain":{"player":0.96,"closer":0.9,"cycle":0.9},"Argentina":{"player":0.94,"closer":0.94,"cycle":0.88,"burden":0.3},"France":{"player":0.96,"closer":0.88,"cycle":0.88},"England":{"player":0.94,"closer":0.84,"cycle":0.86},"Brazil":{"player":0.94,"closer":0.78,"cycle":0.82},"Portugal":{"player":0.92,"closer":0.86,"cycle":0.84},"Netherlands":{"player":0.9,"closer":0.8,"cycle":0.82},"Germany":{"player":0.89,"closer":0.76,"cycle":0.78},"Croatia":{"player":0.84,"closer":0.82,"cycle":0.76},"Morocco":{"player":0.8,"closer":0.76,"cycle":0.8,"dark":0.74},"Colombia":{"player":0.84,"closer":0.8,"cycle":0.84,"dark":0.65},"Uruguay":{"player":0.85,"closer":0.78,"cycle":0.82},"Japan":{"player":0.79,"closer":0.72,"cycle":0.8,"dark":0.72},"United States":{"player":0.78,"closer":0.7,"cycle":0.76,"hostPulse":0.8},"Mexico":{"player":0.76,"closer":0.74,"cycle":0.74,"hostPulse":0.82},"Canada":{"player":0.74,"closer":0.68,"cycle":0.72,"hostPulse":0.8}}}};
 
 const ACTUAL_MATCH_SCORES = {
@@ -2744,7 +2798,14 @@ const MANUAL_PRESETS={
   'Def+':{overall:3,group:3,knockout:4,attack:0,defense:12,form:0,clutch:2,consistency:5,penalty:2,lowEvent:5},
   Clutch:{overall:4,group:0,knockout:10,attack:2,defense:4,form:2,clutch:12,consistency:5,penalty:8,lowEvent:2},
   Safe:{overall:4,group:5,knockout:5,attack:-2,defense:8,form:2,clutch:3,consistency:12,penalty:4,lowEvent:6},
-  Chaos:{overall:0,group:-2,knockout:5,attack:5,defense:-4,form:0,clutch:4,consistency:-10,penalty:8,lowEvent:8}
+  Chaos:{overall:0,group:-2,knockout:5,attack:5,defense:-4,form:0,clutch:4,consistency:-10,penalty:8,lowEvent:8},
+  'D.Horse':{overall:4,group:6,knockout:8,attack:-1,defense:8,form:4,clutch:6,consistency:4,penalty:7,lowEvent:8},
+  FavTrap:{overall:-8,group:-2,knockout:-10,attack:-2,defense:-5,form:-4,clutch:-8,consistency:-8,penalty:-4,lowEvent:-4},
+  Host:{overall:5,group:10,knockout:4,attack:2,defense:2,form:5,clutch:2,consistency:3,penalty:1,lowEvent:0},
+  Closer:{overall:5,group:1,knockout:10,attack:2,defense:5,form:3,clutch:10,consistency:6,penalty:10,lowEvent:3},
+  LowEvt:{overall:3,group:3,knockout:5,attack:-4,defense:8,form:1,clutch:4,consistency:7,penalty:3,lowEvent:12},
+  Scar:{overall:-7,group:-3,knockout:-8,attack:-1,defense:-2,form:-4,clutch:-6,consistency:-5,penalty:-4,lowEvent:-1},
+  Upset:{overall:3,group:5,knockout:7,attack:5,defense:1,form:5,clutch:5,consistency:-5,penalty:7,lowEvent:5}
 };
 const MANUAL_PRESET_TIPS={
   Nerf:'Move this team to the lowest setting on every odds dial.',
@@ -2758,7 +2819,14 @@ const MANUAL_PRESET_TIPS={
   'Def+':'Boost defensive strength and low-scoring control.',
   Clutch:'Boost late-game, penalty, and knockout survival traits.',
   Safe:'Make this team more steady and less fragile.',
-  Chaos:'Make this team more volatile with higher upset/penalty swings.'
+  Chaos:'Make this team more volatile with higher upset/penalty swings.',
+  'D.Horse':'Dark-horse profile: better survival, defense, penalties, and low-event upset chances.',
+  FavTrap:'Favorite trap profile: lower a strong team that feels risky or likely to disappoint.',
+  Host:'Host-style lift: stronger group-stage comfort with a small overall boost.',
+  Closer:'Closer profile: better knockout, late-game, and penalty survival.',
+  LowEvt:'Low-event profile: stronger defense and tight-game survival, less open attacking upside.',
+  Scar:'Scar-tissue profile: lower teams carrying collapse, pressure, or tournament baggage.',
+  Upset:'Upset profile: more volatile team with better upset and penalty swing potential.'
 };
 const MANUAL_SHIFT_FIELDS=Object.keys(MANUAL_DEFAULT);
 function clampManualField(k,v){const f=manualFieldMeta(k);return Math.max(f.min,Math.min(f.max,Math.round(Number(v)||0)))}
@@ -3177,8 +3245,59 @@ function initWorker(){
   };
   worker.postMessage({type:'init',data:DATA});
 }
-function badges(flags){return (flags||[]).map(f=>`<span class="pill signal ${esc(f)}" title="${signalTitle(f)}">${esc(f)}</span>`).join('')||'<span class="muted">—</span>'}
+function badges(flags){return (flags||[]).map(f=>`<span class="pill signal ${esc(f)}" data-ui-tip="${esc(signalTitle(f))}" tabindex="0">${esc(f)}</span>`).join('')||'<span class="muted">—</span>'}
 function signalTitle(f){return {LOW_EVENT:'Defensive/keeper profile that increases draw and penalty risk.',SCAR_TISSUE:'Prior tournament trauma or redemption pressure.',FAVORITE_TRAP:'High reputation with fragility or disruption.',DARK_HORSE:'Tighter dark-horse filter: under-the-radar team with strong defensive and penalty-game survival traits.',HOST:'Host or home-region advantage.',CLOSER:'Recent trophy/final proof.',MY_ODDS:'Manual My Odds override is active for this team.'}[f]||f}
+
+let activeUiTipTarget=null;
+function ensureUiTip(){
+  let el=document.getElementById('appHoverPop');
+  if(!el){el=document.createElement('div');el.id='appHoverPop';el.className='app-hover-pop';el.setAttribute('role','tooltip');document.body.appendChild(el)}
+  return el;
+}
+function positionUiTip(target){
+  const tip=ensureUiTip();
+  if(!target||tip.style.display==='none')return;
+  const r=target.getBoundingClientRect();
+  tip.style.visibility='hidden';
+  tip.style.display='block';
+  const pad=8, gap=10, tw=tip.offsetWidth, th=tip.offsetHeight;
+  const place=r.top-th-gap<pad?'bottom':'top';
+  let top=place==='top'?r.top-th-gap:r.bottom+gap;
+  let left=r.left+r.width/2-tw/2;
+  left=Math.max(pad,Math.min(left,window.innerWidth-tw-pad));
+  top=Math.max(pad,Math.min(top,window.innerHeight-th-pad));
+  const arrowX=Math.max(12,Math.min(tw-12,r.left+r.width/2-left));
+  tip.dataset.place=place;
+  tip.style.left=left+'px';
+  tip.style.top=top+'px';
+  tip.style.setProperty('--tip-arrow-x',arrowX+'px');
+  tip.style.visibility='visible';
+}
+function showUiTip(target){
+  if(!target)return;
+  const text=target.dataset.uiTip||'';
+  if(!text)return;
+  activeUiTipTarget=target;
+  const tip=ensureUiTip();
+  tip.textContent=text;
+  tip.style.display='block';
+  positionUiTip(target);
+}
+function hideUiTip(target=null){
+  if(target&&activeUiTipTarget&&target!==activeUiTipTarget)return;
+  const tip=document.getElementById('appHoverPop');
+  if(tip)tip.style.display='none';
+  activeUiTipTarget=null;
+}
+function setupUiHoverTips(){
+  document.addEventListener('mouseover',e=>{const target=e.target.closest('[data-ui-tip]');if(target)showUiTip(target)});
+  document.addEventListener('mouseout',e=>{const target=e.target.closest('[data-ui-tip]');if(target&&(!e.relatedTarget||!target.contains(e.relatedTarget)))hideUiTip(target)});
+  document.addEventListener('focusin',e=>{const target=e.target.closest('[data-ui-tip]');if(target)showUiTip(target)});
+  document.addEventListener('focusout',e=>{const target=e.target.closest('[data-ui-tip]');if(target)hideUiTip(target)});
+  document.addEventListener('click',e=>{if(!e.target.closest('[data-ui-tip]'))hideUiTip()});
+  window.addEventListener('resize',()=>activeUiTipTarget?positionUiTip(activeUiTipTarget):null);
+  window.addEventListener('scroll',()=>activeUiTipTarget?positionUiTip(activeUiTipTarget):null,true);
+}
 function flagCodeForTeam(team){
   const clean=canonicalTeamName(team);
   const candidates=[clean,team];
@@ -3659,6 +3778,68 @@ function renderBracket(d){
 let teamSearchSelection={active:false,start:0,end:0};
 let teamSearchValue='';
 let teamTableScrollState={left:0,top:0};
+let teamSortState={key:'team',dir:'asc'};
+const TEAM_HEADER_TIPS={
+  team:'Country/team name. Click to sort alphabetically.',
+  manual:'Current My Odds adjustment for that team. Click to sort by strongest custom boost or nerf.',
+  group:'World Cup group. Click to sort by group letter.',
+  signals:'Model signals attached to this team. Hover a signal for its meaning.',
+  player:'Player-quality input used by the model.',
+  closer:'Late-stage/final-winning profile used by the model.',
+  cycle:'Current form/cycle input used by the model.',
+  r32:'Chance to reach the first knockout round.',
+  r16:'Chance to reach the round of 16.',
+  qf:'Chance to reach the quarterfinals.',
+  sf:'Chance to reach the semifinals.',
+  final:'Chance to reach the final.',
+  third:'Chance to reach the third-place game.',
+  champ:'Chance to win the tournament.'
+};
+function teamHeaderTip(key,label){return TEAM_HEADER_TIPS[key]||`Click to sort by ${label}.`}
+function teamSortValue(r,key){
+  const p=r.profile||{};
+  if(key==='team')return canonicalTeamName(r.team).toLowerCase();
+  if(key==='manual')return manualScore(p.manual||{});
+  if(key==='group')return String(p.group||'');
+  if(key==='signals')return (p.flags||[]).join('|');
+  if(key==='player')return p.player||0;
+  if(key==='closer')return p.closer||0;
+  if(key==='cycle')return p.form||0;
+  if(['r32','r16','qf','sf','final','third','champ'].includes(key))return r[key]||0;
+  return canonicalTeamName(r.team).toLowerCase();
+}
+function compareTeamRows(a,b){
+  const key=teamSortState.key||'team', dir=teamSortState.dir==='desc'?-1:1;
+  const av=teamSortValue(a,key), bv=teamSortValue(b,key);
+  let cmp;
+  if(typeof av==='number'||typeof bv==='number')cmp=(Number(av)||0)-(Number(bv)||0);
+  else cmp=String(av).localeCompare(String(bv),undefined,{numeric:true,sensitivity:'base'});
+  if(!cmp)cmp=canonicalTeamName(a.team).localeCompare(canonicalTeamName(b.team));
+  return cmp*dir;
+}
+function syncTeamSortHeaders(){
+  document.querySelectorAll('#teamTable th[data-sort]').forEach(th=>{
+    th.classList.toggle('sort-asc',th.dataset.sort===teamSortState.key&&teamSortState.dir==='asc');
+    th.classList.toggle('sort-desc',th.dataset.sort===teamSortState.key&&teamSortState.dir==='desc');
+    th.dataset.uiTip=teamHeaderTip(th.dataset.sort,th.textContent.trim());
+    th.tabIndex=0;
+  });
+}
+function bindTeamSortHeaders(){
+  document.querySelectorAll('#teamTable th[data-sort]').forEach(th=>{
+    if(th.dataset.sortBound)return;
+    const sortHeader=()=>{
+      const key=th.dataset.sort;
+      if(teamSortState.key===key)teamSortState.dir=teamSortState.dir==='asc'?'desc':'asc';
+      else teamSortState={key,dir:['team','group','signals'].includes(key)?'asc':'desc'};
+      renderTeams(lastResult);
+    };
+    th.addEventListener('click',sortHeader);
+    th.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();sortHeader()}});
+    th.dataset.sortBound='1';
+  });
+  syncTeamSortHeaders();
+}
 function captureTeamsViewState(){
   const input=$('teamSearch');
   if(input){
@@ -3696,7 +3877,7 @@ function restoreTeamsViewState(){
   }
 }
 function teamsShellHTML(){
-  return `<div class="card teams-my-odds-card"><div class="teams-odds-head"><div><h2>Teams</h2><p class="note">Search teams, review odds, and click a team or My Odds value to adjust it. Rows stay alphabetical.</p></div><span id="myOddsState" class="my-odds-state">Off</span></div><div class="teams-unified-toolbar"><input id="teamSearch" class="search" placeholder="Search teams..."><div class="my-odds-actions teams-actions"><span class="lincoln-label">Lincoln's buttons</span><button id="myOddsNerfAll" class="btn2" type="button">Nerf all</button><button id="myOddsMaxAll" class="btn2" type="button">Max all</button><button id="myOddsCopyYear" class="btn2">Copy year</button><button id="csvBtn" class="btn2">Export CSV</button></div></div><div class="teams-table-wrap"><table id="teamTable"><thead><tr><th>Team</th><th>My Odds</th><th>Group</th><th>Signals</th><th class="num">Player</th><th class="num">Closer</th><th class="num">Cycle</th><th class="num">First KO</th><th class="num">R16</th><th class="num">QF</th><th class="num">SF</th><th class="num">Final</th><th class="num">3rd game</th><th class="num">Champ</th></tr></thead><tbody></tbody></table></div><div class="teams-reset-row"><div><b>Reset all odds</b><span>Clears every My Odds adjustment for the selected year.</span></div><button id="myOddsResetAll" class="btn2">Reset all odds</button></div></div>`;
+  return `<div class="card teams-my-odds-card"><div class="teams-odds-head"><div><h2>Teams</h2><p class="note">Search teams, review odds, and click a team or My Odds value to adjust it. Rows stay alphabetical.</p></div><span id="myOddsState" class="my-odds-state">Off</span></div><div class="teams-unified-toolbar"><input id="teamSearch" class="search" placeholder="Search teams..."><div class="my-odds-actions teams-actions"><div class="lincoln-buttons-group"><span class="lincoln-label">Lincoln's buttons</span><button id="myOddsNerfAll" class="btn2" type="button">Nerf all</button><button id="myOddsMaxAll" class="btn2" type="button">Max all</button></div><div class="teams-util-group"><button id="myOddsCopyYear" class="btn2">Copy year</button><button id="csvBtn" class="btn2">Export CSV</button></div></div></div><div class="teams-table-wrap"><table id="teamTable"><thead><tr><th data-sort="team">Team</th><th data-sort="manual">My Odds</th><th data-sort="group">Group</th><th data-sort="signals">Signals</th><th class="num" data-sort="player">Player</th><th class="num" data-sort="closer">Closer</th><th class="num" data-sort="cycle">Cycle</th><th class="num" data-sort="r32">First KO</th><th class="num" data-sort="r16">R16</th><th class="num" data-sort="qf">QF</th><th class="num" data-sort="sf">SF</th><th class="num" data-sort="final">Final</th><th class="num" data-sort="third">3rd game</th><th class="num" data-sort="champ">Champ</th></tr></thead><tbody></tbody></table></div><div class="teams-reset-row"><div><b>Reset all odds</b><span>Clears every My Odds adjustment for the selected year.</span></div><button id="myOddsResetAll" class="btn2">Reset all odds</button></div></div>`;
 }
 function ensureTeamsShell(){
   const pane=$('teams');
@@ -3709,12 +3890,13 @@ function ensureTeamsShell(){
     search.addEventListener('input',e=>applyTeamSearchFilter(e.target.value));
     search.dataset.bound='1';
   }
+  bindTeamSortHeaders();
   return pane.querySelector('#teamTable tbody');
 }
 function teamRowsHTML(d){
   const rows=Object.entries(d.team_probs)
     .map(([team,p])=>({team,...p,profile:d.profiles[team]}))
-    .sort((a,b)=>canonicalTeamName(a.team).localeCompare(canonicalTeamName(b.team)));
+    .sort(compareTeamRows);
   return rows.map(r=>{
     const teamName=canonicalTeamName(r.team);
     return `<tr class="${previewTeamClass(r.team)}" data-preview-team="${esc(teamName)}" data-team="${esc(teamName.toLowerCase())}"><td class="winner">${teamLabel(r.team)}</td><td>${manualPill(r.team,true,r.profile.manual)}</td><td>${esc(r.profile.group)}</td><td>${badges(r.profile.flags)}</td><td class="num">${r.profile.player.toFixed(3)}</td><td class="num">${r.profile.closer.toFixed(3)}</td><td class="num">${r.profile.form.toFixed(3)}</td><td class="num">${pct(r.r32)}</td><td class="num">${pct(r.r16)}</td><td class="num">${pct(r.qf)}</td><td class="num">${pct(r.sf)}</td><td class="num">${pct(r.final)}</td><td class="num">${pct(r.third)}</td><td class="num">${pct(r.champ)}</td></tr>`;
@@ -3724,12 +3906,13 @@ function renderTeams(d){
   captureTeamsViewState();
   const tbody=ensureTeamsShell();
   if(tbody)tbody.innerHTML=teamRowsHTML(d);
+  syncTeamSortHeaders();
   restoreTeamsViewState();
   bindManualOddsPanelControls();
   refreshManualUI();
 }
 function renderAccuracy(d){if(!d.accuracy.length){$('accuracy').innerHTML='<div class="card"><h2>Accuracy</h2><p class="note">No actual results are embedded for this future tournament.</p></div>';return}const total=d.overall;const ov=total[1]?total[0]/total[1]:null;$('accuracy').innerHTML=`<div class="card"><h2>Backtest accuracy</h2><table class="accuracy-table"><thead><tr><th>Stage</th><th class="num">Correct</th><th class="num">Total</th><th class="num">Accuracy</th></tr></thead><tbody>${d.accuracy.map(r=>`<tr class="spectrum-row" ${spectrumStyle(r.pct)}><td>${esc(r.stage)}</td><td class="num">${r.correct}</td><td class="num">${r.total}</td><td class="num">${pct(r.pct)}</td></tr>`).join('')}<tr class="spectrum-row" ${spectrumStyle(ov)}><th>Overall</th><th class="num">${total[0]}</th><th class="num">${total[1]}</th><th class="num">${pct(ov)}</th></tr></tbody></table></div>`}
-function methodSignalGuideHTML(){return `<div class="method-signal-grid"><div class="method-signal"><span class="pill signal LOW_EVENT">LOW_EVENT</span><span>Low-scoring profile. More draw, extra-time, and penalty risk.</span></div><div class="method-signal"><span class="pill signal SCAR_TISSUE">SCAR_TISSUE</span><span>Past tournament failure or pressure may lower confidence.</span></div><div class="method-signal"><span class="pill signal FAVORITE_TRAP">FAVORITE_TRAP</span><span>Highly rated team with form, disruption, or fragility concerns.</span></div><div class="method-signal"><span class="pill signal DARK_HORSE">DARK_HORSE</span><span>Underrated team with survival traits.</span></div><div class="method-signal"><span class="pill signal CLOSER">CLOSER</span><span>Recent proof in finals, trophies, or late tournament stages.</span></div><div class="method-signal"><span class="pill signal HOST">HOST</span><span>Home or near-home advantage.</span></div><div class="method-signal"><span class="pill signal MY_ODDS">MY_ODDS</span><span>Custom team odds are active.</span></div></div>`}
+function methodSignalGuideHTML(){return `<div class="method-signal-grid"><div class="method-signal"><span class="pill signal LOW_EVENT" data-ui-tip="${esc(signalTitle('LOW_EVENT'))}" tabindex="0">LOW_EVENT</span><span>Low-scoring profile. More draw, extra-time, and penalty risk.</span></div><div class="method-signal"><span class="pill signal SCAR_TISSUE" data-ui-tip="${esc(signalTitle('SCAR_TISSUE'))}" tabindex="0">SCAR_TISSUE</span><span>Past tournament failure or pressure may lower confidence.</span></div><div class="method-signal"><span class="pill signal FAVORITE_TRAP" data-ui-tip="${esc(signalTitle('FAVORITE_TRAP'))}" tabindex="0">FAVORITE_TRAP</span><span>Highly rated team with form, disruption, or fragility concerns.</span></div><div class="method-signal"><span class="pill signal DARK_HORSE" data-ui-tip="${esc(signalTitle('DARK_HORSE'))}" tabindex="0">DARK_HORSE</span><span>Underrated team with survival traits.</span></div><div class="method-signal"><span class="pill signal CLOSER" data-ui-tip="${esc(signalTitle('CLOSER'))}" tabindex="0">CLOSER</span><span>Recent proof in finals, trophies, or late tournament stages.</span></div><div class="method-signal"><span class="pill signal HOST" data-ui-tip="${esc(signalTitle('HOST'))}" tabindex="0">HOST</span><span>Home or near-home advantage.</span></div><div class="method-signal"><span class="pill signal MY_ODDS" data-ui-tip="${esc(signalTitle('MY_ODDS'))}" tabindex="0">MY_ODDS</span><span>Custom team odds are active.</span></div></div>`}
 function renderMethod(d){$('method').innerHTML=`<div class="card"><h2>Method</h2><p class="note">The engine runs seeded Monte Carlo simulations in a Web Worker. For past years, embedded data is meant to match what was known before that tournament started.</p><p class="note">The model blends team strength, recent cycle form, World Cup history, player quality, host/travel context, disruption risk, penalty risk, low-scoring game risk, and your My Odds team adjustments.</p><p class="note"><b>Data:</b> ${esc(dataSourceLabel())}. Live checks update available schedules, groups, rankings, form, and penalty context. If a feed is blocked or unavailable, the app uses embedded data.</p></div><div class="card"><h2>Signal guide</h2>${methodSignalGuideHTML()}</div><div class="card"><h2>Model baseline</h2><p class="note">Top-level preset/tuning controls were removed. These are the fixed baseline weights; team-specific changes now happen through My Odds.</p><table><tbody>${SLIDERS.map(sl=>`<tr><th>${esc(sl.name)}</th><td class="num">${sliderValue(sl.k).toFixed(2)}</td><td>${esc(sl.desc)}</td></tr>`).join('')}</tbody></table></div>`}
 function downloadCSV(){if(!lastResult)return;const rows=Object.entries(lastResult.team_probs).map(([team,p])=>{const prof=lastResult.profiles[team],m=cleanManual(prof.manual||{});return {team,group:prof.group,manual_overall:m.overall,manual_group:m.group,manual_knockout:m.knockout,manual_attack:m.attack,manual_defense:m.defense,manual_form:m.form,manual_clutch:m.clutch,manual_consistency:m.consistency,manual_penalty:m.penalty,manual_low_event:m.lowEvent,signals:prof.flags.join('|'),player:prof.player.toFixed(4),closer:prof.closer.toFixed(4),cycle:prof.form.toFixed(4),first_ko:p.r32.toFixed(4),r16:p.r16.toFixed(4),qf:p.qf.toFixed(4),sf:p.sf.toFixed(4),final:p.final.toFixed(4),third:p.third.toFixed(4),champion:p.champ.toFixed(4)}});const cols=Object.keys(rows[0]);const csv=[cols.join(','),...rows.map(r=>cols.map(c=>'"'+String(r[c]).replaceAll('"','""')+'"').join(','))].join('\n');downloadBlob(new Blob([csv],{type:'text/csv'}),datedDownloadName('wc'+lastResult.year+'_team_probabilities','csv'))}
 
@@ -4581,7 +4764,8 @@ function setupSmoothDetails(){
     }
   });
 }
-buildControls();setupHeaderSettingsPopup();setupManualOddsUI();setupSmoothDetails();setupShareUI();setupLiveDataUI();setDataSource(liveOfflineEnabled?'offline':'checking',liveOfflineEnabled?'Data: offline':'Data: checking',liveOfflineEnabled?'Offline mode is enabled. Online checks are paused.':'Checking live data before the first prediction.');if(liveOfflineEnabled)markInitialDataReady(false);initWorker();startLiveRefresh();if(!liveOfflineEnabled)refreshOnlineData({auto:true,full:false,initial:true});else{markInitialDataReady(true);renderLiveDataPanel();}
+function syncAppVersion(){document.querySelectorAll('.app-version').forEach(el=>{el.textContent=APP_VERSION;});}
+syncAppVersion();buildControls();setupHeaderSettingsPopup();setupManualOddsUI();setupSmoothDetails();setupShareUI();setupLiveDataUI();setupUiHoverTips();setDataSource(liveOfflineEnabled?'offline':'checking',liveOfflineEnabled?'Data: offline':'Data: checking',liveOfflineEnabled?'Offline mode is enabled. Online checks are paused.':'Checking live data before the first prediction.');if(liveOfflineEnabled)markInitialDataReady(false);initWorker();startLiveRefresh();if(!liveOfflineEnabled)refreshOnlineData({auto:true,full:false,initial:true});else{markInitialDataReady(true);renderLiveDataPanel();}
 </script>
 </body>
 </html>
