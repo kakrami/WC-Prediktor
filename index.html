@@ -1239,6 +1239,16 @@ body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-
   vertical-align:middle!important;
 }
 
+
+/* v122: Lincoln's buttons in the Teams action row */
+#teams .teams-actions .lincoln-label{display:inline-flex!important;align-items:center!important;height:34px!important;margin-right:2px!important;color:#94a3b8!important;font-size:11px!important;font-weight:900!important;letter-spacing:.02em!important;white-space:nowrap!important}
+#teams .teams-actions #myOddsNerfAll,#teams .teams-actions #myOddsMaxAll{width:auto!important;min-width:70px!important;height:34px!important;padding:0 10px!important;border-radius:10px!important;font-size:11px!important;font-weight:900!important;line-height:1!important;white-space:nowrap!important}
+#teams .teams-actions #myOddsNerfAll:before,#teams .teams-actions #myOddsMaxAll:before{content:none!important}
+#teams .teams-actions #myOddsNerfAll{background:#7f1d1d!important;border:1px solid #ef444499!important;color:#fecaca!important}
+#teams .teams-actions #myOddsMaxAll{background:#14532d!important;border:1px solid #22c55e99!important;color:#bbf7d0!important}
+@media(max-width:900px){#teams .teams-actions .lincoln-label{width:100%!important;height:auto!important;margin:2px 0 0!important}}
+@media(max-width:520px){#teams .teams-actions #myOddsNerfAll,#teams .teams-actions #myOddsMaxAll{min-width:72px!important;height:32px!important;font-size:10.5px!important}}
+
 </style>
 </head>
 <body>
@@ -2935,11 +2945,26 @@ async function copyManualOddsFromYear(){
   markManualChanged();
   showToast(`Copied ${copied.length} team${copied.length===1?'':'s'} from ${sourceYear}. ${skipped.length} skipped.`,skipped.length?'warn':'ok');
 }
+async function applyManualPresetToAll(presetName){
+  const preset=MANUAL_PRESETS[presetName];
+  if(!preset)return;
+  const year=currentYear();
+  const label=presetName==='Nerf'?'Nerf all':'Max all';
+  if(!await appConfirm(`${label} teams for ${year}?`,`Lincoln's buttons`))return;
+  captureTeamsViewState();
+  const y=String(year);
+  manualSettingsByYear[y]={};
+  allAppTeams(year).forEach(team=>{manualSettingsByYear[y][canonicalTeamName(team)]=cleanManual(preset)});
+  saveManualSettings();
+  markManualChanged();
+}
 function bindManualOddsPanelControls(){
-  const actionTitles={myOddsCopyYear:'Copy odds from another year',myOddsResetAll:'Reset all team odds for this year',csvBtn:'Export CSV'};
+  const actionTitles={myOddsCopyYear:'Copy odds from another year',myOddsResetAll:'Reset all team odds for this year',myOddsNerfAll:"Lincoln's button: set every team to the lowest odds",myOddsMaxAll:"Lincoln's button: set every team to the highest odds",csvBtn:'Export CSV'};
   Object.entries(actionTitles).forEach(([id,title])=>{const btn=$(id);if(btn){btn.title=title;btn.setAttribute('aria-label',title)}});
   const search=$('myOddsSearch');if(search)search.oninput=refreshManualUI;
   const reset=$('myOddsResetAll');if(reset)reset.onclick=resetAllManualOdds;
+  const nerfAll=$('myOddsNerfAll');if(nerfAll)nerfAll.onclick=()=>applyManualPresetToAll('Nerf');
+  const maxAll=$('myOddsMaxAll');if(maxAll)maxAll.onclick=()=>applyManualPresetToAll('Max');
   const copy=$('myOddsCopyYear');if(copy)copy.onclick=copyManualOddsFromYear;
   const csv=$('csvBtn');if(csv)csv.onclick=downloadCSV;
 }
@@ -3671,7 +3696,7 @@ function restoreTeamsViewState(){
   }
 }
 function teamsShellHTML(){
-  return `<div class="card teams-my-odds-card"><div class="teams-odds-head"><div><h2>Teams</h2><p class="note">Search teams, review odds, and click a team or My Odds value to adjust it. Rows stay alphabetical.</p></div><span id="myOddsState" class="my-odds-state">Off</span></div><div class="teams-unified-toolbar"><input id="teamSearch" class="search" placeholder="Search teams..."><div class="my-odds-actions teams-actions"><button id="myOddsCopyYear" class="btn2">Copy year</button><button id="csvBtn" class="btn2">Export CSV</button></div></div><div class="teams-table-wrap"><table id="teamTable"><thead><tr><th>Team</th><th>My Odds</th><th>Group</th><th>Signals</th><th class="num">Player</th><th class="num">Closer</th><th class="num">Cycle</th><th class="num">First KO</th><th class="num">R16</th><th class="num">QF</th><th class="num">SF</th><th class="num">Final</th><th class="num">3rd game</th><th class="num">Champ</th></tr></thead><tbody></tbody></table></div><div class="teams-reset-row"><div><b>Reset all odds</b><span>Clears every My Odds adjustment for the selected year.</span></div><button id="myOddsResetAll" class="btn2">Reset all odds</button></div></div>`;
+  return `<div class="card teams-my-odds-card"><div class="teams-odds-head"><div><h2>Teams</h2><p class="note">Search teams, review odds, and click a team or My Odds value to adjust it. Rows stay alphabetical.</p></div><span id="myOddsState" class="my-odds-state">Off</span></div><div class="teams-unified-toolbar"><input id="teamSearch" class="search" placeholder="Search teams..."><div class="my-odds-actions teams-actions"><span class="lincoln-label">Lincoln's buttons</span><button id="myOddsNerfAll" class="btn2" type="button">Nerf all</button><button id="myOddsMaxAll" class="btn2" type="button">Max all</button><button id="myOddsCopyYear" class="btn2">Copy year</button><button id="csvBtn" class="btn2">Export CSV</button></div></div><div class="teams-table-wrap"><table id="teamTable"><thead><tr><th>Team</th><th>My Odds</th><th>Group</th><th>Signals</th><th class="num">Player</th><th class="num">Closer</th><th class="num">Cycle</th><th class="num">First KO</th><th class="num">R16</th><th class="num">QF</th><th class="num">SF</th><th class="num">Final</th><th class="num">3rd game</th><th class="num">Champ</th></tr></thead><tbody></tbody></table></div><div class="teams-reset-row"><div><b>Reset all odds</b><span>Clears every My Odds adjustment for the selected year.</span></div><button id="myOddsResetAll" class="btn2">Reset all odds</button></div></div>`;
 }
 function ensureTeamsShell(){
   const pane=$('teams');
