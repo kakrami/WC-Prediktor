@@ -1070,20 +1070,183 @@ body:not(.manual-preview-open) .manual-preview-team{outline:none!important;box-s
 @media(max-width:520px){.manual-presets button[data-tip]:after{max-width:min(205px,calc(100vw - 30px));font-size:10.5px}}
 @media(max-width:380px){.manual-presets button[data-tip]:after{max-width:min(185px,calc(100vw - 24px));font-size:10px}}
 
+
+/* Final canonical UI layer: keep layout fixes here instead of adding scattered vXX patches. */
+.validation-alert{border-color:#f59e0bcc!important;background:linear-gradient(135deg,#78350f88,#0b1222 72%)!important;box-shadow:0 12px 34px #0005,0 0 0 1px #f59e0b22!important}
+.validation-alert h2{display:flex;align-items:center;gap:8px;margin:0 0 6px!important;color:#fde68a!important;font-size:15px!important}
+.validation-alert h2:before{content:"⚠";font-size:15px;line-height:1}
+.validation-alert ul{margin:9px 0 0;padding-left:20px;color:#fed7aa;font-size:12px;line-height:1.45}
+.validation-alert li{margin:3px 0}
+#overview>.validation-alert,#groups>.validation-alert,#bracket>.validation-alert{margin-bottom:12px!important}
+#teams .teams-my-odds-card{overflow:visible!important}
+#teams .teams-odds-head{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:12px!important}
+#teams .teams-unified-toolbar{display:grid!important;grid-template-columns:minmax(220px,1fr) auto!important;gap:8px!important;align-items:center!important;margin-top:10px!important}
+#teams .teams-unified-toolbar .search{margin:0!important;min-width:0!important}
+#teams .teams-actions{display:flex!important;flex-wrap:nowrap!important;gap:6px!important;justify-content:flex-end!important;margin:0!important;min-width:0!important}
+#teams .teams-actions button{width:34px!important;min-width:34px!important;height:34px!important;padding:0!important;border-radius:10px!important;font-size:0!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+#teams .teams-actions button:before{font-size:15px;line-height:1}
+#teams .teams-actions #myOddsImport:before{content:"⇣"}
+#teams .teams-actions #myOddsExport:before{content:"⇡"}
+#teams .teams-actions #myOddsCopyYear:before{content:"⧉"}
+#teams .teams-actions #csvBtn:before{content:"CSV";font-size:10px;font-weight:950}
+#teams .teams-actions #myOddsResetAll:before{content:"↺"}
+#teams .teams-table-wrap{width:100%!important;max-width:100%!important;margin-top:10px!important;overflow:auto!important;-webkit-overflow-scrolling:touch!important;border-radius:12px!important;border:1px solid var(--line)!important;background:#071021!important}
+#teams #teamTable{width:max-content!important;min-width:100%!important;table-layout:auto!important;border-collapse:separate!important;border-spacing:0!important}
+#teams #teamTable th{position:sticky!important;top:0!important;z-index:4!important;background:#081225!important}
+#teams #teamTable th,#teams #teamTable td{white-space:nowrap!important}
+#teams #teamTable th:first-child,#teams #teamTable td:first-child{width:1%!important;min-width:max-content!important;max-width:none!important;white-space:nowrap!important}
+#teams #teamTable td:first-child .team{width:max-content!important;max-width:none!important;overflow:visible!important}
+#teams #teamTable td:first-child .team>span:last-child{overflow:visible!important;text-overflow:clip!important;white-space:nowrap!important}
+#teams #teamTable tbody tr[style*="display: none"]{display:none!important}
+@media(max-width:900px){#teams .teams-unified-toolbar{grid-template-columns:1fr!important}#teams .teams-actions{justify-content:flex-start!important;flex-wrap:wrap!important}}
+@media(max-width:520px){#teams .teams-actions button{width:32px!important;min-width:32px!important;height:32px!important}#teams .teams-actions #csvBtn:before{font-size:9px}}
+
+
+/* v112: remove top preset/tuning controls and keep My Odds as the tuning surface */
+.header-controls{display:grid!important;grid-template-columns:154px 72px 38px!important;align-items:end!important;gap:8px!important;max-width:100%!important}
+.header-controls .year-field{grid-column:1!important;grid-row:1!important;min-width:0!important;width:auto!important}
+#shareBtn.header-action-btn{grid-column:2!important;grid-row:1!important;width:72px!important;min-width:72px!important;font-size:12px!important;padding:8px 10px!important}
+.header-settings-wrap{grid-column:3!important;grid-row:1!important;width:38px!important}
+.preset-field,.preset-tuning-field,.tuning-popover{display:none!important}
+#teams .teams-reset-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding:10px 12px;border:1px solid #7f1d1d99;border-radius:13px;background:#1f0f12;color:#fecaca}
+#teams .teams-reset-row div{display:grid;gap:2px;min-width:0}
+#teams .teams-reset-row b{font-size:12px;line-height:1.2;color:#fecaca}
+#teams .teams-reset-row span{font-size:11px;line-height:1.25;color:#fca5a5}
+#teams .teams-reset-row #myOddsResetAll{width:auto!important;min-width:126px!important;height:34px!important;padding:0 12px!important;border-radius:10px!important;font-size:12px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;white-space:nowrap!important;background:#7f1d1d!important;border:1px solid #ef444499!important;color:#fecaca!important}
+#teams .teams-reset-row #myOddsResetAll:before{content:"↺"!important;font-size:14px!important;line-height:1!important;margin:0!important}
+#teams .teams-reset-row #myOddsResetAll:hover{filter:brightness(1.08)}
+.manual-presets{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.manual-presets button{min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+@media(max-width:900px){.header-controls{grid-template-columns:minmax(0,1fr) 42px 42px!important}.header-controls .year-field{grid-column:1!important}.header-controls #shareBtn{grid-column:2!important;width:42px!important;min-width:42px!important;padding:0!important;font-size:0!important}.header-controls #shareBtn:before{content:"↗";font-size:16px}.header-settings-wrap{grid-column:3!important;width:42px!important}.settings-gear-btn{width:42px!important;min-width:42px!important}.settings-popover{top:92px!important}.teams-reset-row{align-items:flex-start!important}}
+@media(max-width:520px){.header-controls{grid-template-columns:minmax(0,1fr) 40px 40px!important}.header-controls #shareBtn{width:40px!important;min-width:40px!important}.header-settings-wrap{width:40px!important}.settings-gear-btn{width:40px!important;min-width:40px!important}#teams .teams-reset-row{display:grid!important;grid-template-columns:1fr!important}#teams .teams-reset-row #myOddsResetAll{width:100%!important;min-width:0!important}.manual-presets{grid-template-columns:repeat(3,minmax(0,1fr))!important}.manual-presets button{font-size:10px!important}}
+
+
+/* v113 odds drawer stability + focused preview dimming */
+.manual-current-card{min-height:52px}
+.manual-current-card.manual-stat-pending b{opacity:.78}
+.manual-current-card.manual-stat-pending span{color:#fde68a}
+.manual-current-card.manual-stat-empty b{color:#64748b}
+.manual-slider.manual-shift-control{border:0!important;background:transparent!important;border-radius:0!important;padding:0!important;margin:10px 0!important}
+.manual-slider.manual-shift-control label{color:#cbd5e1!important;font-weight:900}
+.manual-shift-help{font-size:10.5px;color:#94a3b8;line-height:1.3;margin:-2px 0 8px}
+body.manual-preview-open.manual-preview-has-target #groups.active .group{opacity:.24;filter:brightness(.62) saturate(.55);transition:opacity .16s ease,filter .16s ease}
+body.manual-preview-open.manual-preview-has-target #groups.active .group.manual-preview-focus-parent{opacity:1;filter:none}
+body.manual-preview-open.manual-preview-has-target #groups.active .group.manual-preview-focus-parent .teamrow[data-preview-team]{opacity:.42;filter:brightness(.72);transition:opacity .16s ease,filter .16s ease}
+body.manual-preview-open.manual-preview-has-target #groups.active .group.manual-preview-focus-parent .teamrow.manual-preview-team{opacity:1;filter:none}
+body.manual-preview-open.manual-preview-has-target #bracket.active .game{opacity:.22;filter:brightness(.58) saturate(.52);transition:opacity .16s ease,filter .16s ease}
+body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-preview-focus-parent,
+body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-preview-team{opacity:1;filter:none}
+body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-preview-focus-parent .game-line[data-preview-team]{opacity:.45;filter:brightness(.75)}
+body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-preview-focus-parent .game-line.manual-preview-team{opacity:1;filter:none}
+body.manual-preview-open.manual-preview-has-target #bracket.active .bracket-lines{opacity:.28}
+body.manual-preview-open.manual-preview-has-target #bracket.active .manual-preview-focus-parent ~ .bracket-lines{opacity:.28}
+@media(max-width:520px){.manual-slider.manual-shift-control{margin:6px 0!important}.manual-shift-help{font-size:10px;margin-bottom:6px}}
+
+
+/* v115: keep Nerf, Reset, and Max together as the first quick-change row. */
+.manual-presets{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.manual-presets button{min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.manual-presets button:nth-child(-n+3){border-color:#f59e0b99!important;background:#78350f55!important;color:#fde68a!important}
+.manual-presets button:nth-child(2){border-color:#38bdf899!important;background:#082f49!important;color:#bae6fd!important}
+
+
+
+/* v116 focus dimming refinement: keep the active group/game content readable. */
+body.manual-preview-open.manual-preview-has-target #groups.active .group.manual-preview-focus-parent .teamrow[data-preview-team]{opacity:1!important;filter:none!important}
+body.manual-preview-open.manual-preview-has-target #groups.active .group.manual-preview-focus-parent .teamrow.manual-preview-team{opacity:1!important;filter:none!important}
+body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-preview-focus-parent .game-line[data-preview-team]{opacity:1!important;filter:none!important}
+body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-preview-focus-parent .game-line.manual-preview-team{opacity:1!important;filter:none!important}
+
+
+
+/* v121 mobile odds editing: keep the active preview visible without adding a full blank page. */
+@media(max-width:1000px){
+  body.manual-preview-open{padding-bottom:0!important}
+  body.manual-preview-open .main{padding-bottom:calc(var(--manual-mobile-sheet-height) + 12px)!important}
+  body.manual-preview-open #groups,
+  body.manual-preview-open #bracket,
+  body.manual-preview-open .manual-preview-focus-parent,
+  body.manual-preview-open .manual-preview-team{scroll-margin-bottom:calc(var(--manual-mobile-sheet-height) + 12px)!important;scroll-margin-top:16px!important}
+}
+
+
+
+/* v119: previous-year overview stability + green Max odds quick action.
+   Keep nested team/flag spans inside overview comparison rows from being clipped by the generic value span rule. */
+.ov-line > span{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.ov-line span:not(.team):not(.flag):not(.flag-fallback):not(.result-mark):not(.manual-preset-label){overflow:visible}
+.ov-line .team{display:inline-grid!important;vertical-align:middle!important;max-width:100%!important}
+.ov-line .team .flag,.ov-line .team .flag-img,.ov-line .team .flag-fallback{overflow:hidden!important}
+.ov-line .team>span:last-child{overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+.manual-presets button[data-manual-preset="Max"]{border-color:#22c55e99!important;background:#14532d55!important;color:#bbf7d0!important}
+.manual-presets button[data-manual-preset="Max"]:hover{border-color:#22c55ecc!important;background:#166534aa!important;color:#dcfce7!important}
+
+
+
+/* v120: Overview repaint stability.
+   Previous-year overview has the heaviest nested cards/flags/comparison rows.
+   Keep the themed look, but remove the glass/backdrop/pseudo layers that can flicker in Chrome. */
+#overview.active{
+  overflow:visible!important;
+  background:radial-gradient(circle at 84% 8%,rgba(250,204,21,.12),transparent 25%),radial-gradient(circle at 9% 76%,rgba(56,189,248,.10),transparent 34%),rgba(2,6,23,.38)!important;
+}
+#overview.active:before,
+#overview.active:after{display:none!important}
+#overview.active .card,
+#overview.active .overview-main-pick,
+#overview.active .overview-card,
+#overview.active .overview-result,
+#overview.active .stage-card,
+#overview.active .contender-row{
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  will-change:auto!important;
+  transform:none!important;
+  contain:none!important;
+}
+#overview.active .card{
+  background:linear-gradient(180deg,#111827,#0f172a)!important;
+}
+#overview.active .overview-card,
+#overview.active .overview-result,
+#overview.active .stage-card,
+#overview.active .contender-row{
+  background:#0b1222!important;
+}
+#overview.active .overview-main-pick{
+  overflow:visible!important;
+}
+#overview .overview-card .big,
+#overview .overview-final-line,
+#overview .overview-results,
+#overview .overview-result,
+#overview .ov-line,
+#overview .ov-line>span{
+  backface-visibility:hidden;
+}
+#overview .ov-line{
+  align-items:start;
+}
+#overview .ov-line>span{
+  display:block;
+  min-width:0!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#overview .ov-line .team{
+  display:inline-grid!important;
+  max-width:100%!important;
+  vertical-align:middle!important;
+}
+
 </style>
 </head>
 <body>
 <header class="app-header">
-  <div class="brand-block"><h1>🏆 World Cup Prediktor <span class="brand-by">by kia</span></h1><div class="subtitle">Pick a year, adjust odds if needed, then save or share your prediction.</div><div class="app-version">v110</div></div>
+  <div class="brand-block"><h1>🏆 World Cup Prediktor <span class="brand-by">by kia</span></h1><div class="subtitle">Pick a year, adjust odds if needed, then save or share your prediction.</div><div class="app-version">v121</div></div>
   <div class="header-right">
     <div class="header-controls" aria-label="Main controls">
       <div class="header-year-control quick-field year-field"><label><span id="yearMode">Predict</span> year</label><select id="year"></select></div>
-      <div class="quick-field preset-field preset-tuning-field"><label>Preset</label><div class="preset-tuning-row"><select id="preset"><option value="balanced">Balanced</option><option value="custom">Custom</option><option value="accuracy">Accuracy hunt</option><option value="scaraware">Scar-aware</option><option value="knockout">Knockout survival</option><option value="darkhorse">Dark-horse finder</option><option value="upset">Upset chaos</option><option value="lowevent">Low-event grinder</option><option value="hostboost">Host boost</option><option value="classic">Classic powers</option><option value="favorite">Favorite-heavy</option></select><button id="tuningBtn" class="tuning-btn" type="button" aria-label="Tune preset" title="Tune preset" aria-haspopup="dialog" aria-expanded="false"><span class="tuning-icon" aria-hidden="true">🔧</span><span class="tuning-label">Tune</span></button></div>
-        <div id="tuningPopover" class="tuning-popover" role="dialog" aria-label="Preset tuning" hidden>
-          <div class="tuning-head"><div><div class="tuning-title">Tune preset</div><div class="tuning-subtitle">Adjust the model weights for this run.</div></div><button id="resetPresetDials" class="btn2 reset-dials-btn" type="button">Reset preset</button></div>
-          <div id="sliders" class="tuning-panel-body"></div>
-        </div>
-      </div>
       <button id="shareBtn" class="header-action-btn" type="button" title="Share prediction">Share</button>
       <div class="header-settings-wrap">
         <button id="settingsGearBtn" class="settings-gear-btn" type="button" title="Settings" aria-label="Settings" aria-haspopup="dialog" aria-expanded="false">⚙</button>
@@ -1120,8 +1283,9 @@ body:not(.manual-preview-open) .manual-preview-team{outline:none!important;box-s
   <div class="manual-drawer-head"><div><div id="manualDrawerTitle" class="manual-drawer-title">My Odds</div><div id="manualDrawerSub" class="manual-drawer-sub">Team odds override</div></div><button id="manualClose" class="manual-close" type="button" aria-label="Close">×</button></div>
   <div class="manual-preview-controls" aria-label="Background preview while editing My Odds"><span>Preview</span><button type="button" data-manual-preview="teams">Teams</button><button type="button" data-manual-preview="groups">Groups</button><button type="button" data-manual-preview="bracket">Bracket</button></div>
   <div class="manual-drawer-body">
-    <div class="manual-section"><h3>Overall</h3><div id="manualOverallControls"></div><div class="manual-hint">Use this for a quick boost or nerf. Use the other sections for more specific changes.</div></div>
+    <div class="manual-section manual-broad-section"><h3>Broad adjustment</h3><div id="manualOverallControls"></div><div class="manual-hint">Use Overall when you only want to change the main odds strength. Use Quick changes for full Nerf, Reset, or Max actions.</div></div>
     <div class="manual-section"><h3>Stage impact</h3><div id="manualStageControls"></div></div>
+    <div class="manual-section"><h3>Team traits</h3><div id="manualTraitControls"></div></div>
     <div class="manual-section"><h3>Style impact</h3><div id="manualStyleControls"></div></div>
     <div class="manual-section"><h3>Quick changes</h3><div id="manualPresetButtons" class="manual-presets"></div></div>
     <div class="manual-section"><h3>Current odds</h3><div id="manualCurrentStats" class="manual-stat-grid"></div></div>
@@ -1147,7 +1311,7 @@ body:not(.manual-preview-open) .manual-preview-team{outline:none!important;box-s
       <h3>Prediction code</h3>
       <div id="shareSummary" class="share-summary"></div>
       <div class="share-code-row"><textarea id="shareCodeBox" class="share-output" readonly></textarea><button id="copyShareCodeBtn" class="share-copy-icon" type="button" title="Copy code" aria-label="Copy code">⧉</button></div>
-      <div class="share-help">Copy this code to reload the same year, preset, seed, dials, and My Odds later.</div>
+      <div class="share-help">Copy this code to reload the same year, seed, and My Odds later.</div>
     </div>
     <div class="share-box">
       <h3>Load code</h3>
@@ -1428,7 +1592,7 @@ function stageValue(team,year){
   return Math.max(best,tradition[canonicalTeamName(team)]||0);
 }
 function allTeams(year){return Object.values(DATA.TOURNAMENTS[year].groups).flat()}
-function buildProfiles(year,s){const tdata=DATA.TOURNAMENTS[year];const teams=allTeams(year);const pri=DATA.YEAR_ELO_PRIOR[year]||{};let elos={};for(const t of teams)elos[t]=pri[t]||DATA.BASE_PRIOR[t]||1500;const sorted=[...teams].sort((a,b)=>elos[b]-elos[a]);let eloRank={};sorted.forEach((t,i)=>eloRank[t]=i+1);let profiles={};for(const [g,gteams] of Object.entries(tdata.groups)){for(const team of gteams){const c=ctx(year,team), elo=elos[team], eloScore=clamp((elo-1320)/720);const fifa=(DATA.FIFA_RANKS[year]||{})[team]||eloRank[team];const rankScore=clamp((Math.min(teams.length,90)+1-Math.min(fifa,90))/Math.max(1,Math.min(teams.length,90)));const history=stageValue(team,year);const player=clamp(c.player??(.42*eloScore+.28*rankScore+.30*history));const closer=clamp(c.closer??(.45*history+.30*rankScore+.25*eloScore));const cycle=clamp(c.cycle??(.45*eloScore+.25*rankScore+.20*player+.10*closer));const host=(tdata.hosts||[]).includes(team)?1:((confed(team)===tdata.host_confed&&tdata.host_confed!=='OTHER') ? .28 : 0);let travel=(tdata.hosts||[]).includes(team)?0.05:(confed(team)===tdata.host_confed ? .20 : (['UEFA','CONMEBOL'].includes(confed(team)) ? .42 : .52));const sc=scar(year,team);const disruption=clamp(c.disruption||0);const burden=clamp(c.burden||0);const pressure=clamp((c.pressure??0)*.35 + .30*eloScore+.25*rankScore+.22*history+.13*host);let attack=clamp(.40*player+.25*eloScore+.20*rankScore+.15*cycle);let defense=clamp(.28*player+.27*eloScore+.25*cycle+.20*history);let keeper=clamp(c.keeper??(.50*defense+.25*player+.25*history));let lowEvent=clamp(.56*defense+.24*keeper+.20*(1-attack));let penEdge=clamp(.36*keeper+.27*defense+.20*closer+.17*(1-sc));let frag=clamp(.26*pressure+.20*sc+.18*disruption+.14*burden+.12*travel+.10*Math.max(0,pressure-cycle));const underpriced=Math.max(0,.72-pressure);let dark=clamp((c.dark||0)*.35 + .26*defense+.21*penEdge+.21*cycle+.17*underpriced);const form=cycle;const base=clamp(.25*s.elo*(eloScore-.5)+.18*s.form*(form-.5)+.13*s.history*(history-.5)+.20*s.player*(player-.5)+.13*s.closer*(closer-.5)+.11*(rankScore-.5)+.50);let groupPower=clamp(base+.055*s.host*host+.055*s.dark*Math.max(0,dark-.62)-.055*s.disruption*disruption-.04*s.host*travel-.035*s.scar*sc,.02,.98);let koPower=clamp(base+.075*s.closer*(closer-.5)+.065*s.player*(player-.5)+.075*penEdge+.06*s.dark*Math.max(0,dark-.62)-.12*s.scar*sc-.10*s.disruption*disruption-.11*Math.max(0,frag-.55),.02,.98);const manual=((s.manualTeams||{})[team])||((s.manualTeams||{})[canonicalTeamName(team)])||null;if(manual){const mv=k=>Number.isFinite(Number(manual[k]))?Number(manual[k]):0;const oddsScale=.0035, traitScale=.006;groupPower=clamp(groupPower+(mv('overall')+mv('group'))*oddsScale,.02,.98);koPower=clamp(koPower+(mv('overall')+mv('knockout'))*oddsScale,.02,.98);attack=clamp(attack+mv('attack')*traitScale);defense=clamp(defense+mv('defense')*traitScale);keeper=clamp(keeper+(mv('defense')+mv('penalty'))*traitScale*.45);lowEvent=clamp(.56*defense+.24*keeper+.20*(1-attack)+mv('lowEvent')*traitScale);penEdge=clamp(penEdge+(mv('penalty')+mv('defense')*.25)*traitScale);dark=clamp((c.dark||0)*.35 + .26*defense+.21*penEdge+.21*cycle+.17*underpriced);frag=clamp(.26*pressure+.20*sc+.18*disruption+.14*burden+.12*travel+.10*Math.max(0,pressure-cycle)-Math.max(0,mv('defense'))*.002);groupPower=clamp(groupPower+(mv('attack')+mv('defense'))*.0012+mv('lowEvent')*.0009+mv('penalty')*.0006,.02,.98);koPower=clamp(koPower+(mv('attack')+mv('defense'))*.0014+mv('penalty')*.0013+mv('lowEvent')*.0011,.02,.98);}let flags=[];const darkHorseCandidate=dark>=.72&&underpriced>=.14&&defense>=.58&&penEdge>=.55&&pressure>=.28&&pressure<=.62&&eloScore<=.78&&frag<.62;if(darkHorseCandidate)flags.push('DARK_HORSE');if(frag>=.62&&pressure>=.60)flags.push('FAVORITE_TRAP');if(sc>=.55)flags.push('SCAR_TISSUE');if(lowEvent>=.66)flags.push('LOW_EVENT');if(host>=1)flags.push('HOST');if(closer>=.84)flags.push('CLOSER');if(manual)flags.push('MY_ODDS');profiles[team]={team,group:g,confed:confed(team),elo,eloScore,rankScore,history,player,closer,form,attack,defense,keeper,lowEvent,penEdge,scar:sc,disruption,burden,pressure,frag,dark,host,travel,groupPower,koPower,flags,manual:manual||null}}}return profiles}
+function buildProfiles(year,s){const tdata=DATA.TOURNAMENTS[year];const teams=allTeams(year);const pri=DATA.YEAR_ELO_PRIOR[year]||{};let elos={};for(const t of teams)elos[t]=pri[t]||DATA.BASE_PRIOR[t]||1500;const sorted=[...teams].sort((a,b)=>elos[b]-elos[a]);let eloRank={};sorted.forEach((t,i)=>eloRank[t]=i+1);let profiles={};for(const [g,gteams] of Object.entries(tdata.groups)){for(const team of gteams){const c=ctx(year,team), elo=elos[team], eloScore=clamp((elo-1320)/720);const fifa=(DATA.FIFA_RANKS[year]||{})[team]||eloRank[team];const rankScore=clamp((Math.min(teams.length,90)+1-Math.min(fifa,90))/Math.max(1,Math.min(teams.length,90)));const history=stageValue(team,year);const player=clamp(c.player??(.42*eloScore+.28*rankScore+.30*history));const closer=clamp(c.closer??(.45*history+.30*rankScore+.25*eloScore));const cycle=clamp(c.cycle??(.45*eloScore+.25*rankScore+.20*player+.10*closer));const host=(tdata.hosts||[]).includes(team)?1:((confed(team)===tdata.host_confed&&tdata.host_confed!=='OTHER') ? .28 : 0);let travel=(tdata.hosts||[]).includes(team)?0.05:(confed(team)===tdata.host_confed ? .20 : (['UEFA','CONMEBOL'].includes(confed(team)) ? .42 : .52));const sc=scar(year,team);const disruption=clamp(c.disruption||0);const burden=clamp(c.burden||0);const pressure=clamp((c.pressure??0)*.35 + .30*eloScore+.25*rankScore+.22*history+.13*host);let attack=clamp(.40*player+.25*eloScore+.20*rankScore+.15*cycle);let defense=clamp(.28*player+.27*eloScore+.25*cycle+.20*history);let keeper=clamp(c.keeper??(.50*defense+.25*player+.25*history));let lowEvent=clamp(.56*defense+.24*keeper+.20*(1-attack));let penEdge=clamp(.36*keeper+.27*defense+.20*closer+.17*(1-sc));let frag=clamp(.26*pressure+.20*sc+.18*disruption+.14*burden+.12*travel+.10*Math.max(0,pressure-cycle));const underpriced=Math.max(0,.72-pressure);let dark=clamp((c.dark||0)*.35 + .26*defense+.21*penEdge+.21*cycle+.17*underpriced);const form=cycle;const base=clamp(.25*s.elo*(eloScore-.5)+.18*s.form*(form-.5)+.13*s.history*(history-.5)+.20*s.player*(player-.5)+.13*s.closer*(closer-.5)+.11*(rankScore-.5)+.50);let groupPower=clamp(base+.055*s.host*host+.055*s.dark*Math.max(0,dark-.62)-.055*s.disruption*disruption-.04*s.host*travel-.035*s.scar*sc,.02,.98);let koPower=clamp(base+.075*s.closer*(closer-.5)+.065*s.player*(player-.5)+.075*penEdge+.06*s.dark*Math.max(0,dark-.62)-.12*s.scar*sc-.10*s.disruption*disruption-.11*Math.max(0,frag-.55),.02,.98);const manual=((s.manualTeams||{})[team])||((s.manualTeams||{})[canonicalTeamName(team)])||null;if(manual){const mv=k=>Number.isFinite(Number(manual[k]))?Number(manual[k]):0;const oddsScale=.0035, traitScale=.006;groupPower=clamp(groupPower+(mv('overall')+mv('group')+mv('form')*.35+mv('consistency')*.20)*oddsScale,.02,.98);koPower=clamp(koPower+(mv('overall')+mv('knockout')+mv('clutch')*.45+mv('consistency')*.20)*oddsScale,.02,.98);attack=clamp(attack+(mv('attack')+mv('form')*.25)*traitScale);defense=clamp(defense+(mv('defense')+mv('consistency')*.20)*traitScale);keeper=clamp(keeper+(mv('defense')+mv('penalty')+mv('clutch')*.35)*traitScale*.45);lowEvent=clamp(.56*defense+.24*keeper+.20*(1-attack)+(mv('lowEvent')+mv('consistency')*.25)*traitScale);penEdge=clamp(penEdge+(mv('penalty')+mv('clutch')*.55+mv('defense')*.25)*traitScale);dark=clamp((c.dark||0)*.35 + .26*defense+.21*penEdge+.21*clamp(cycle+mv('form')*traitScale*.5)+.17*underpriced);frag=clamp(.26*pressure+.20*sc+.18*disruption+.14*burden+.12*travel+.10*Math.max(0,pressure-cycle)-Math.max(0,mv('defense'))*.002-mv('consistency')*.002);groupPower=clamp(groupPower+(mv('attack')+mv('defense'))*.0012+mv('form')*.0014+mv('consistency')*.0009+mv('lowEvent')*.0009+mv('penalty')*.0006,.02,.98);koPower=clamp(koPower+(mv('attack')+mv('defense'))*.0014+mv('clutch')*.0017+mv('consistency')*.0011+mv('form')*.0009+mv('penalty')*.0013+mv('lowEvent')*.0011,.02,.98);}let flags=[];const darkHorseCandidate=dark>=.72&&underpriced>=.14&&defense>=.58&&penEdge>=.55&&pressure>=.28&&pressure<=.62&&eloScore<=.78&&frag<.62;if(darkHorseCandidate)flags.push('DARK_HORSE');if(frag>=.62&&pressure>=.60)flags.push('FAVORITE_TRAP');if(sc>=.55)flags.push('SCAR_TISSUE');if(lowEvent>=.66)flags.push('LOW_EVENT');if(host>=1)flags.push('HOST');if(closer>=.84)flags.push('CLOSER');if(manual)flags.push('MY_ODDS');profiles[team]={team,group:g,confed:confed(team),elo,eloScore,rankScore,history,player,closer,form,attack,defense,keeper,lowEvent,penEdge,scar:sc,disruption,burden,pressure,frag,dark,host,travel,groupPower,koPower,flags,manual:manual||null}}}return profiles}
 function power(p,ko){return ko?p.koPower:p.groupPower}
 function matchProb(a,b,P,ko,s){const pa=power(P[a],ko),pb=power(P[b],ko);const slope=7.8/Math.max(.35,s.upset);const raw=1/(1+Math.exp(-slope*(pa-pb)));const close=Math.max(0,1-Math.abs(raw-.5)*2);const drawBias=(P[a].lowEvent+P[b].lowEvent)/2*s.lowevent;const draw=Math.min(.48,(.15+.20*drawBias)*close);if(ko){const pen=clamp(.5+.30*s.penalty*(P[a].penEdge-P[b].penEdge)-.10*s.scar*(P[a].scar-P[b].scar),.20,.80);const adv=raw*(1-draw)+pen*draw;return {a:clamp(adv,.02,.98),draw:0,b:1-clamp(adv,.02,.98),draw90:draw}}const aw=raw*(1-draw), bw=(1-raw)*(1-draw), tot=aw+bw+draw;return {a:aw/tot,draw:draw/tot,b:bw/tot,draw90:draw/tot}}
 function poisson(mu,r){mu=Math.max(.05,mu);let L=Math.exp(-mu),p=1,k=0;while(p>L){k++;p*=r()}return k-1}
@@ -2551,32 +2715,80 @@ function downloadBlob(blob,filename,revokeDelay=5000){
 
 
 const MANUAL_STORE_KEY='wc_oracle_manual_team_settings_v1';
-const MANUAL_DEFAULT={overall:0,group:0,knockout:0,attack:0,defense:0,penalty:0,lowEvent:0};
+const MANUAL_DEFAULT={overall:0,group:0,knockout:0,attack:0,defense:0,form:0,clutch:0,consistency:0,penalty:0,lowEvent:0};
 const MANUAL_FIELD_GROUPS={
   overall:[{k:'overall',label:'Overall',min:-30,max:30,step:1}],
   stage:[{k:'group',label:'Group',min:-20,max:20,step:1},{k:'knockout',label:'Knockout',min:-20,max:20,step:1}],
+  traits:[{k:'form',label:'Form',min:-15,max:15,step:1},{k:'clutch',label:'Clutch',min:-15,max:15,step:1},{k:'consistency',label:'Consistent',min:-15,max:15,step:1}],
   style:[{k:'attack',label:'Attack',min:-15,max:15,step:1},{k:'defense',label:'Defense',min:-15,max:15,step:1},{k:'penalty',label:'Penalty',min:-15,max:15,step:1},{k:'lowEvent',label:'Low-event',min:-15,max:15,step:1}]
 };
 const MANUAL_PRESETS={
-  Nerf:{overall:-30,group:-20,knockout:-20,attack:-15,defense:-15,penalty:-15,lowEvent:-15},
-  Neutral:{overall:0,group:0,knockout:0,attack:0,defense:0,penalty:0,lowEvent:0},
-  'Maxed out':{overall:30,group:20,knockout:20,attack:15,defense:15,penalty:15,lowEvent:15},
-  Fade:{overall:-12,group:0,knockout:-6,attack:0,defense:0,penalty:0,lowEvent:0},
-  Boost:{overall:10,group:0,knockout:6,attack:0,defense:0,penalty:0,lowEvent:0},
-  'Dark horse':{overall:8,group:4,knockout:8,attack:0,defense:6,penalty:5,lowEvent:5},
-  'Fav Trap':{overall:4,group:0,knockout:-12,attack:2,defense:-3,penalty:-4,lowEvent:0},
-  Grinder:{overall:4,group:4,knockout:4,attack:-4,defense:8,penalty:6,lowEvent:8}
+  Nerf:{overall:-30,group:-20,knockout:-20,attack:-15,defense:-15,form:-15,clutch:-15,consistency:-15,penalty:-15,lowEvent:-15},
+  Reset:{overall:0,group:0,knockout:0,attack:0,defense:0,form:0,clutch:0,consistency:0,penalty:0,lowEvent:0},
+  Max:{overall:30,group:20,knockout:20,attack:15,defense:15,form:15,clutch:15,consistency:15,penalty:15,lowEvent:15},
+  Boost:{overall:10,group:3,knockout:6,attack:4,defense:3,form:5,clutch:3,consistency:3,penalty:2,lowEvent:0},
+  Fade:{overall:-12,group:-2,knockout:-6,attack:-2,defense:0,form:-5,clutch:-4,consistency:-3,penalty:-2,lowEvent:0},
+  'Group+':{overall:4,group:12,knockout:0,attack:4,defense:4,form:7,clutch:0,consistency:4,penalty:0,lowEvent:0},
+  'KO+':{overall:4,group:0,knockout:12,attack:2,defense:5,form:2,clutch:8,consistency:4,penalty:6,lowEvent:2},
+  'Att+':{overall:3,group:3,knockout:2,attack:12,defense:0,form:4,clutch:0,consistency:0,penalty:0,lowEvent:-3},
+  'Def+':{overall:3,group:3,knockout:4,attack:0,defense:12,form:0,clutch:2,consistency:5,penalty:2,lowEvent:5},
+  Clutch:{overall:4,group:0,knockout:10,attack:2,defense:4,form:2,clutch:12,consistency:5,penalty:8,lowEvent:2},
+  Safe:{overall:4,group:5,knockout:5,attack:-2,defense:8,form:2,clutch:3,consistency:12,penalty:4,lowEvent:6},
+  Chaos:{overall:0,group:-2,knockout:5,attack:5,defense:-4,form:0,clutch:4,consistency:-10,penalty:8,lowEvent:8}
 };
 const MANUAL_PRESET_TIPS={
-  Nerf:'Set this team to its lowest odds.',
-  Neutral:'Clear this team’s custom boost or nerf.',
-  'Maxed out':'Set this team to its highest odds.',
-  Fade:'Slightly lower this team overall.',
-  Boost:'Slightly raise this team overall.',
-  'Dark horse':'Boost a sleeper with knockout upside.',
-  'Fav Trap':'Make a favorite more likely to underperform.',
-  Grinder:'Favor defense, penalties, and low-scoring games.'
+  Nerf:'Move this team to the lowest setting on every odds dial.',
+  Reset:'Clear this team\'s custom odds and return every dial to zero.',
+  Max:'Move this team to the highest setting on every odds dial.',
+  Boost:'Give this team a mild, balanced lift without maxing anything out.',
+  Fade:'Slightly lower this team without fully nerfing it.',
+  'Group+':'Improve this team mostly in group-stage results.',
+  'KO+':'Improve this team mostly in knockout rounds.',
+  'Att+':'Boost attacking upside and scoring strength.',
+  'Def+':'Boost defensive strength and low-scoring control.',
+  Clutch:'Boost late-game, penalty, and knockout survival traits.',
+  Safe:'Make this team more steady and less fragile.',
+  Chaos:'Make this team more volatile with higher upset/penalty swings.'
 };
+const MANUAL_SHIFT_FIELDS=Object.keys(MANUAL_DEFAULT);
+function clampManualField(k,v){const f=manualFieldMeta(k);return Math.max(f.min,Math.min(f.max,Math.round(Number(v)||0)))}
+function renderManualShiftControl(team){
+  const el=$('manualShiftControls');
+  if(!el||!team)return;
+  el.innerHTML=`<div class="manual-slider manual-shift-control"><label for="manual_shift_all">All dials</label><input id="manual_shift_all" type="range" min="-100" max="100" step="5" value="0" aria-label="Move every team odds dial by the same percentage of its own range"><span id="manual_shift_all_val" class="manual-value">0%</span></div><div class="manual-shift-help">Moves every dial by the same percentage of its own range. Release to keep the change and return this control to center.</div>`;
+  const input=$('manual_shift_all'), val=$('manual_shift_all_val');
+  if(!input)return;
+  const startShift=()=>{input.dataset.baseManual=JSON.stringify(readManualDrawerValues())};
+  const clearShift=()=>{input.value='0';delete input.dataset.baseManual;if(val)val.textContent='0%'};
+  input.addEventListener('pointerdown',startShift);
+  input.addEventListener('mousedown',startShift);
+  input.addEventListener('touchstart',startShift,{passive:true});
+  input.addEventListener('keydown',()=>{if(!input.dataset.baseManual)startShift()});
+  input.addEventListener('input',()=>{
+    if(!input.dataset.baseManual)startShift();
+    const pct=Number(input.value)||0;
+    if(val)val.textContent=pct>0?`+${pct}%`:`${pct}%`;
+    shiftManualValues(pct,input.dataset.baseManual);
+  });
+  input.addEventListener('change',clearShift);
+  input.addEventListener('pointerup',clearShift);
+  input.addEventListener('blur',()=>{if(input.value==='0')clearShift()});
+}
+function shiftManualValues(pct,baseJson=''){
+  if(!activeManualTeam)return;
+  let base;
+  try{base=baseJson?JSON.parse(baseJson):readManualDrawerValues()}catch(err){base=readManualDrawerValues()}
+  base=cleanManual(base);
+  const m={...base};
+  MANUAL_SHIFT_FIELDS.forEach(k=>{
+    const f=manualFieldMeta(k);
+    const span=(Number(f.max)-Number(f.min))||0;
+    m[k]=clampManualField(k,base[k]+(span*(pct/100)));
+  });
+  setManualForTeam(activeManualTeam,m);
+  syncManualDrawerValues(activeManualTeam,{keepShift:true});
+}
+
 let manualSettingsByYear=loadManualSettings();
 let manualRevision=0;
 let activeManualTeam='';
@@ -2602,17 +2814,25 @@ function cleanManual(raw={}){
     if(!Number.isFinite(v))v=0;
     if(percentMode)v=v-50;
     const f=manualFieldMeta(k);
-    out[k]=Math.max(f.min,Math.min(f.max,Math.round(v)));
+    out[k]=clampManualField(k,v);
   }
   return out;
 }
 function hasManualValues(m){m=cleanManual(m);return Object.keys(MANUAL_DEFAULT).some(k=>m[k]!==MANUAL_DEFAULT[k])}
 function manualForTeam(team,year=currentYear()){const y=manualSettingsByYear[String(year)]||{};return cleanManual(y[canonicalTeamName(team)]||y[team]||{})}
-function markManualChanged(){manualRevision++;refreshManualUI();renderManualCurrentStats(activeManualTeam);queueRun(80)}
+function markManualChanged(){
+  manualRevision++;
+  refreshManualUI();
+  renderManualCurrentStats(activeManualTeam);
+  if(document.body.classList.contains('manual-preview-open')){
+    updateManualPreviewHighlights({focus:true,smooth:false,delay:40});
+  }
+  queueRun(80);
+}
 function setManualForTeam(team,vals,year=currentYear()){captureTeamsViewState();const y=String(year), clean=canonicalTeamName(team), next=cleanManual(vals);manualSettingsByYear[y]=manualSettingsByYear[y]||{};if(hasManualValues(next))manualSettingsByYear[y][clean]=next;else delete manualSettingsByYear[y][clean];if(!Object.keys(manualSettingsByYear[y]).length)delete manualSettingsByYear[y];saveManualSettings();markManualChanged()}
 function manualTeamsForWorker(year=currentYear()){const y=manualSettingsByYear[String(year)]||{}, out={};for(const [team,vals] of Object.entries(y)){const clean=canonicalTeamName(team);const v=cleanManual(vals);if(hasManualValues(v))out[clean]=v}return out}
 function manualCount(year=currentYear()){return Object.keys(manualTeamsForWorker(year)).length}
-function manualScore(m){m=cleanManual(m);const d=k=>m[k]-MANUAL_DEFAULT[k];return d('overall')+d('group')*.25+d('knockout')*.25+d('attack')*.12+d('defense')*.12+d('penalty')*.08+d('lowEvent')*.08}
+function manualScore(m){m=cleanManual(m);const d=k=>m[k]-MANUAL_DEFAULT[k];return d('overall')+d('group')*.25+d('knockout')*.25+d('attack')*.12+d('defense')*.12+d('form')*.14+d('clutch')*.14+d('consistency')*.10+d('penalty')*.08+d('lowEvent')*.08}
 function manualBadgeClass(m){const score=manualScore(m);return score>0?'pos':(score<0?'neg':'zero')}
 function manualBadgeText(m){const score=Math.round(manualScore(m));return score>0?`+${score}`:(score<0?String(score):'0')}
 function manualPill(team,asButton=true,mOverride=null){const m=mOverride?cleanManual(mOverride):manualForTeam(team);const tag=asButton?'button':'span';const type=asButton?' type="button"':'';return `<${tag}${type} class="manual-pill ${manualBadgeClass(m)}" data-manual-team="${esc(canonicalTeamName(team))}" title="Edit My Odds for ${esc(canonicalTeamName(team))}">${manualBadgeText(m)}<span class="gear">⚙</span></${tag}>`}
@@ -2635,15 +2855,34 @@ function buildManualSliders(targetId,fields,team){
   const m=manualForTeam(team);
   $(targetId).innerHTML=fields.map(f=>`<div class="manual-slider"><label for="manual_${f.k}">${esc(f.label)}</label><input id="manual_${f.k}" data-manual-field="${esc(f.k)}" type="range" min="${f.min}" max="${f.max}" step="${f.step}" value="${m[f.k]}"><span id="manual_val_${f.k}" class="manual-value">${m[f.k]}</span></div>`).join('');
 }
-function syncManualDrawerValues(team=activeManualTeam){
+function syncManualDrawerValues(team=activeManualTeam,opts={}){
   if(!team)return;
   const m=manualForTeam(team);
   document.querySelectorAll('[data-manual-field]').forEach(input=>{const k=input.dataset.manualField;input.value=m[k];const v=$('manual_val_'+k);if(v)v.textContent=m[k]});
+  if(!opts.keepShift){const shift=$('manual_shift_all'), shiftVal=$('manual_shift_all_val');if(shift){shift.value='0';shift.dataset.lastShift='0'}if(shiftVal)shiftVal.textContent='0'}
   renderManualCurrentStats(team);
 }
 function readManualDrawerValues(){let m=manualForTeam(activeManualTeam);document.querySelectorAll('[data-manual-field]').forEach(input=>m[input.dataset.manualField]=Number(input.value)||0);return cleanManual(m)}
 function applyManualDrawerChange(){if(!activeManualTeam)return;setManualForTeam(activeManualTeam,readManualDrawerValues())}
-function renderManualCurrentStats(team){const el=$('manualCurrentStats');if(!el||!team)return;if(lastResult&&lastResult.manualRevision!==manualRevision){const msg='Updating odds...';el.innerHTML=`<div class="manual-empty" style="grid-column:1/-1">${esc(msg)}</div>`;return}const key=resultTeamKey(team);const p=lastResult&&lastResult.team_probs?lastResult.team_probs[key]:null;el.innerHTML=p?`<div class="manual-stat"><b>${pct(p.qf)}</b><span>QF</span></div><div class="manual-stat"><b>${pct(p.final)}</b><span>Final</span></div><div class="manual-stat"><b>${pct(p.champ)}</b><span>Champion</span></div>`:`<div class="manual-empty" style="grid-column:1/-1">Run a prediction to see this team’s odds.</div>`}
+function renderManualCurrentStats(team){
+  const el=$('manualCurrentStats');
+  if(!el||!team)return;
+  const stale=!!(lastResult&&lastResult.manualRevision!==manualRevision);
+  const key=resultTeamKey(team);
+  const p=lastResult&&lastResult.team_probs?lastResult.team_probs[key]:null;
+  const card=(value,label,cls='')=>`<div class="manual-stat manual-current-card ${cls}"><b>${value}</b><span>${label}</span></div>`;
+  if(p){
+    const cls=stale?'manual-stat-pending':'';
+    const suffix=stale?' · updating':'';
+    el.innerHTML=card(pct(p.qf),'QF'+suffix,cls)+card(pct(p.final),'Final'+suffix,cls)+card(pct(p.champ),'Champion'+suffix,cls);
+    return;
+  }
+  if(stale){
+    el.innerHTML=card('…','QF · updating','manual-stat-pending')+card('…','Final · updating','manual-stat-pending')+card('…','Champion · updating','manual-stat-pending');
+    return;
+  }
+  el.innerHTML=card('—','QF','manual-stat-empty')+card('—','Final','manual-stat-empty')+card('—','Champion','manual-stat-empty');
+}
 function openManualDrawer(team){
   captureTeamsViewState();
   activeManualTeam=canonicalTeamName(team);
@@ -2652,6 +2891,7 @@ function openManualDrawer(team){
   $('manualDrawerSub').textContent=profile?`Group ${profile.group} · custom team odds`:'Custom team odds';
   buildManualSliders('manualOverallControls',MANUAL_FIELD_GROUPS.overall,activeManualTeam);
   buildManualSliders('manualStageControls',MANUAL_FIELD_GROUPS.stage,activeManualTeam);
+  buildManualSliders('manualTraitControls',MANUAL_FIELD_GROUPS.traits,activeManualTeam);
   buildManualSliders('manualStyleControls',MANUAL_FIELD_GROUPS.style,activeManualTeam);
   $('manualPresetButtons').innerHTML=Object.entries(MANUAL_PRESETS).map(([name,vals])=>{
     const tip=MANUAL_PRESET_TIPS[name]||`Apply ${name} preset.`;
@@ -2696,15 +2936,12 @@ async function copyManualOddsFromYear(){
   showToast(`Copied ${copied.length} team${copied.length===1?'':'s'} from ${sourceYear}. ${skipped.length} skipped.`,skipped.length?'warn':'ok');
 }
 function bindManualOddsPanelControls(){
-  const actionTitles={myOddsImport:'Import odds',myOddsExport:'Export odds',myOddsCopyYear:'Copy odds from another year',myOddsResetAll:'Reset all team odds for this year',csvBtn:'Export CSV'};
+  const actionTitles={myOddsCopyYear:'Copy odds from another year',myOddsResetAll:'Reset all team odds for this year',csvBtn:'Export CSV'};
   Object.entries(actionTitles).forEach(([id,title])=>{const btn=$(id);if(btn){btn.title=title;btn.setAttribute('aria-label',title)}});
   const search=$('myOddsSearch');if(search)search.oninput=refreshManualUI;
   const reset=$('myOddsResetAll');if(reset)reset.onclick=resetAllManualOdds;
-  const exp=$('myOddsExport');if(exp)exp.onclick=exportManualOdds;
-  const imp=$('myOddsImport');if(imp)imp.onclick=()=>$('myOddsImportFile')?.click();
   const copy=$('myOddsCopyYear');if(copy)copy.onclick=copyManualOddsFromYear;
   const csv=$('csvBtn');if(csv)csv.onclick=downloadCSV;
-  const file=$('myOddsImportFile');if(file)file.onchange=e=>{importManualOdds(e.target.files&&e.target.files[0]);e.target.value=''};
 }
 function setupManualOddsUI(){
   bindManualOddsPanelControls();
@@ -2775,14 +3012,17 @@ function focusManualPreviewTarget(opts={}){
     const target=visiblePreviewTarget(rawTarget)||rawTarget;
     const drawerH=$('manualDrawer')?.getBoundingClientRect().height||0;
     const titleH=manualPreviewTab==='bracket'?(rawTarget.closest('.round')?.querySelector('h3')?.offsetHeight||0):0;
-    const topPad=manualPreviewTab==='bracket'?Math.max(54,titleH+24):12;
-    const bottomPad=16;
-    const usableBottom=window.innerHeight-drawerH-bottomPad;
+    const topPad=manualPreviewTab==='bracket'?Math.max(54,titleH+24):14;
+    const bottomPad=28;
+    const safeTop=topPad;
+    const safeBottom=Math.max(safeTop+90,window.innerHeight-drawerH-bottomPad);
+    const safeHeight=Math.max(90,safeBottom-safeTop);
     const rect=target.getBoundingClientRect();
-    let delta=0;
-    if(rect.bottom>usableBottom)delta=rect.bottom-usableBottom;
-    if(rect.top-delta<topPad)delta=rect.top-topPad;
-    if(Math.abs(delta)>2)window.scrollBy({top:delta,behavior:opts.smooth?'smooth':'auto'});
+    if(rect.top<safeTop||rect.bottom>safeBottom){
+      const wantedTop=safeTop+Math.max(0,(safeHeight-Math.min(rect.height,safeHeight))/2);
+      const delta=rect.top-wantedTop;
+      if(Math.abs(delta)>2)window.scrollBy({top:delta,behavior:opts.smooth?'smooth':'auto'});
+    }
     if(manualPreviewTab==='bracket'){
       const wrap=pane.querySelector('.bracket-wrap');
       const game=rawTarget.closest('.game')||rawTarget;
@@ -2793,7 +3033,21 @@ function focusManualPreviewTarget(opts={}){
     }
   },opts.delay??80);
 }
-function updateManualPreviewHighlights(opts={}){document.querySelectorAll('[data-preview-team]').forEach(el=>el.classList.toggle('manual-preview-team',!!activeManualTeam&&sameTeamName(el.dataset.previewTeam,activeManualTeam)));syncManualPreviewButtons();if(opts.focus)focusManualPreviewTarget({smooth:opts.smooth!==false,delay:opts.delay??80})}
+function updateManualPreviewHighlights(opts={}){
+  document.querySelectorAll('.manual-preview-focus-parent').forEach(el=>el.classList.remove('manual-preview-focus-parent'));
+  const active=!!activeManualTeam;
+  document.querySelectorAll('[data-preview-team]').forEach(el=>el.classList.toggle('manual-preview-team',active&&sameTeamName(el.dataset.previewTeam,activeManualTeam)));
+  const targets=[...document.querySelectorAll('[data-preview-team].manual-preview-team')];
+  document.body.classList.toggle('manual-preview-has-target',document.body.classList.contains('manual-preview-open')&&targets.length>0);
+  targets.forEach(el=>{
+    const group=el.closest('#groups .group');
+    if(group)group.classList.add('manual-preview-focus-parent');
+    const game=el.closest('#bracket .game');
+    if(game)game.classList.add('manual-preview-focus-parent');
+  });
+  syncManualPreviewButtons();
+  if(opts.focus)focusManualPreviewTarget({smooth:opts.smooth!==false,delay:opts.delay??80});
+}
 function yearModeFor(year){
   const y=Number(year)||2026;
   const start=parseDateSafe(DATA.TOURNAMENTS?.[y]?.start);
@@ -2833,12 +3087,16 @@ function markPresetCustom(){
   if(!preset||applyingPresetDials)return;
   if(preset.value!=='custom'){basePresetValue=preset.value||'balanced';preset.value='custom'}
 }
+function sliderValue(k){const sl=SLIDERS.find(x=>x.k===k);const el=$('s_'+k);const n=el?Number(el.value):Number(sl?.v);return Number.isFinite(n)?n:1}
 function buildControls(){
   const years=Object.keys(DATA.TOURNAMENTS).map(Number).sort((a,b)=>a-b);
   $('year').innerHTML=years.map(y=>`<option value="${y}" ${y===2026?'selected':''}>${y} · ${yearModeFor(y)}</option>`).join('');
   updateYearMode();
-  $('sliders').innerHTML=SLIDERS.map(sl=>`<div class="field tuning-field"><label>${esc(sl.name)} <span id="val_${sl.k}" class="value">${sl.v.toFixed(2)}</span></label><input type="range" id="s_${sl.k}" min="${sl.min}" max="${sl.max}" step="${sl.step}" value="${sl.v}"><div class="help">${esc(sl.desc)}</div></div>`).join('');
-  for(const sl of SLIDERS){const e=$('s_'+sl.k);e.addEventListener('input',()=>{markPresetCustom();$('val_'+sl.k).textContent=Number(e.value).toFixed(2);queueRun()})}
+  const sliderRoot=$('sliders');
+  if(sliderRoot){
+    sliderRoot.innerHTML=SLIDERS.map(sl=>`<div class="field tuning-field"><label>${esc(sl.name)} <span id="val_${sl.k}" class="value">${sl.v.toFixed(2)}</span></label><input type="range" id="s_${sl.k}" min="${sl.min}" max="${sl.max}" step="${sl.step}" value="${sl.v}"><div class="help">${esc(sl.desc)}</div></div>`).join('');
+    for(const sl of SLIDERS){const e=$('s_'+sl.k);e?.addEventListener('input',()=>{markPresetCustom();$('val_'+sl.k).textContent=Number(e.value).toFixed(2);queueRun()})}
+  }
   $('preset')?.addEventListener('change',()=>{const val=$('preset').value;if(val==='custom'){queueRun(50);return}basePresetValue=val;applyPreset(val)});
   $('resetPresetDials')?.addEventListener('click',resetDialsToCurrentPreset);
   setupPresetTuningPopup();
@@ -2847,12 +3105,12 @@ function buildControls(){
   const offlineBox=$('offlineMode');if(offlineBox){offlineBox.checked=liveOfflineEnabled;offlineBox.addEventListener('change',()=>setLiveOffline(offlineBox.checked))}
   document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();setActiveTab(b.dataset.tab);if(['teams','groups','bracket'].includes(b.dataset.tab)){manualPreviewTab=b.dataset.tab;try{localStorage.setItem('wc_oracle_manual_preview_tab',manualPreviewTab)}catch(err){};syncManualPreviewButtons()}}));
 }
-function settings(){let s={};for(const sl of SLIDERS)s[sl.k]=Number($('s_'+sl.k).value);s.manualTeams=manualTeamsForWorker();s.manualRevision=manualRevision;return s}
+function settings(){let s={};for(const sl of SLIDERS)s[sl.k]=sliderValue(sl.k);s.manualTeams=manualTeamsForWorker();s.manualRevision=manualRevision;return s}
 function applyPreset(forcePreset){
   const key=forcePreset||$('preset')?.value||basePresetValue||'balanced';
   const p=PRESETS[key]||{};
   applyingPresetDials=true;
-  for(const sl of SLIDERS){const v=p[sl.k]??sl.v;$('s_'+sl.k).value=v;$('val_'+sl.k).textContent=Number(v).toFixed(2)}
+  for(const sl of SLIDERS){const v=p[sl.k]??sl.v;const input=$('s_'+sl.k),label=$('val_'+sl.k);if(input)input.value=v;if(label)label.textContent=Number(v).toFixed(2)}
   applyingPresetDials=false;
   queueRun(50);
 }
@@ -2865,7 +3123,35 @@ function resetDialsToCurrentPreset(){
 }
 function queueRun(delay=350){clearTimeout(pendingTimer);pendingTimer=setTimeout(runNow,delay)}
 function runNow(){if(!ready){status('Engine loading...');return}const sims=Number($('sims').value)||5000;const fast=$('fast').checked;const finalSims=fast?Math.min(sims,6000):sims;const id=++runId;status('Running '+finalSims.toLocaleString()+' simulations...');const btn=$('runBtn');if(btn)btn.disabled=true;worker.postMessage({id,year:Number($('year').value),sims:finalSims,seed:Number($('seed').value)||1,settings:settings()})}
-function initWorker(){worker=new Worker(URL.createObjectURL(new Blob([WORKER_CODE],{type:'text/javascript'})));worker.onmessage=e=>{const m=e.data;if(m.type==='ready'){ready=true;if(initialDataReady){status('Ready','ok');queueRun(25)}else status('Checking data before first prediction...')}else if(m.type==='result'){if(m.id!==runId)return;if(m.result&&m.result.manualRevision!==manualRevision){const btn=$('runBtn');if(btn)btn.disabled=false;status('My Odds changed. Re-running...');queueRun(10);return}lastResult=m.result;if(m.result?.validationErrors?.length)console.warn('Prediction validation warnings:',m.result.validationErrors);render(m.result,m.ms);const btn=$('runBtn');if(btn)btn.disabled=false;status('Done in '+(m.ms/1000).toFixed(2)+'s','ok')}else if(m.type==='error'){if(m.id&&m.id!==runId)return;status('Error','err');const btn=$('runBtn');if(btn)btn.disabled=false;console.error(m.error);$('overview').innerHTML='<div class="card"><h2 class="danger">Error</h2><pre>'+esc(m.error)+'</pre></div>'}};worker.postMessage({type:'init',data:DATA})}
+function initWorker(){
+  worker=new Worker(URL.createObjectURL(new Blob([WORKER_CODE],{type:'text/javascript'})));
+  worker.onmessage=e=>{
+    const m=e.data;
+    if(m.type==='ready'){
+      ready=true;
+      if(initialDataReady){status('Ready','ok');queueRun(25)}else status('Checking data before first prediction...')
+    }else if(m.type==='result'){
+      if(m.id!==runId)return;
+      if(m.result&&m.result.manualRevision!==manualRevision){
+        const btn=$('runBtn');if(btn)btn.disabled=false;
+        status('My Odds changed. Re-running...');queueRun(10);return;
+      }
+      lastResult=m.result;
+      const validationCount=m.result?.validationErrors?.length||0;
+      if(validationCount)console.warn('Prediction validation warnings:',m.result.validationErrors);
+      render(m.result,m.ms);
+      const btn=$('runBtn');if(btn)btn.disabled=false;
+      status(validationCount?`Done with ${validationCount} validation warning${validationCount===1?'':'s'}`:'Done in '+(m.ms/1000).toFixed(2)+'s',validationCount?'err':'ok');
+    }else if(m.type==='error'){
+      if(m.id&&m.id!==runId)return;
+      status('Error','err');
+      const btn=$('runBtn');if(btn)btn.disabled=false;
+      console.error(m.error);
+      $('overview').innerHTML='<div class="card"><h2 class="danger">Error</h2><pre>'+esc(m.error)+'</pre></div>';
+    }
+  };
+  worker.postMessage({type:'init',data:DATA});
+}
 function badges(flags){return (flags||[]).map(f=>`<span class="pill signal ${esc(f)}" title="${signalTitle(f)}">${esc(f)}</span>`).join('')||'<span class="muted">—</span>'}
 function signalTitle(f){return {LOW_EVENT:'Defensive/keeper profile that increases draw and penalty risk.',SCAR_TISSUE:'Prior tournament trauma or redemption pressure.',FAVORITE_TRAP:'High reputation with fragility or disruption.',DARK_HORSE:'Tighter dark-horse filter: under-the-radar team with strong defensive and penalty-game survival traits.',HOST:'Host or home-region advantage.',CLOSER:'Recent trophy/final proof.',MY_ODDS:'Manual My Odds override is active for this team.'}[f]||f}
 function flagCodeForTeam(team){
@@ -3016,11 +3302,25 @@ function overviewAccuracyRows(d){
 }
 function accuracyText(d,label){const row=accuracyRow(d,label);return row&&row.total?`${row.correct}/${row.total} correct`:'—'}
 function accuracyTextActual(d,label){const row=accuracyRow(d,label);return row&&row.total?`${row.total-row.correct}/${row.total} missed`:'—'}
+function validationPanelHTML(d){
+  const errors=Array.isArray(d?.validationErrors)?d.validationErrors:[];
+  if(!errors.length)return '';
+  return `<div class="card validation-alert" role="alert" aria-live="polite"><h2>Prediction validation warning</h2><p class="note">The engine caught an impossible projection. Review this run before trusting the group or bracket output.</p><ul>${errors.map(e=>`<li>${esc(e)}</li>`).join('')}</ul></div>`;
+}
+function renderValidationBanner(d){
+  document.querySelectorAll('.validation-alert').forEach(el=>el.remove());
+  const html=validationPanelHTML(d);
+  if(!html)return;
+  ['overview','groups','bracket'].forEach(id=>{
+    const pane=$(id);
+    if(pane)pane.insertAdjacentHTML('afterbegin',html);
+  });
+}
 function render(d,ms){
   const keepPreviewScroll=document.body.classList.contains('manual-preview-open');
   const savedScroll=keepPreviewScroll?{x:window.scrollX,y:window.scrollY,mainTop:document.querySelector('.main')?.scrollTop||0,bracketLeft:document.querySelector('#bracket .bracket-wrap')?.scrollLeft||0}:null;
-  renderOverview(d,ms);renderGroups(d);renderBracket(d);renderTeams(d);renderAccuracy(d);renderMethod(d);refreshManualUI();renderManualCurrentStats(activeManualTeam);updateManualPreviewHighlights({focus:false});
-  if(savedScroll){requestAnimationFrame(()=>{window.scrollTo(savedScroll.x,savedScroll.y);const main=document.querySelector('.main');if(main)main.scrollTop=savedScroll.mainTop;const wrap=document.querySelector('#bracket .bracket-wrap');if(wrap)wrap.scrollLeft=savedScroll.bracketLeft})}
+  renderOverview(d,ms);renderGroups(d);renderBracket(d);renderTeams(d);renderAccuracy(d);renderMethod(d);renderValidationBanner(d);refreshManualUI();renderManualCurrentStats(activeManualTeam);updateManualPreviewHighlights({focus:false});
+  if(savedScroll){requestAnimationFrame(()=>{window.scrollTo(savedScroll.x,savedScroll.y);const main=document.querySelector('.main');if(main)main.scrollTop=savedScroll.mainTop;const wrap=document.querySelector('#bracket .bracket-wrap');if(wrap)wrap.scrollLeft=savedScroll.bracketLeft;focusManualPreviewTarget({smooth:false,delay:40})})}
 }
 function scoreNum(g,team){if(!g)return'';if(sameTeamName(team,g.a)&&g.aScore!==undefined)return g.aScore;if(sameTeamName(team,g.b)&&g.bScore!==undefined)return g.bScore;return''}
 function actualScoreRaw(d,roundName,g){const year=String(d.year);const rows=((ACTUAL_MATCH_SCORES[year]||{})[roundName])||[];return rows.find(x=>(sameTeamName(x.a,g.a)&&sameTeamName(x.b,g.b))||(sameTeamName(x.a,g.b)&&sameTeamName(x.b,g.a)))||null}
@@ -3331,11 +3631,15 @@ function renderBracket(d){
 }
 
 
+let teamSearchSelection={active:false,start:0,end:0};
 let teamSearchValue='';
 let teamTableScrollState={left:0,top:0};
 function captureTeamsViewState(){
   const input=$('teamSearch');
-  if(input)teamSearchValue=input.value||'';
+  if(input){
+    teamSearchValue=input.value||'';
+    teamSearchSelection={active:document.activeElement===input,start:input.selectionStart,end:input.selectionEnd};
+  }
   const wrap=document.querySelector('#teams .teams-table-wrap');
   if(wrap)teamTableScrollState={left:wrap.scrollLeft||0,top:wrap.scrollTop||0};
 }
@@ -3348,7 +3652,17 @@ function applyTeamSearchFilter(q=teamSearchValue){
 }
 function restoreTeamsViewState(){
   const input=$('teamSearch');
-  if(input)input.value=teamSearchValue||'';
+  if(input){
+    input.value=teamSearchValue||'';
+    if(teamSearchSelection?.active){
+      requestAnimationFrame(()=>{
+        input.focus({preventScroll:true});
+        const start=teamSearchSelection.start??input.value.length;
+        const end=teamSearchSelection.end??start;
+        try{input.setSelectionRange(start,end)}catch(err){}
+      });
+    }
+  }
   applyTeamSearchFilter(teamSearchValue||'');
   const wrap=document.querySelector('#teams .teams-table-wrap');
   if(wrap){
@@ -3356,28 +3670,47 @@ function restoreTeamsViewState(){
     wrap.scrollTop=teamTableScrollState.top||0;
   }
 }
-
-function renderTeams(d){
-  captureTeamsViewState();
+function teamsShellHTML(){
+  return `<div class="card teams-my-odds-card"><div class="teams-odds-head"><div><h2>Teams</h2><p class="note">Search teams, review odds, and click a team or My Odds value to adjust it. Rows stay alphabetical.</p></div><span id="myOddsState" class="my-odds-state">Off</span></div><div class="teams-unified-toolbar"><input id="teamSearch" class="search" placeholder="Search teams..."><div class="my-odds-actions teams-actions"><button id="myOddsCopyYear" class="btn2">Copy year</button><button id="csvBtn" class="btn2">Export CSV</button></div></div><div class="teams-table-wrap"><table id="teamTable"><thead><tr><th>Team</th><th>My Odds</th><th>Group</th><th>Signals</th><th class="num">Player</th><th class="num">Closer</th><th class="num">Cycle</th><th class="num">First KO</th><th class="num">R16</th><th class="num">QF</th><th class="num">SF</th><th class="num">Final</th><th class="num">3rd game</th><th class="num">Champ</th></tr></thead><tbody></tbody></table></div><div class="teams-reset-row"><div><b>Reset all odds</b><span>Clears every My Odds adjustment for the selected year.</span></div><button id="myOddsResetAll" class="btn2">Reset all odds</button></div></div>`;
+}
+function ensureTeamsShell(){
+  const pane=$('teams');
+  if(!pane)return null;
+  if(!pane.querySelector('#teamTable tbody')){
+    pane.innerHTML=teamsShellHTML();
+  }
+  const search=$('teamSearch');
+  if(search&&!search.dataset.bound){
+    search.addEventListener('input',e=>applyTeamSearchFilter(e.target.value));
+    search.dataset.bound='1';
+  }
+  return pane.querySelector('#teamTable tbody');
+}
+function teamRowsHTML(d){
   const rows=Object.entries(d.team_probs)
     .map(([team,p])=>({team,...p,profile:d.profiles[team]}))
     .sort((a,b)=>canonicalTeamName(a.team).localeCompare(canonicalTeamName(b.team)));
-  $('teams').innerHTML=`<div class="card teams-my-odds-card"><div class="teams-odds-head"><div><h2>Teams</h2><p class="note">Search teams, review odds, and click a team or My Odds value to adjust it. Rows stay alphabetical.</p></div><span id="myOddsState" class="my-odds-state">Off</span></div><div class="teams-unified-toolbar"><input id="teamSearch" class="search" placeholder="Search teams..."><div class="my-odds-actions teams-actions"><button id="myOddsImport" class="btn2">Import odds</button><button id="myOddsExport" class="btn2">Export odds</button><button id="myOddsCopyYear" class="btn2">Copy year</button><button id="myOddsResetAll" class="btn2">Reset odds</button><button id="csvBtn" class="btn2">Export CSV</button><input id="myOddsImportFile" type="file" accept="application/json,.json" style="display:none"></div></div><div class="teams-table-wrap"><table id="teamTable"><thead><tr><th>Team</th><th>My Odds</th><th>Group</th><th>Signals</th><th class="num">Player</th><th class="num">Closer</th><th class="num">Cycle</th><th class="num">First KO</th><th class="num">R16</th><th class="num">QF</th><th class="num">SF</th><th class="num">Final</th><th class="num">3rd game</th><th class="num">Champ</th></tr></thead><tbody>${rows.map(r=>{const teamName=canonicalTeamName(r.team);return `<tr class="${previewTeamClass(r.team)}" data-preview-team="${esc(teamName)}" data-team="${esc(teamName.toLowerCase())}"><td class="winner">${teamLabel(r.team)}</td><td>${manualPill(r.team,true,r.profile.manual)}</td><td>${esc(r.profile.group)}</td><td>${badges(r.profile.flags)}</td><td class="num">${r.profile.player.toFixed(3)}</td><td class="num">${r.profile.closer.toFixed(3)}</td><td class="num">${r.profile.form.toFixed(3)}</td><td class="num">${pct(r.r32)}</td><td class="num">${pct(r.r16)}</td><td class="num">${pct(r.qf)}</td><td class="num">${pct(r.sf)}</td><td class="num">${pct(r.final)}</td><td class="num">${pct(r.third)}</td><td class="num">${pct(r.champ)}</td></tr>`}).join('')}</tbody></table></div></div>`;
+  return rows.map(r=>{
+    const teamName=canonicalTeamName(r.team);
+    return `<tr class="${previewTeamClass(r.team)}" data-preview-team="${esc(teamName)}" data-team="${esc(teamName.toLowerCase())}"><td class="winner">${teamLabel(r.team)}</td><td>${manualPill(r.team,true,r.profile.manual)}</td><td>${esc(r.profile.group)}</td><td>${badges(r.profile.flags)}</td><td class="num">${r.profile.player.toFixed(3)}</td><td class="num">${r.profile.closer.toFixed(3)}</td><td class="num">${r.profile.form.toFixed(3)}</td><td class="num">${pct(r.r32)}</td><td class="num">${pct(r.r16)}</td><td class="num">${pct(r.qf)}</td><td class="num">${pct(r.sf)}</td><td class="num">${pct(r.final)}</td><td class="num">${pct(r.third)}</td><td class="num">${pct(r.champ)}</td></tr>`;
+  }).join('');
+}
+function renderTeams(d){
+  captureTeamsViewState();
+  const tbody=ensureTeamsShell();
+  if(tbody)tbody.innerHTML=teamRowsHTML(d);
   restoreTeamsViewState();
-  const teamSearchInput=$('teamSearch');
-  if(teamSearchInput)teamSearchInput.addEventListener('input',e=>applyTeamSearchFilter(e.target.value));
-  $('csvBtn')?.addEventListener('click',downloadCSV);
   bindManualOddsPanelControls();
   refreshManualUI();
 }
 function renderAccuracy(d){if(!d.accuracy.length){$('accuracy').innerHTML='<div class="card"><h2>Accuracy</h2><p class="note">No actual results are embedded for this future tournament.</p></div>';return}const total=d.overall;const ov=total[1]?total[0]/total[1]:null;$('accuracy').innerHTML=`<div class="card"><h2>Backtest accuracy</h2><table class="accuracy-table"><thead><tr><th>Stage</th><th class="num">Correct</th><th class="num">Total</th><th class="num">Accuracy</th></tr></thead><tbody>${d.accuracy.map(r=>`<tr class="spectrum-row" ${spectrumStyle(r.pct)}><td>${esc(r.stage)}</td><td class="num">${r.correct}</td><td class="num">${r.total}</td><td class="num">${pct(r.pct)}</td></tr>`).join('')}<tr class="spectrum-row" ${spectrumStyle(ov)}><th>Overall</th><th class="num">${total[0]}</th><th class="num">${total[1]}</th><th class="num">${pct(ov)}</th></tr></tbody></table></div>`}
 function methodSignalGuideHTML(){return `<div class="method-signal-grid"><div class="method-signal"><span class="pill signal LOW_EVENT">LOW_EVENT</span><span>Low-scoring profile. More draw, extra-time, and penalty risk.</span></div><div class="method-signal"><span class="pill signal SCAR_TISSUE">SCAR_TISSUE</span><span>Past tournament failure or pressure may lower confidence.</span></div><div class="method-signal"><span class="pill signal FAVORITE_TRAP">FAVORITE_TRAP</span><span>Highly rated team with form, disruption, or fragility concerns.</span></div><div class="method-signal"><span class="pill signal DARK_HORSE">DARK_HORSE</span><span>Underrated team with survival traits.</span></div><div class="method-signal"><span class="pill signal CLOSER">CLOSER</span><span>Recent proof in finals, trophies, or late tournament stages.</span></div><div class="method-signal"><span class="pill signal HOST">HOST</span><span>Home or near-home advantage.</span></div><div class="method-signal"><span class="pill signal MY_ODDS">MY_ODDS</span><span>Custom team odds are active.</span></div></div>`}
-function renderMethod(d){$('method').innerHTML=`<div class="card"><h2>Method</h2><p class="note">The engine runs seeded Monte Carlo simulations in a Web Worker. For past years, embedded data is meant to match what was known before that tournament started.</p><p class="note">The model blends team strength, recent cycle form, World Cup history, player quality, host/travel context, disruption risk, penalty risk, low-scoring game risk, and your My Odds adjustments.</p><p class="note"><b>Data:</b> ${esc(dataSourceLabel())}. Live checks update available schedules, groups, rankings, form, and penalty context. If a feed is blocked or unavailable, the app uses embedded data.</p></div><div class="card"><h2>Signal guide</h2>${methodSignalGuideHTML()}</div><div class="card"><h2>Current dials</h2><table><tbody>${SLIDERS.map(sl=>`<tr><th>${esc(sl.name)}</th><td class="num">${Number($('s_'+sl.k).value).toFixed(2)}</td><td>${esc(sl.desc)}</td></tr>`).join('')}</tbody></table></div>`}
-function downloadCSV(){if(!lastResult)return;const rows=Object.entries(lastResult.team_probs).map(([team,p])=>{const prof=lastResult.profiles[team],m=cleanManual(prof.manual||{});return {team,group:prof.group,manual_overall:m.overall,manual_group:m.group,manual_knockout:m.knockout,manual_attack:m.attack,manual_defense:m.defense,manual_penalty:m.penalty,manual_low_event:m.lowEvent,signals:prof.flags.join('|'),player:prof.player.toFixed(4),closer:prof.closer.toFixed(4),cycle:prof.form.toFixed(4),first_ko:p.r32.toFixed(4),r16:p.r16.toFixed(4),qf:p.qf.toFixed(4),sf:p.sf.toFixed(4),final:p.final.toFixed(4),third:p.third.toFixed(4),champion:p.champ.toFixed(4)}});const cols=Object.keys(rows[0]);const csv=[cols.join(','),...rows.map(r=>cols.map(c=>'"'+String(r[c]).replaceAll('"','""')+'"').join(','))].join('\n');downloadBlob(new Blob([csv],{type:'text/csv'}),datedDownloadName('wc'+lastResult.year+'_team_probabilities','csv'))}
+function renderMethod(d){$('method').innerHTML=`<div class="card"><h2>Method</h2><p class="note">The engine runs seeded Monte Carlo simulations in a Web Worker. For past years, embedded data is meant to match what was known before that tournament started.</p><p class="note">The model blends team strength, recent cycle form, World Cup history, player quality, host/travel context, disruption risk, penalty risk, low-scoring game risk, and your My Odds team adjustments.</p><p class="note"><b>Data:</b> ${esc(dataSourceLabel())}. Live checks update available schedules, groups, rankings, form, and penalty context. If a feed is blocked or unavailable, the app uses embedded data.</p></div><div class="card"><h2>Signal guide</h2>${methodSignalGuideHTML()}</div><div class="card"><h2>Model baseline</h2><p class="note">Top-level preset/tuning controls were removed. These are the fixed baseline weights; team-specific changes now happen through My Odds.</p><table><tbody>${SLIDERS.map(sl=>`<tr><th>${esc(sl.name)}</th><td class="num">${sliderValue(sl.k).toFixed(2)}</td><td>${esc(sl.desc)}</td></tr>`).join('')}</tbody></table></div>`}
+function downloadCSV(){if(!lastResult)return;const rows=Object.entries(lastResult.team_probs).map(([team,p])=>{const prof=lastResult.profiles[team],m=cleanManual(prof.manual||{});return {team,group:prof.group,manual_overall:m.overall,manual_group:m.group,manual_knockout:m.knockout,manual_attack:m.attack,manual_defense:m.defense,manual_form:m.form,manual_clutch:m.clutch,manual_consistency:m.consistency,manual_penalty:m.penalty,manual_low_event:m.lowEvent,signals:prof.flags.join('|'),player:prof.player.toFixed(4),closer:prof.closer.toFixed(4),cycle:prof.form.toFixed(4),first_ko:p.r32.toFixed(4),r16:p.r16.toFixed(4),qf:p.qf.toFixed(4),sf:p.sf.toFixed(4),final:p.final.toFixed(4),third:p.third.toFixed(4),champion:p.champ.toFixed(4)}});const cols=Object.keys(rows[0]);const csv=[cols.join(','),...rows.map(r=>cols.map(c=>'"'+String(r[c]).replaceAll('"','""')+'"').join(','))].join('\n');downloadBlob(new Blob([csv],{type:'text/csv'}),datedDownloadName('wc'+lastResult.year+'_team_probabilities','csv'))}
 
 const SHARE_VERSION=3;
 const SHARE_SLIDER_KEYS=['elo','form','history','player','closer','scar','disruption','dark','lowevent','penalty','host','upset'];
-const SHARE_MANUAL_KEYS=['overall','group','knockout','attack','defense','penalty','lowEvent'];
+const SHARE_MANUAL_KEYS=['overall','group','knockout','attack','defense','form','clutch','consistency','penalty','lowEvent'];
 
 function appModal({title='Notice',message='',kind='alert',inputType='text',value='',options=[]}={}){
   const modal=$('appModal'),titleEl=$('appModalTitle'),msgEl=$('appModalMessage'),field=$('appModalField'),actions=$('appModalActions');
