@@ -2008,6 +2008,19 @@ function assignThirdSlots(matches,bestThirds){
     if(/^3[A-L]+$/.test(code)&&!slots.includes(code))slots.push(code);
   }
   const byGroup=new Map(rows.map(x=>[String(x.group),x]));
+  const combo=rows.map(x=>String(x.group)).sort().join('');
+  const fifaRows={
+    DFGHIJKL:{'3CEFHI':'H','3EFGIJ':'G','3BEFIJ':'I','3ABCDF':'D','3AEHIJ':'J','3CDFGH':'F','3DEIJL':'L','3EHIJK':'K'}
+  };
+  const fifaRow=fifaRows[combo];
+  if(fifaRow){
+    const out=new Map();
+    for(const code of slots){
+      const g=fifaRow[code];
+      if(g&&byGroup.has(g))out.set(code,byGroup.get(g)?.team||'');
+    }
+    return out;
+  }
   const slotToGroup=new Map(), usedGroups=new Set();
   function dfs(i){
     if(i>=slots.length)return true;
