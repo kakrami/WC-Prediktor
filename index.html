@@ -390,6 +390,37 @@ body.manual-preview-open #bracket .game.manual-preview-team{outline:2px solid #f
 @media(max-width:520px){.overview-main-pick{padding:13px}.overview-champion{font-size:18px}.overview-stage-grid{grid-template-columns:1fr 1fr}.contender-row{grid-template-columns:minmax(0,1fr) 48px}}
 
 
+/* v163 simplified Overview layout */
+#overview .overview-dashboard.clean-overview{gap:12px}
+#overview .overview-main-pick{padding:14px}
+#overview .overview-eyebrow{margin-bottom:6px}
+#overview .overview-champion{font-size:22px}
+#overview .overview-chance{font-size:13px;margin-top:5px}
+#overview .overview-final-line{display:grid;gap:7px;margin-top:11px;padding-top:11px;font-size:13px}
+.overview-final-row{display:grid;grid-template-columns:54px minmax(0,1fr);gap:8px;align-items:start;min-width:0}
+.overview-final-row b{color:#93c5fd}.overview-final-row span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.overview-clean-grid{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(280px,1.15fr);gap:12px;align-items:start}
+.overview-quick-card{display:grid;gap:12px}
+.overview-mini-section h3{margin:0 0 7px;font-size:11px;color:#93c5fd;text-transform:uppercase;letter-spacing:.06em}
+.overview-chip-list{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.overview-team-chip{display:inline-flex;align-items:center;gap:5px;min-width:0;max-width:100%;border:1px solid #334155;background:#0f172a;border-radius:999px;padding:5px 8px;font-size:13px;font-weight:850;color:#e0f2fe}
+.overview-team-chip .team{max-width:100%}.overview-team-chip .team>span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.overview-third-line{font-size:14px;font-weight:900;color:#e0f2fe;line-height:1.35}
+.overview-third-line .muted{font-weight:850}
+.overview-run-line{font-size:11px;color:var(--muted);line-height:1.35;border-top:1px dashed #334155;padding-top:9px}
+.race-list{display:grid;gap:0}
+.race-row{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid rgba(51,65,85,.55)}
+.race-row:last-child{border-bottom:0;padding-bottom:0}.race-row:first-child{padding-top:0}
+.race-rank{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #334155;background:#0f172a;border-radius:999px;color:#94a3b8;font-size:11px;font-weight:900}
+.race-team{min-width:0}.race-team .team{max-width:100%;font-size:14px}.race-team .team>span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.race-prob{font-size:13px;font-weight:950;color:#e0f2fe;font-variant-numeric:tabular-nums;white-space:nowrap}
+.race-bar{grid-column:2/4;height:5px;border:1px solid #334155;border-radius:999px;background:#020617;overflow:hidden;margin-top:-3px}
+.race-bar i{display:block;height:100%;background:linear-gradient(90deg,#38bdf8,#22c55e)}
+.overview-accuracy-card{margin-top:0}
+@media(max-width:920px){.overview-clean-grid{grid-template-columns:1fr}.overview-final-row{grid-template-columns:48px minmax(0,1fr)}}
+@media(max-width:520px){#overview .overview-main-pick{padding:12px}#overview .overview-champion{font-size:20px}.overview-team-chip{font-size:12.5px;padding:4px 7px}.race-row{grid-template-columns:22px minmax(0,1fr) auto;gap:7px;padding:6px 0}.race-team .team{font-size:13.5px}.race-prob{font-size:12.5px}}
+
+
 /* v33 bracket title/checkmark layering + mobile focus offset */
 #bracket .round h3{z-index:30;pointer-events:none;transition:opacity .18s ease,transform .12s ease}
 #bracket .round h3.is-floating{opacity:.68}
@@ -780,7 +811,7 @@ aside{padding:14px 12px;background:linear-gradient(180deg,#071021,#050b18);}
 .layout.app-layout{display:block;min-height:calc(100vh - 58px)}.top-controls{display:none!important}.main{padding:10px 14px 14px!important;overflow:visible!important}
 .results-header{position:static!important;top:auto!important;z-index:auto!important;margin:0 0 12px!important;padding:0!important;background:transparent!important;backdrop-filter:none!important}
 .settings-popover{width:min(620px,calc(100vw - 22px));max-height:min(82vh,760px);overflow:auto}.settings-section-title{margin:10px 0 8px;color:#c7d2fe;font-size:11px;font-weight:950;letter-spacing:.06em;text-transform:uppercase}.settings-advanced{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:#0b1222;overflow:hidden}.settings-advanced>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 11px;font-size:12px;font-weight:950;color:#bae6fd}.settings-advanced>summary::-webkit-details-marker{display:none}.settings-advanced #sliders{padding:11px;border-top:1px solid var(--line);max-height:52vh;overflow:auto}.settings-advanced .field{margin-bottom:12px}.settings-advanced .field:last-child{margin-bottom:0}
-.method-signal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px}.method-signal{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:start;border:1px solid var(--line);border-radius:12px;background:#0b1222;padding:9px}.method-signal span:last-child{font-size:12px;line-height:1.35;color:#cbd5e1}
+.method-signal-grid{display:flex;flex-wrap:wrap;gap:7px}.method-signal{display:inline-flex;align-items:center}.method-signal .pill{margin:0}.method-signal .pill:focus-visible{outline:2px solid #38bdf855;outline-offset:2px}
 .teams-title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.teams-title-row h2{margin:0}.teams-export-btn{width:auto;min-width:112px;height:34px;padding:6px 10px;border-radius:10px;background:#1f2937;border:1px solid var(--line);color:#dbeafe;box-shadow:none}.teams-export-btn:hover{border-color:#7dd3fc99;color:#e0f2fe}
 .share-box .share-actions:first-of-type{margin:0 0 9px}.share-box .share-actions:first-of-type button{background:linear-gradient(135deg,#0284c7,#4f46e5)}
 @media(max-width:780px){.app-header{align-items:flex-start}.header-right{width:100%;justify-content:space-between}.header-controls{flex:1}.header-controls .year-field{flex:1 1 112px}.header-controls .preset-field{flex:2 1 170px}#runBtn.run-primary,.header-action-btn{flex:0 0 auto}.header-status{align-items:flex-start}.settings-popover{position:fixed;right:10px;left:10px;top:70px;width:auto}}
@@ -1063,13 +1094,24 @@ body:not(.manual-preview-open) .manual-preview-team{outline:none!important;box-s
 /* v139 mobile actual-team flip cards: same card, corrected teams only */
 #bracket .game.has-actual-flip{overflow:visible}
 #bracket .game .game-front{display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:100%;transition:opacity .16s ease,filter .16s ease}
-#bracket .actual-flip-btn{position:absolute;top:-8px;right:13px;z-index:9;width:20px!important;min-width:20px!important;height:20px!important;padding:0!important;border-radius:999px;border:1px solid #38bdf899;background:#082f49;color:#bae6fd;box-shadow:0 4px 14px #0009;font-size:11px;font-weight:950;line-height:1;display:inline-flex;align-items:center;justify-content:center}
+#bracket .actual-flip-btn{position:absolute;top:-9px;right:-9px;z-index:9;width:20px!important;min-width:20px!important;height:20px!important;padding:0!important;border-radius:999px;border:1px solid #38bdf899;background:#082f49;color:#bae6fd;box-shadow:0 4px 14px #0009;font-size:11px;font-weight:950;line-height:1;display:inline-flex;align-items:center;justify-content:center}
 #bracket .actual-flip-btn:hover,#bracket .actual-flip-btn:focus-visible{filter:brightness(1.16);outline:2px solid #38bdf855;outline-offset:1px}
 #bracket .game.is-actual-flipped .actual-flip-btn{border-color:#facc1599;background:#2a2208;color:#fde68a}
 #bracket .actual-flip-panel{position:absolute;inset:4px;z-index:8;display:flex;flex-direction:column;justify-content:center;gap:2px;padding:7px;border:1px solid #facc1599;border-radius:9px;background:linear-gradient(90deg,#14532d99,#020617 74%);box-shadow:inset 0 0 0 1px #facc1522,0 12px 30px #0009;opacity:0;transform:rotateY(88deg) scale(.96);transform-origin:center;pointer-events:none;transition:opacity .16s ease,transform .18s ease;overflow:hidden}
 #bracket .game.is-actual-flipped .actual-flip-panel{opacity:1;transform:rotateY(0deg) scale(1);pointer-events:auto}
 #bracket .game.is-actual-flipped .game-front{opacity:0;filter:none}
-@media(max-width:520px){#bracket .actual-flip-btn{width:22px!important;min-width:22px!important;height:22px!important;font-size:12px;top:-9px;right:12px}#bracket .actual-flip-panel{inset:3px;padding:7px}}
+#bracket .round-champion .actual-flip-panel{align-items:center;text-align:center;background:linear-gradient(180deg,#2a2208,#020617 78%)}
+#bracket .round-champion .actual-flip-panel .champion-card{height:100%;min-height:0}
+@media(max-width:520px){#bracket .actual-flip-btn{width:22px!important;min-width:22px!important;height:22px!important;font-size:12px;top:-10px;right:-10px}#bracket .actual-flip-panel{inset:3px;padding:7px}}
+
+/* v163: prediction side keeps result coloring/marks but hides duplicate actual scores when a flip card exists. */
+#bracket .score-pair.single-score{grid-template-columns:24px;width:24px;min-width:24px}
+@media(max-width:520px){#bracket .score-pair.single-score{grid-template-columns:21px;width:21px;min-width:21px}}
+
+/* v167: game footer shows only tie-break/context note; no probability or pill styling. */
+#bracket .game-footer{display:block;min-width:0}
+#bracket .game-footer .footer-note{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#cbd5e1;background:transparent;border:0;border-radius:0;padding:0;font-size:9px;font-weight:800;line-height:1.15}
+@media(max-width:520px){#bracket .game-footer .footer-note{font-size:8.5px}}
 
 
 /* Final canonical UI layer: keep layout fixes here instead of adding scattered vXX patches. */
@@ -1388,11 +1430,30 @@ body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-
 .app-hover-pop .odds-tip-chip:hover,.app-hover-pop .odds-tip-chip:focus-visible{border-color:#38bdf899!important;background:#082f49!important;outline:none!important}
 .app-hover-pop .odds-tip-chip:active{transform:translateY(1px)}
 
+
+/* v169: Method-tab model baseline presets + custom weights */
+.model-baseline-presets{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:7px;margin:0 0 10px}
+.model-baseline-preset{width:100%;min-width:0;height:31px;padding:5px 8px;border-radius:999px;border:1px solid #334155!important;background:#0f172a!important;color:#cbd5e1!important;font-size:11px;font-weight:950;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.model-baseline-preset:hover,.model-baseline-preset:focus-visible{filter:brightness(1.15);outline:none;box-shadow:0 0 0 3px #38bdf822}
+.model-baseline-preset.active{box-shadow:inset 0 0 0 1px currentColor,0 0 0 3px #38bdf81c}
+.model-baseline-preset.LOW_EVENT{border-color:#0ea5e999!important;color:#bae6fd!important;background:#082f4955!important}
+.model-baseline-preset.SCAR_TISSUE{border-color:#f9731699!important;color:#fed7aa!important;background:#7c2d1255!important}
+.model-baseline-preset.FAVORITE_TRAP{border-color:#ef444499!important;color:#fecaca!important;background:#7f1d1d55!important}
+.model-baseline-preset.DARK_HORSE{border-color:#22c55e99!important;color:#bbf7d0!important;background:#14532d55!important}
+.model-baseline-preset.CLOSER{border-color:#facc1599!important;color:#fef3c7!important;background:#713f1255!important}
+.model-baseline-preset.HOST{border-color:#a78bfa99!important;color:#ddd6fe!important;background:#3b076455!important}
+.model-baseline-preset.MY_ODDS{border-color:#64748b99!important;color:#cbd5e1!important;background:#1e293b!important}
+.model-baseline-preset.BALANCED,.model-baseline-preset.CUSTOM{border-color:#38bdf899!important;color:#bae6fd!important;background:#082f4955!important}
+.model-baseline-table th{width:180px}
+.model-baseline-table td.model-baseline-value{width:86px;white-space:nowrap}
+.model-weight-input{width:74px!important;height:30px!important;padding:4px 6px!important;text-align:right!important;border-radius:9px!important;font-size:12px!important;font-variant-numeric:tabular-nums}
+@media(max-width:640px){.model-baseline-presets{grid-template-columns:repeat(2,minmax(0,1fr))}.model-baseline-table th{width:auto}.model-baseline-table td:nth-child(3){display:none}.model-weight-input{width:68px!important}}
+
 </style>
 </head>
 <body>
 <header class="app-header">
-  <div class="brand-block"><h1>🏆 World Cup Prediktor <span class="brand-by">by kia</span></h1><div class="subtitle">Pick a year, adjust odds if needed, then save or share your prediction.</div><div class="app-version">v145</div></div>
+  <div class="brand-block"><h1>🏆 World Cup Prediktor <span class="brand-by">by kia</span></h1><div class="subtitle">Pick a year, adjust odds if needed, then save or share your prediction.</div><div class="app-version">v169</div></div>
   <div class="header-right">
     <div class="header-controls" aria-label="Main controls">
       <div class="header-year-control quick-field year-field"><label><span id="yearMode">Predict</span> year</label><select id="year"></select></div>
@@ -1480,7 +1541,7 @@ body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-
 </div>
 <div id="toast" class="toast" hidden></div>
 <script>
-const APP_VERSION = 'v154';
+const APP_VERSION = 'v172';
 const DATA = {"TOURNAMENTS":{"1994":{"start":"1994-06-17","hosts":["United States"],"host_confed":"CONCACAF","format":24,"groups":{"A":["United States","Switzerland","Colombia","Romania"],"B":["Brazil","Russia","Cameroon","Sweden"],"C":["Germany","Bolivia","Spain","South Korea"],"D":["Argentina","Greece","Nigeria","Bulgaria"],"E":["Italy","Ireland","Norway","Mexico"],"F":["Belgium","Morocco","Netherlands","Saudi Arabia"]},"actual":{"group_top2":{"A":["Romania","Switzerland"],"B":["Brazil","Sweden"],"C":["Germany","Spain"],"D":["Nigeria","Bulgaria"],"E":["Mexico","Ireland"],"F":["Netherlands","Saudi Arabia"]},"r16":["Germany","Belgium","Spain","Switzerland","Saudi Arabia","Sweden","Romania","Argentina","Netherlands","Ireland","Brazil","United States","Nigeria","Italy","Mexico","Bulgaria"],"quarter_finalists":["Germany","Spain","Sweden","Romania","Netherlands","Brazil","Italy","Bulgaria"],"semi_finalists":["Brazil","Sweden","Bulgaria","Italy"],"finalists":["Brazil","Italy"],"champion":"Brazil","runner_up":"Italy","third":"Sweden","fourth":"Bulgaria"}},"1998":{"start":"1998-06-10","hosts":["France"],"host_confed":"UEFA","format":32,"groups":{"A":["Brazil","Scotland","Morocco","Norway"],"B":["Italy","Chile","Cameroon","Austria"],"C":["France","South Africa","Saudi Arabia","Denmark"],"D":["Spain","Nigeria","Paraguay","Bulgaria"],"E":["Netherlands","Belgium","South Korea","Mexico"],"F":["Germany","United States","Yugoslavia","Iran"],"G":["Romania","Colombia","England","Tunisia"],"H":["Argentina","Japan","Jamaica","Croatia"]},"actual":{"group_top2":{"A":["Brazil","Norway"],"B":["Italy","Chile"],"C":["France","Denmark"],"D":["Nigeria","Paraguay"],"E":["Netherlands","Mexico"],"F":["Germany","Yugoslavia"],"G":["Romania","England"],"H":["Argentina","Croatia"]},"r16":["Brazil","Chile","Denmark","Nigeria","Netherlands","Yugoslavia","Argentina","England","Italy","Norway","France","Paraguay","Germany","Mexico","Romania","Croatia"],"quarter_finalists":["Brazil","Denmark","Netherlands","Argentina","Italy","France","Germany","Croatia"],"semi_finalists":["Brazil","Netherlands","France","Croatia"],"finalists":["France","Brazil"],"champion":"France","runner_up":"Brazil","third":"Croatia","fourth":"Netherlands"}},"2002":{"start":"2002-05-31","hosts":["South Korea","Japan"],"host_confed":"AFC","format":32,"groups":{"A":["France","Senegal","Uruguay","Denmark"],"B":["Spain","Slovenia","Paraguay","South Africa"],"C":["Brazil","Turkey","China","Costa Rica"],"D":["South Korea","Poland","United States","Portugal"],"E":["Germany","Saudi Arabia","Ireland","Cameroon"],"F":["Argentina","Nigeria","England","Sweden"],"G":["Italy","Ecuador","Croatia","Mexico"],"H":["Japan","Belgium","Russia","Tunisia"]},"actual":{"group_top2":{"A":["Denmark","Senegal"],"B":["Spain","Paraguay"],"C":["Brazil","Turkey"],"D":["South Korea","United States"],"E":["Germany","Ireland"],"F":["Sweden","England"],"G":["Mexico","Italy"],"H":["Japan","Belgium"]},"r16":["Denmark","Senegal","Spain","Paraguay","Brazil","Turkey","South Korea","United States","Germany","Ireland","Sweden","England","Mexico","Italy","Japan","Belgium"],"quarter_finalists":["Senegal","Turkey","Brazil","England","Germany","United States","Spain","South Korea"],"semi_finalists":["Germany","South Korea","Brazil","Turkey"],"finalists":["Brazil","Germany"],"champion":"Brazil","runner_up":"Germany","third":"Turkey","fourth":"South Korea"}},"2006":{"start":"2006-06-09","hosts":["Germany"],"host_confed":"UEFA","format":32,"groups":{"A":["Germany","Costa Rica","Poland","Ecuador"],"B":["England","Paraguay","Trinidad and Tobago","Sweden"],"C":["Argentina","Ivory Coast","Serbia and Montenegro","Netherlands"],"D":["Mexico","Iran","Angola","Portugal"],"E":["Italy","Ghana","United States","Czech Republic"],"F":["Brazil","Croatia","Australia","Japan"],"G":["France","Switzerland","South Korea","Togo"],"H":["Spain","Ukraine","Tunisia","Saudi Arabia"]},"actual":{"group_top2":{"A":["Germany","Ecuador"],"B":["England","Sweden"],"C":["Argentina","Netherlands"],"D":["Portugal","Mexico"],"E":["Italy","Ghana"],"F":["Brazil","Australia"],"G":["Switzerland","France"],"H":["Spain","Ukraine"]},"r16":["Germany","Ecuador","England","Sweden","Argentina","Netherlands","Portugal","Mexico","Italy","Ghana","Brazil","Australia","Switzerland","France","Spain","Ukraine"],"quarter_finalists":["Germany","Argentina","Italy","Ukraine","England","Portugal","Brazil","France"],"semi_finalists":["Germany","Italy","Portugal","France"],"finalists":["Italy","France"],"champion":"Italy","runner_up":"France","third":"Germany","fourth":"Portugal"}},"2010":{"start":"2010-06-11","hosts":["South Africa"],"host_confed":"CAF","format":32,"groups":{"A":["South Africa","Mexico","Uruguay","France"],"B":["Argentina","Nigeria","South Korea","Greece"],"C":["England","United States","Algeria","Slovenia"],"D":["Germany","Australia","Serbia","Ghana"],"E":["Netherlands","Denmark","Japan","Cameroon"],"F":["Italy","Paraguay","New Zealand","Slovakia"],"G":["Brazil","North Korea","Ivory Coast","Portugal"],"H":["Spain","Switzerland","Honduras","Chile"]},"actual":{"group_top2":{"A":["Uruguay","Mexico"],"B":["Argentina","South Korea"],"C":["United States","England"],"D":["Germany","Ghana"],"E":["Netherlands","Japan"],"F":["Paraguay","Slovakia"],"G":["Brazil","Portugal"],"H":["Spain","Chile"]},"r16":["Uruguay","Mexico","Argentina","South Korea","United States","England","Germany","Ghana","Netherlands","Japan","Paraguay","Slovakia","Brazil","Portugal","Spain","Chile"],"quarter_finalists":["Uruguay","Ghana","Netherlands","Brazil","Argentina","Germany","Paraguay","Spain"],"semi_finalists":["Uruguay","Netherlands","Germany","Spain"],"finalists":["Netherlands","Spain"],"champion":"Spain","runner_up":"Netherlands","third":"Germany","fourth":"Uruguay"}},"2014":{"start":"2014-06-12","hosts":["Brazil"],"host_confed":"CONMEBOL","format":32,"groups":{"A":["Brazil","Croatia","Mexico","Cameroon"],"B":["Spain","Netherlands","Chile","Australia"],"C":["Colombia","Greece","Ivory Coast","Japan"],"D":["Uruguay","Costa Rica","England","Italy"],"E":["Switzerland","Ecuador","France","Honduras"],"F":["Argentina","Bosnia and Herzegovina","Iran","Nigeria"],"G":["Germany","Portugal","Ghana","United States"],"H":["Belgium","Algeria","Russia","South Korea"]},"actual":{"group_top2":{"A":["Brazil","Mexico"],"B":["Netherlands","Chile"],"C":["Colombia","Greece"],"D":["Costa Rica","Uruguay"],"E":["France","Switzerland"],"F":["Argentina","Nigeria"],"G":["Germany","United States"],"H":["Belgium","Algeria"]},"r16":["Brazil","Mexico","Netherlands","Chile","Colombia","Greece","Costa Rica","Uruguay","France","Switzerland","Argentina","Nigeria","Germany","United States","Belgium","Algeria"],"quarter_finalists":["Brazil","Colombia","France","Germany","Netherlands","Costa Rica","Argentina","Belgium"],"semi_finalists":["Brazil","Germany","Netherlands","Argentina"],"finalists":["Germany","Argentina"],"champion":"Germany","runner_up":"Argentina","third":"Netherlands","fourth":"Brazil"}},"2018":{"start":"2018-06-14","hosts":["Russia"],"host_confed":"UEFA","format":32,"groups":{"A":["Russia","Saudi Arabia","Egypt","Uruguay"],"B":["Portugal","Spain","Morocco","Iran"],"C":["France","Australia","Peru","Denmark"],"D":["Argentina","Iceland","Croatia","Nigeria"],"E":["Brazil","Switzerland","Costa Rica","Serbia"],"F":["Germany","Mexico","Sweden","South Korea"],"G":["Belgium","Panama","Tunisia","England"],"H":["Poland","Senegal","Colombia","Japan"]},"actual":{"group_top2":{"A":["Uruguay","Russia"],"B":["Spain","Portugal"],"C":["France","Denmark"],"D":["Croatia","Argentina"],"E":["Brazil","Switzerland"],"F":["Sweden","Mexico"],"G":["Belgium","England"],"H":["Colombia","Japan"]},"r16":["Uruguay","Russia","Spain","Portugal","France","Denmark","Croatia","Argentina","Brazil","Switzerland","Sweden","Mexico","Belgium","England","Colombia","Japan"],"quarter_finalists":["Uruguay","France","Brazil","Belgium","Sweden","England","Russia","Croatia"],"semi_finalists":["France","Belgium","Croatia","England"],"finalists":["France","Croatia"],"champion":"France","runner_up":"Croatia","third":"Belgium","fourth":"England"}},"2022":{"start":"2022-11-20","hosts":["Qatar"],"host_confed":"AFC","format":32,"groups":{"A":["Qatar","Ecuador","Senegal","Netherlands"],"B":["England","Iran","United States","Wales"],"C":["Argentina","Saudi Arabia","Mexico","Poland"],"D":["France","Australia","Denmark","Tunisia"],"E":["Spain","Costa Rica","Germany","Japan"],"F":["Belgium","Canada","Morocco","Croatia"],"G":["Brazil","Serbia","Switzerland","Cameroon"],"H":["Portugal","Ghana","Uruguay","South Korea"]},"actual":{"group_top2":{"A":["Netherlands","Senegal"],"B":["England","United States"],"C":["Argentina","Poland"],"D":["France","Australia"],"E":["Japan","Spain"],"F":["Morocco","Croatia"],"G":["Brazil","Switzerland"],"H":["Portugal","South Korea"]},"r16":["Netherlands","Senegal","England","United States","Argentina","Poland","France","Australia","Japan","Spain","Morocco","Croatia","Brazil","Switzerland","Portugal","South Korea"],"quarter_finalists":["Netherlands","Argentina","Croatia","Brazil","England","France","Morocco","Portugal"],"semi_finalists":["Argentina","Croatia","France","Morocco"],"finalists":["Argentina","France"],"champion":"Argentina","runner_up":"France","third":"Croatia","fourth":"Morocco"}},"2026":{"start":"2026-06-11","hosts":["Canada","Mexico","United States"],"host_confed":"CONCACAF","format":48,"groups":{"A":["Mexico","South Africa","South Korea","Czech Republic"],"B":["Canada","Bosnia and Herzegovina","Qatar","Switzerland"],"C":["Brazil","Morocco","Haiti","Scotland"],"D":["United States","Paraguay","Australia","Turkey"],"E":["Germany","Cura\u00e7ao","Ivory Coast","Ecuador"],"F":["Netherlands","Japan","Sweden","Tunisia"],"G":["Belgium","Egypt","Iran","New Zealand"],"H":["Spain","Cape Verde","Saudi Arabia","Uruguay"],"I":["France","Senegal","Iraq","Norway"],"J":["Argentina","Algeria","Austria","Jordan"],"K":["Portugal","DR Congo","Uzbekistan","Colombia"],"L":["England","Croatia","Ghana","Panama"]},"actual":{}}},"YEAR_ELO_PRIOR":{"1994":{"Brazil":1785,"Italy":1765,"Germany":1755,"Argentina":1740,"Netherlands":1715,"Spain":1700,"Sweden":1660,"Romania":1645,"Bulgaria":1630,"Nigeria":1625,"Mexico":1620,"Belgium":1615,"Colombia":1605,"Norway":1600,"Ireland":1585,"Russia":1580,"United States":1545,"Switzerland":1540,"Saudi Arabia":1490},"1998":{"Brazil":1840,"France":1785,"Italy":1765,"Netherlands":1755,"Argentina":1745,"Germany":1735,"Spain":1710,"England":1695,"Croatia":1665,"Yugoslavia":1660,"Denmark":1655,"Mexico":1640,"Norway":1635,"Nigeria":1625,"Romania":1620,"Paraguay":1605,"Chile":1600,"Morocco":1580},"2002":{"Brazil":1810,"France":1785,"Argentina":1775,"Italy":1740,"Germany":1710,"Spain":1705,"England":1695,"Portugal":1685,"Turkey":1635,"South Korea":1575},"2006":{"Brazil":1825,"Argentina":1765,"Italy":1755,"France":1735,"Germany":1730,"England":1725,"Netherlands":1715,"Portugal":1710,"Spain":1705,"Mexico":1660},"2010":{"Spain":1900,"Brazil":1720,"Netherlands":1840,"Germany":1790,"Argentina":1720,"Portugal":1720,"England":1705,"Uruguay":1695,"Italy":1680,"France":1625,"Ghana":1605,"Paraguay":1600},"2014":{"Germany":1830,"Argentina":1810,"Brazil":1785,"Netherlands":1760,"Spain":1740,"France":1740,"Belgium":1725,"Colombia":1715,"Chile":1690,"Uruguay":1680,"Costa Rica":1565},"2018":{"France":1820,"Brazil":1790,"Belgium":1785,"Croatia":1755,"England":1745,"Spain":1740,"Uruguay":1715,"Argentina":1705,"Portugal":1705,"Germany":1695,"Russia":1600},"2022":{"Argentina":1835,"France":1815,"Brazil":1790,"England":1765,"Netherlands":1760,"Spain":1745,"Portugal":1735,"Croatia":1725,"Morocco":1675,"Belgium":1665,"Germany":1660},"2026":{"Spain":1840,"Argentina":1830,"France":1825,"England":1810,"Brazil":1800,"Portugal":1785,"Netherlands":1775,"Germany":1760,"Croatia":1735,"Morocco":1720,"Colombia":1710,"Uruguay":1705,"Japan":1680,"United States":1665,"Mexico":1655,"Canada":1585}},"FIFA_RANKS":{"2026":{"Spain":1,"Argentina":2,"France":3,"England":4,"Brazil":5,"Portugal":6,"Netherlands":7,"Belgium":8,"Germany":9,"Croatia":10,"Morocco":11,"Colombia":13,"United States":14,"Mexico":15,"Uruguay":16,"Switzerland":17,"Japan":18,"Senegal":19,"Iran":20,"South Korea":22,"Ecuador":23,"Austria":24,"Australia":26,"Canada":27,"Norway":29,"Panama":30,"Egypt":34,"Algeria":35,"Scotland":36,"Paraguay":39,"Tunisia":40,"Ivory Coast":42,"Czech Republic":44,"Uzbekistan":50,"Qatar":51,"Saudi Arabia":60,"South Africa":61,"Jordan":66,"Cape Verde":68,"Ghana":72,"Cura\u00e7ao":82,"Haiti":84,"New Zealand":86,"Bosnia and Herzegovina":70,"Turkey":28,"Sweden":32,"Iraq":58,"DR Congo":63}},"TEAM_FLAG_CODES":{"Argentina":"ar","Brazil":"br","Uruguay":"uy","Paraguay":"py","Chile":"cl","Colombia":"co","Ecuador":"ec","Peru":"pe","Venezuela":"ve","Bolivia":"bo","Mexico":"mx","United States":"us","Canada":"ca","Costa Rica":"cr","Panama":"pa","Honduras":"hn","Trinidad and Tobago":"tt","Haiti":"ht","Jamaica":"jm","Cura\u00e7ao":"cw","Spain":"es","Germany":"de","France":"fr","England":"gb-eng","Netherlands":"nl","Portugal":"pt","Italy":"it","Belgium":"be","Croatia":"hr","Switzerland":"ch","Sweden":"se","Denmark":"dk","Poland":"pl","Serbia":"rs","Serbia and Montenegro":"rs","Russia":"ru","Ukraine":"ua","Greece":"gr","Slovenia":"si","Slovakia":"sk","Czech Republic":"cz","Turkey":"tr","Norway":"no","Austria":"at","Scotland":"gb-sct","Wales":"gb-wls","Bosnia and Herzegovina":"ba","Ireland":"ie","Romania":"ro","Kosovo":"xk","Japan":"jp","South Korea":"kr","North Korea":"kp","Australia":"au","Iran":"ir","Saudi Arabia":"sa","Qatar":"qa","Iraq":"iq","Jordan":"jo","Uzbekistan":"uz","China":"cn","Morocco":"ma","Senegal":"sn","Ghana":"gh","Ivory Coast":"ci","Cameroon":"cm","Nigeria":"ng","South Africa":"za","Tunisia":"tn","Algeria":"dz","Egypt":"eg","Angola":"ao","Togo":"tg","Cape Verde":"cv","DR Congo":"cd","New Zealand":"nz","Bulgaria":"bg","Yugoslavia":"rs","Iceland":"is","USA":"us","US":"us","U.S.A.":"us","United States of America":"us","Bosnia & Herzegovina":"ba","Bosnia-Herzegovina":"ba","Bosnia and Herz.":"ba","Czechia":"cz","T\u00fcrkiye":"tr","Korea Republic":"kr","Korea DPR":"kp","Congo DR":"cd","Democratic Republic of Congo":"cd","C\u00f4te d\u2019Ivoire":"ci","C\u00f4te d'Ivoire":"ci","Cote d'Ivoire":"ci","Curacao":"cw","Cape Verde Islands":"cv"},"CONFEDS":{"Argentina":"CONMEBOL","Brazil":"CONMEBOL","Uruguay":"CONMEBOL","Paraguay":"CONMEBOL","Chile":"CONMEBOL","Colombia":"CONMEBOL","Ecuador":"CONMEBOL","Peru":"CONMEBOL","Venezuela":"CONMEBOL","Bolivia":"CONMEBOL","Mexico":"CONCACAF","United States":"CONCACAF","Canada":"CONCACAF","Costa Rica":"CONCACAF","Panama":"CONCACAF","Honduras":"CONCACAF","Trinidad and Tobago":"CONCACAF","Haiti":"CONCACAF","Jamaica":"CONCACAF","Cura\u00e7ao":"CONCACAF","Spain":"UEFA","Germany":"UEFA","France":"UEFA","England":"UEFA","Netherlands":"UEFA","Portugal":"UEFA","Italy":"UEFA","Belgium":"UEFA","Croatia":"UEFA","Switzerland":"UEFA","Sweden":"UEFA","Denmark":"UEFA","Poland":"UEFA","Serbia":"UEFA","Serbia and Montenegro":"UEFA","Russia":"UEFA","Ukraine":"UEFA","Greece":"UEFA","Slovenia":"UEFA","Slovakia":"UEFA","Czech Republic":"UEFA","Turkey":"UEFA","Norway":"UEFA","Austria":"UEFA","Scotland":"UEFA","Wales":"UEFA","Bosnia and Herzegovina":"UEFA","Ireland":"UEFA","Romania":"UEFA","Kosovo":"UEFA","Japan":"AFC","South Korea":"AFC","North Korea":"AFC","Australia":"AFC","Iran":"AFC","Saudi Arabia":"AFC","Qatar":"AFC","Iraq":"AFC","Jordan":"AFC","Uzbekistan":"AFC","China":"AFC","Morocco":"CAF","Senegal":"CAF","Ghana":"CAF","Ivory Coast":"CAF","Cameroon":"CAF","Nigeria":"CAF","South Africa":"CAF","Tunisia":"CAF","Algeria":"CAF","Egypt":"CAF","Angola":"CAF","Togo":"CAF","Cape Verde":"CAF","DR Congo":"CAF","New Zealand":"OFC","Bulgaria":"UEFA","Yugoslavia":"UEFA","Iceland":"UEFA","USA":"CONCACAF","US":"CONCACAF","U.S.A.":"CONCACAF","United States of America":"CONCACAF","Bosnia & Herzegovina":"UEFA","Bosnia-Herzegovina":"UEFA","Bosnia and Herz.":"UEFA","Czechia":"UEFA","T\u00fcrkiye":"UEFA","Korea Republic":"AFC","Korea DPR":"AFC","Congo DR":"CAF","Democratic Republic of Congo":"CAF","C\u00f4te d\u2019Ivoire":"CAF","C\u00f4te d'Ivoire":"CAF","Cote d'Ivoire":"CAF","Curacao":"CONCACAF","Cape Verde Islands":"CAF"},"BASE_PRIOR":{"Brazil":1780,"Argentina":1775,"France":1765,"Spain":1760,"Germany":1745,"England":1725,"Netherlands":1720,"Portugal":1715,"Italy":1710,"Belgium":1695,"Uruguay":1685,"Croatia":1680,"Colombia":1665,"Morocco":1645,"Switzerland":1640,"Mexico":1635,"United States":1620,"Japan":1615,"Senegal":1605,"Denmark":1600,"Sweden":1595,"Chile":1590,"Serbia":1585,"Ecuador":1580,"Paraguay":1575,"Austria":1570,"Turkey":1570,"South Korea":1565,"Iran":1560,"Australia":1555,"Poland":1550,"Ghana":1545,"Ivory Coast":1545,"Nigeria":1545,"Cameroon":1535,"Tunisia":1530,"Algeria":1530,"Egypt":1530,"Canada":1525,"Scotland":1525,"Norway":1525,"Czech Republic":1525,"Wales":1515,"Qatar":1500,"Saudi Arabia":1490,"South Africa":1485,"New Zealand":1465,"Panama":1465,"Haiti":1455,"Cape Verde":1450,"Cura\u00e7ao":1445,"Jordan":1440,"Iraq":1470,"Uzbekistan":1480,"DR Congo":1495,"Bulgaria":1545,"Yugoslavia":1605,"Jamaica":1445,"Romania":1585,"Russia":1580,"Bolivia":1465,"Iceland":1510},"SCAR_EVENTS":{"2010|France":0.7,"2010|Italy":0.45,"2010|Brazil":0.45,"2014|Spain":0.55,"2018|Brazil":0.85,"2018|Germany":0.3,"2022|Germany":0.8,"2022|Belgium":0.4,"2026|Brazil":0.35,"2026|Germany":0.25,"2026|Belgium":0.3,"1994|Argentina":0.2,"1998|Brazil":0.25,"1998|Germany":0.2},"PRE_CONTEXT":{"1994":{"Brazil":{"player":0.92,"closer":0.88,"cycle":0.86},"Italy":{"player":0.9,"closer":0.82,"cycle":0.78},"Germany":{"player":0.87,"closer":0.82,"cycle":0.76,"burden":0.25},"Argentina":{"player":0.91,"closer":0.78,"cycle":0.76,"disruption":0.35},"Netherlands":{"player":0.86,"closer":0.76,"cycle":0.78},"Sweden":{"player":0.78,"closer":0.7,"cycle":0.78,"dark":0.62},"Bulgaria":{"player":0.74,"closer":0.62,"cycle":0.76,"dark":0.76},"Romania":{"player":0.76,"closer":0.66,"cycle":0.78,"dark":0.72},"Spain":{"player":0.83,"closer":0.72,"cycle":0.76},"Nigeria":{"player":0.73,"closer":0.6,"cycle":0.78,"dark":0.7},"United States":{"player":0.58,"closer":0.45,"cycle":0.68,"hostPulse":0.8},"Mexico":{"player":0.72,"closer":0.65,"cycle":0.72},"Belgium":{"player":0.76,"closer":0.68,"cycle":0.7},"Colombia":{"player":0.78,"closer":0.7,"cycle":0.72,"pressure":0.7}},"1998":{"France":{"player":0.92,"closer":0.82,"cycle":0.88},"Brazil":{"player":0.96,"closer":0.92,"cycle":0.86,"pressure":0.85},"Netherlands":{"player":0.9,"closer":0.82,"cycle":0.84},"Croatia":{"player":0.78,"closer":0.68,"cycle":0.78,"dark":0.78},"Italy":{"player":0.91,"closer":0.84,"cycle":0.8},"Germany":{"player":0.86,"closer":0.74,"cycle":0.7,"burden":0.35},"Argentina":{"player":0.88,"closer":0.74,"cycle":0.8},"Denmark":{"player":0.8,"closer":0.7,"cycle":0.76,"dark":0.62},"England":{"player":0.83,"closer":0.68,"cycle":0.72},"Yugoslavia":{"player":0.8,"closer":0.68,"cycle":0.74},"Norway":{"player":0.76,"closer":0.65,"cycle":0.74,"dark":0.65},"Nigeria":{"player":0.78,"closer":0.64,"cycle":0.72,"dark":0.66},"Paraguay":{"player":0.72,"closer":0.58,"cycle":0.7,"dark":0.68},"Mexico":{"player":0.74,"closer":0.68,"cycle":0.74},"Romania":{"player":0.77,"closer":0.68,"cycle":0.76},"Chile":{"player":0.75,"closer":0.66,"cycle":0.72}},"2002":{"Brazil":{"player":0.94,"closer":0.82,"cycle":0.78},"Germany":{"player":0.78,"closer":0.66,"cycle":0.64},"France":{"player":0.92,"closer":0.8,"cycle":0.7,"disruption":0.25},"Argentina":{"player":0.9,"closer":0.74,"cycle":0.68},"Senegal":{"player":0.62,"closer":0.45,"cycle":0.68,"dark":0.8},"Turkey":{"player":0.7,"closer":0.55,"cycle":0.67,"dark":0.72},"South Korea":{"player":0.64,"closer":0.5,"cycle":0.7,"dark":0.74}},"2006":{"Italy":{"player":0.91,"closer":0.8,"cycle":0.76},"France":{"player":0.89,"closer":0.7,"cycle":0.68},"Brazil":{"player":0.96,"closer":0.78,"cycle":0.72,"pressure":0.85},"Germany":{"player":0.83,"closer":0.7,"cycle":0.74},"Portugal":{"player":0.84,"closer":0.69,"cycle":0.72},"Argentina":{"player":0.89,"closer":0.73,"cycle":0.75},"Spain":{"player":0.86,"closer":0.7,"cycle":0.72}},"2010":{"Spain":{"player":0.96,"closer":0.95,"cycle":0.93},"Netherlands":{"player":0.91,"closer":0.82,"cycle":0.84},"Germany":{"player":0.88,"closer":0.78,"cycle":0.8},"Uruguay":{"player":0.78,"closer":0.72,"cycle":0.76,"dark":0.68},"Ghana":{"player":0.7,"closer":0.6,"cycle":0.7,"dark":0.74},"Brazil":{"player":0.93,"closer":0.78,"cycle":0.76},"Argentina":{"player":0.9,"closer":0.76,"cycle":0.75},"Italy":{"player":0.82,"closer":0.6,"cycle":0.48,"disruption":0.3},"France":{"player":0.78,"closer":0.5,"cycle":0.42,"disruption":0.8}},"2014":{"Germany":{"player":0.96,"closer":0.86,"cycle":0.88},"Argentina":{"player":0.92,"closer":0.82,"cycle":0.85},"Netherlands":{"player":0.86,"closer":0.78,"cycle":0.8},"Brazil":{"player":0.9,"closer":0.78,"cycle":0.8,"pressure":0.94,"disruption":0.2},"Spain":{"player":0.91,"closer":0.82,"cycle":0.62,"burden":0.65},"Colombia":{"player":0.8,"closer":0.72,"cycle":0.82,"dark":0.7},"Costa Rica":{"player":0.58,"closer":0.45,"cycle":0.66,"dark":0.86},"France":{"player":0.85,"closer":0.7,"cycle":0.76},"Belgium":{"player":0.84,"closer":0.68,"cycle":0.78}},"2018":{"France":{"player":0.95,"closer":0.84,"cycle":0.87},"Croatia":{"player":0.86,"closer":0.76,"cycle":0.8,"dark":0.66},"Belgium":{"player":0.92,"closer":0.78,"cycle":0.84},"England":{"player":0.86,"closer":0.72,"cycle":0.78},"Brazil":{"player":0.94,"closer":0.78,"cycle":0.79,"pressure":0.9},"Germany":{"player":0.9,"closer":0.68,"cycle":0.58,"burden":0.7,"disruption":0.35},"Argentina":{"player":0.87,"closer":0.66,"cycle":0.6,"disruption":0.45},"Russia":{"player":0.64,"closer":0.5,"cycle":0.68,"dark":0.76}},"2022":{"Argentina":{"player":0.94,"closer":0.97,"cycle":0.96},"France":{"player":0.96,"closer":0.88,"cycle":0.88,"burden":0.18},"Brazil":{"player":0.95,"closer":0.78,"cycle":0.83,"pressure":0.92},"Croatia":{"player":0.86,"closer":0.84,"cycle":0.82,"dark":0.7},"Morocco":{"player":0.78,"closer":0.66,"cycle":0.78,"dark":0.88},"England":{"player":0.9,"closer":0.8,"cycle":0.82},"Netherlands":{"player":0.88,"closer":0.76,"cycle":0.82},"Portugal":{"player":0.89,"closer":0.72,"cycle":0.76,"disruption":0.2},"Spain":{"player":0.89,"closer":0.7,"cycle":0.78},"Germany":{"player":0.88,"closer":0.6,"cycle":0.55,"disruption":0.42},"Belgium":{"player":0.85,"closer":0.6,"cycle":0.52,"disruption":0.54}},"2026":{"Spain":{"player":0.96,"closer":0.9,"cycle":0.9},"Argentina":{"player":0.94,"closer":0.94,"cycle":0.88,"burden":0.3},"France":{"player":0.96,"closer":0.88,"cycle":0.88},"England":{"player":0.94,"closer":0.84,"cycle":0.86},"Brazil":{"player":0.94,"closer":0.78,"cycle":0.82},"Portugal":{"player":0.92,"closer":0.86,"cycle":0.84},"Netherlands":{"player":0.9,"closer":0.8,"cycle":0.82},"Germany":{"player":0.89,"closer":0.76,"cycle":0.78},"Croatia":{"player":0.84,"closer":0.82,"cycle":0.76},"Morocco":{"player":0.8,"closer":0.76,"cycle":0.8,"dark":0.74},"Colombia":{"player":0.84,"closer":0.8,"cycle":0.84,"dark":0.65},"Uruguay":{"player":0.85,"closer":0.78,"cycle":0.82},"Japan":{"player":0.79,"closer":0.72,"cycle":0.8,"dark":0.72},"United States":{"player":0.78,"closer":0.7,"cycle":0.76,"hostPulse":0.8},"Mexico":{"player":0.76,"closer":0.74,"cycle":0.74,"hostPulse":0.82},"Canada":{"player":0.74,"closer":0.68,"cycle":0.72,"hostPulse":0.8}}}};
 
 const ACTUAL_MATCH_SCORES = {
@@ -1693,6 +1754,17 @@ const SLIDERS = [
  {k:'upset',name:'Upset chaos',v:1,min:.35,max:2.5,step:.05,desc:'Higher values compress favorite edges and create more upsets. Lower values make favorites safer.'}
 ];
 const PRESETS={balanced:{},accuracy:{history:.65,scar:1.55,disruption:1.25,player:1.25,closer:1.25,upset:.9},scaraware:{scar:1.95,disruption:1.45,history:.65,closer:1.2,upset:.9},knockout:{closer:1.55,penalty:1.35,lowevent:1.15,scar:1.4,player:1.25,upset:.85},darkhorse:{dark:1.65,lowevent:1.45,penalty:1.55,upset:1.35,history:.6},upset:{upset:1.75,dark:1.35,lowevent:1.25,penalty:1.35,elo:.75,history:.5},lowevent:{lowevent:1.8,penalty:1.55,dark:1.2,upset:1.15,player:.9},hostboost:{host:1.75,form:1.15,upset:1.05,dark:1.05,history:.75},classic:{history:1.55,elo:1.25,player:1.15,closer:1.1,dark:.65,upset:.7},favorite:{elo:1.45,player:1.35,history:1.15,upset:.6,dark:.55,lowevent:.7}};
+const MODEL_BASELINE_PRESET_VALUES={
+  BALANCED:{},
+  LOW_EVENT:{lowevent:1.8,penalty:1.55,dark:1.2,upset:1.15,player:.9},
+  SCAR_TISSUE:{scar:1.95,disruption:1.45,history:.65,closer:1.2,upset:.9},
+  FAVORITE_TRAP:{elo:.85,history:.55,scar:1.55,disruption:1.25,dark:1.25,lowevent:1.25,upset:1.55,player:1},
+  DARK_HORSE:{dark:1.65,lowevent:1.45,penalty:1.55,upset:1.35,history:.6},
+  CLOSER:{closer:1.65,player:1.25,penalty:1.2,lowevent:1.1,scar:1.2,upset:.85},
+  HOST:{host:1.75,form:1.15,upset:1.05,dark:1.05,history:.75},
+  MY_ODDS:{elo:.9,form:.95,history:.65,player:1,closer:1,upset:1.15,dark:1.1,lowevent:1.05}
+};
+const MODEL_BASELINE_PRESETS=['BALANCED','LOW_EVENT','SCAR_TISSUE','FAVORITE_TRAP','DARK_HORSE','CLOSER','HOST','MY_ODDS','CUSTOM'];
 const WORKER_CODE = `
 let DATA=null;
 
@@ -1823,12 +1895,17 @@ function deterministicThirdsForBracket(groupRows,bestThirds,P,limit){
 function pair24(R,T,P){return pairsFromSlots(R,bestThirdsFromRanks(R,T,P,4),R16_24_SLOTS)}
 function pair48(R,T,P){return pairsFromSlots(R,bestThirdsFromRanks(R,T,P,8),R32_48_SLOTS)}
 function koRound(pairs,P,seed,simIndex,stage,s){let winners=[],losers=[],games=[];pairs.forEach(([a,b],idx)=>{const r=rngFor(seed,simIndex+'|ko|'+stage+'|'+idx+'|'+a+'|'+b),m=play(a,b,P,r,true,s),w=m.winner;winners.push(w);losers.push(w===a?b:a);games.push(m)});return {winners,losers,games}}
-function simTournament(year,P,seed,simIndex,s){const d=DATA.TOURNAMENTS[year];const gr=simGroups(d.groups,P,seed,simIndex,s,year);let r32set=new Set(),r16pairs;if(d.format===48){const p32=pair48(gr.ranks,gr.tables,P);for(const p of p32){r32set.add(p[0]);r32set.add(p[1])}const r32=koRound(p32,P,seed,simIndex,'r32',s);r16pairs=[];for(let i=0;i<16;i+=2)r16pairs.push([r32.winners[i],r32.winners[i+1]])}else if(d.format===24){r16pairs=pair24(gr.ranks,gr.tables,P);r32set=new Set(r16pairs.flat())}else{r16pairs=pair32(gr.ranks);r32set=new Set(r16pairs.flat())}let r16set=new Set(r16pairs.flat());const r16=koRound(r16pairs,P,seed,simIndex,'r16',s);let qfp=[];for(let i=0;i<8;i+=2)qfp.push([r16.winners[i],r16.winners[i+1]]);const qfset=new Set(r16.winners);const qf=koRound(qfp,P,seed,simIndex,'qf',s);const sfp=[[qf.winners[0],qf.winners[1]],[qf.winners[2],qf.winners[3]]];const sfset=new Set(qf.winners);const sf=koRound(sfp,P,seed,simIndex,'sf',s);const thirdM=play(sf.losers[0],sf.losers[1],P,rngFor(seed,simIndex+'|ko|third-place'),true,s);const finalM=play(sf.winners[0],sf.winners[1],P,rngFor(seed,simIndex+'|ko|final'),true,s);const champ=finalM.winner,runner=champ===sf.winners[0]?sf.winners[1]:sf.winners[0];const third=thirdM.winner,fourth=third===sf.losers[0]?sf.losers[1]:sf.losers[0];return {ranks:gr.ranks,r32set,r16set,qfset,sfset,finalists:new Set(sf.winners),champ,runner,third,fourth,finalM,thirdM}}
+function simGame(m,stageKey){const aScore=m.ga,bScore=m.gb;let score=m.a+' '+aScore+'-'+bScore+' '+m.b;if(m.pens)score+=' ('+m.winner+' on pens)';return {a:m.a,b:m.b,w:m.winner,aScore,bScore,pens:!!m.pens,score,pa:m.prob?.a||0,stageKey,pickStageProb:0}}
+function simTournament(year,P,seed,simIndex,s){const d=DATA.TOURNAMENTS[year];const gr=simGroups(d.groups,P,seed,simIndex,s,year);let r32set=new Set(),r16pairs,rounds=[];if(d.format===48){const p32=pair48(gr.ranks,gr.tables,P);for(const p of p32){r32set.add(p[0]);r32set.add(p[1])}const r32=koRound(p32,P,seed,simIndex,'r32',s);rounds.push({name:'Round of 32',games:r32.games.map(m=>simGame(m,'r16'))});r16pairs=[];for(let i=0;i<16;i+=2)r16pairs.push([r32.winners[i],r32.winners[i+1]])}else if(d.format===24){r16pairs=pair24(gr.ranks,gr.tables,P);r32set=new Set(r16pairs.flat())}else{r16pairs=pair32(gr.ranks);r32set=new Set(r16pairs.flat())}let r16set=new Set(r16pairs.flat());const r16=koRound(r16pairs,P,seed,simIndex,'r16',s);rounds.push({name:'Round of 16',games:r16.games.map(m=>simGame(m,'qf'))});let qfp=[];for(let i=0;i<8;i+=2)qfp.push([r16.winners[i],r16.winners[i+1]]);const qfset=new Set(r16.winners);const qf=koRound(qfp,P,seed,simIndex,'qf',s);rounds.push({name:'Quarterfinals',games:qf.games.map(m=>simGame(m,'sf'))});const sfp=[[qf.winners[0],qf.winners[1]],[qf.winners[2],qf.winners[3]]];const sfset=new Set(qf.winners);const sf=koRound(sfp,P,seed,simIndex,'sf',s);rounds.push({name:'Semifinals',games:sf.games.map(m=>simGame(m,'final'))});const thirdM=play(sf.losers[0],sf.losers[1],P,rngFor(seed,simIndex+'|ko|third-place'),true,s);const finalM=play(sf.winners[0],sf.winners[1],P,rngFor(seed,simIndex+'|ko|final'),true,s);rounds.push({name:'Final',games:[simGame(finalM,'champ')]});const thirdGame=simGame(thirdM,'third');const champ=finalM.winner,runner=champ===sf.winners[0]?sf.winners[1]:sf.winners[0];const third=thirdM.winner,fourth=third===sf.losers[0]?sf.losers[1]:sf.losers[0];return {ranks:gr.ranks,r32set,r16set,qfset,sfset,finalists:new Set(sf.winners),champ,runner,third,fourth,finalM,thirdM,bracket:{rounds,third:thirdGame,mode:'simulation-path'}}}
 function hash01(str){let h=2166136261>>>0;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0)/4294967295}
 function projectedGoal(xg,salt){const base=Math.floor(xg),frac=xg-base;return Math.max(0,Math.min(5,base+(salt<frac?1:0)))}
-function detGame(a,b,P,s){
+function detGame(a,b,P,s,stageCounts=null,stageKey=''){
   const p=matchProb(a,b,P,true,s),A=P[a],B=P[b];
-  const w=p.a>=.5?a:b;
+  const w=detStageWinner(a,b,P,s,stageCounts,stageKey);
+  const stageTotal=Number(stageCounts?.sims||0);
+  const aStageCount=stageCountValue(stageCounts,stageKey,a),bStageCount=stageCountValue(stageCounts,stageKey,b);
+  const pickStageCount=sameTeamName(w,a)?aStageCount:bStageCount;
+  const pickStageProb=stageTotal?pickStageCount/stageTotal:0;
   const edge=Math.abs(p.a-.5),h=hash01(a+'|'+b+'|score'),h2=hash01(b+'|'+a+'|score');
   const low=(A.lowEvent+B.lowEvent)/2;
   let total=clamp(2.18-.42*low+.28*(A.attack+B.attack)+.10*(A.koPower+B.koPower)+(h-.5)*.70,1.25,3.95);
@@ -1838,7 +1915,7 @@ function detGame(a,b,P,s){
     pens=true;
     const dh=hash01(a+'|'+b+'|draw');
     let dg=total<2.05?(dh<.58?0:1):(total>2.85?(dh<.28?1:2):(dh<.18?0:(dh>.72?2:1)));
-    return {a,b,w,aScore:dg,bScore:dg,pens,score:a+' '+dg+'-'+dg+' '+b+' ('+w+' on pens)',pa:p.a};
+    return {a,b,w,aScore:dg,bScore:dg,pens,score:a+' '+dg+'-'+dg+' '+b+' ('+w+' on pens)',pa:p.a,stageKey,pickStageProb};
   }
   if(w===a&&total<2.05&&edge<.22&&h<.65){ga=1;gb=0}
   else if(w===b&&total<2.05&&edge<.22&&h2<.65){gb=1;ga=0}
@@ -1848,7 +1925,7 @@ function detGame(a,b,P,s){
   if(w===b&&p.a<.28&&gb-ga<2&&(h2>.58||total*(1-share)-total*share>.85))gb=Math.min(5,ga+2);
   if(w===a&&p.a>.84&&total>2.75&&h>.48){ga=Math.max(ga,3);gb=Math.min(gb,1)}
   if(w===b&&p.a<.16&&total>2.75&&h2>.48){gb=Math.max(gb,3);ga=Math.min(ga,1)}
-  return {a,b,w,aScore:ga,bScore:gb,pens,score:a+' '+ga+'-'+gb+' '+b,pa:p.a}
+  return {a,b,w,aScore:ga,bScore:gb,pens,score:a+' '+ga+'-'+gb+' '+b,pa:p.a,stageKey,pickStageProb}
 }
 function teamsInGames(games){
   const out=[];
@@ -1875,7 +1952,27 @@ function bracketProjection(bracket,format){
   const fourth=thirdGame?(sameTeamName(third,thirdGame.a)?thirdGame.b:thirdGame.a):'';
   return {r32,r16,quarter_finalists,semi_finalists,finalists,champion,runner_up,third,fourth,finalGame,thirdGame};
 }
-function deterministicBracket(year,groupRows,bestThirds,P,s){
+function stageCountValue(stageCounts,stageKey,team){
+  if(!stageCounts||!stageKey||!team)return 0;
+  const bucket=stageCounts[stageKey]||{};
+  const clean=canonicalTeamName(team);
+  if(Number.isFinite(bucket[clean]))return Number(bucket[clean]);
+  for(const [k,v] of Object.entries(bucket)){
+    if(sameTeamName(k,clean))return Number(v)||0;
+  }
+  return 0;
+}
+function detStageWinner(a,b,P,s,stageCounts,stageKey){
+  const ap=stageCountValue(stageCounts,stageKey,a),bp=stageCountValue(stageCounts,stageKey,b);
+  if(ap||bp){
+    if(Math.abs(ap-bp)>1e-9)return ap>=bp?a:b;
+    const ak=P[a]?.koPower||0,bk=P[b]?.koPower||0;
+    if(Math.abs(ak-bk)>1e-9)return ak>=bk?a:b;
+  }
+  const p=matchProb(a,b,P,true,s);
+  return p.a>=.5?a:b;
+}
+function deterministicBracket(year,groupRows,bestThirds,P,s,stageCounts){
   const R={};
   for(const g of groupRows)R[g.group]=g.teams.map(x=>x.team);
   const fmt=DATA.TOURNAMENTS[year].format;
@@ -1883,7 +1980,7 @@ function deterministicBracket(year,groupRows,bestThirds,P,s){
   let rounds=[],pairs;
   if(fmt===48){
     pairs=pairsFromSlots(R,bracketThirds,R32_48_SLOTS);
-    const games=pairs.map(p=>detGame(p[0],p[1],P,s));
+    const games=pairs.map(p=>detGame(p[0],p[1],P,s,stageCounts,'r16'));
     rounds.push({name:'Round of 32',games});
     const w=games.map(g=>g.w);
     pairs=[];
@@ -1894,8 +1991,9 @@ function deterministicBracket(year,groupRows,bestThirds,P,s){
     pairs=pair32(R);
   }
   const names=['Round of 16','Quarterfinals','Semifinals','Final'];
+  const stageForRound={'Round of 16':'qf','Quarterfinals':'sf','Semifinals':'final','Final':'champ'};
   for(const name of names){
-    const games=pairs.map(p=>detGame(p[0],p[1],P,s));
+    const games=pairs.map(p=>detGame(p[0],p[1],P,s,stageCounts,stageForRound[name]));
     rounds.push({name,games});
     const w=games.map(g=>g.w);
     if(name==='Round of 16'){
@@ -1908,10 +2006,48 @@ function deterministicBracket(year,groupRows,bestThirds,P,s){
     }else break;
   }
   const sfRound=rounds[rounds.length-2];
-  const sfLosers=sfRound.games.map(g=>g.w===g.a?g.b:g.a);
-  const third=detGame(sfLosers[0],sfLosers[1],P,s);
-  return {rounds,third};
+  const sfLosers=sfRound.games.map(g=>sameTeamName(g.w,g.a)?g.b:g.a);
+  const third=detGame(sfLosers[0],sfLosers[1],P,s,stageCounts,'third',null);
+  return {rounds,third,mode:'probability-path'};
 }
+function probFromCount(bucket,team,sims){return Math.max(stageCountValue({[bucket._key||'x']:bucket},bucket._key||'x',team)/Math.max(1,sims),1/(Math.max(1,sims)*10))}
+function safeLogCount(bucket,team,sims){let count=0;const clean=canonicalTeamName(team);if(bucket){if(Number.isFinite(bucket[clean]))count=Number(bucket[clean]);else{for(const [k,v] of Object.entries(bucket)){if(sameTeamName(k,clean)){count=Number(v)||0;break}}}}return Math.log(Math.max(count/Math.max(1,sims),1/(Math.max(1,sims)*10)))}
+function orderedOutcomeKey(winner,runner){return canonicalTeamName(winner)+'|||'+canonicalTeamName(runner)}
+function splitOutcomeKey(key){const parts=String(key||'').split('|||');return {winner:parts[0]||'',runner:parts[1]||''}}
+function topOutcomeForWinner(outcomes,winner){
+  let best='',bestCount=-1;
+  for(const [key,count] of Object.entries(outcomes||{})){
+    const row=splitOutcomeKey(key);
+    if(!sameTeamName(row.winner,winner))continue;
+    if(count>bestCount){best=key;bestCount=count}
+  }
+  return best;
+}
+function setKey(list){return [...(list||[])].map(canonicalTeamName).sort((a,b)=>a.localeCompare(b)).join('|||')}
+function representativePathScore(res,counts,rankCounts,sims,targetChampion,targetRunner){
+  if(targetChampion&&!sameTeamName(res.champ,targetChampion))return -Infinity;
+  if(targetRunner&&!sameTeamName(res.runner,targetRunner))return -Infinity;
+  let score=0;
+  for(const [g,rank] of Object.entries(res.ranks||{})){
+    rank.forEach((t,i)=>{score+=.35*Math.log(Math.max(((rankCounts[g]?.[t]||[])[i]||0)/Math.max(1,sims),1/(Math.max(1,sims)*10)))});
+  }
+  for(const t of res.r32set||[])score+=.12*safeLogCount(counts.r32,t,sims);
+  for(const t of res.r16set||[])score+=.16*safeLogCount(counts.r16,t,sims);
+  for(const t of res.qfset||[])score+=.22*safeLogCount(counts.qf,t,sims);
+  for(const t of res.sfset||[])score+=.30*safeLogCount(counts.sf,t,sims);
+  for(const t of res.finalists||[])score+=.45*safeLogCount(counts.finalists,t,sims);
+  score+=1.2*safeLogCount(counts.champ,res.champ,sims);
+  score+=.25*safeLogCount(counts.runner,res.runner,sims);
+  score+=.12*safeLogCount(counts.third,res.third,sims);
+  return score;
+}
+function annotateBracketGame(g,stageCounts){const out={...g};const total=Number(stageCounts?.sims||0);out.pickStageProb=total?stageCountValue(stageCounts,out.stageKey,out.w)/total:0;return out}
+function annotateBracketPath(bracket,stageCounts){return {mode:bracket?.mode||'simulation-path',rounds:(bracket?.rounds||[]).map(r=>({name:r.name,games:(r.games||[]).map(g=>annotateBracketGame(g,stageCounts))})),third:bracket?.third?annotateBracketGame(bracket.third,stageCounts):null}}
+function selectRepresentativeSimulation(year,P,seed,sims,s,counts,rankCounts,targetChampion,targetRunner){let best=null,bestScore=-Infinity;for(let n=0;n<sims;n++){const res=simTournament(year,P,seed,n,s);const score=representativePathScore(res,counts,rankCounts,sims,targetChampion,targetRunner);if(score>bestScore){best=res;bestScore=score}}return best}
+function orderGroupsBySimulationRanks(marginalGroups,ranks){return (marginalGroups||[]).map(g=>{const byTeam=new Map((g.teams||[]).map(row=>[teamKey(row.team),row]));const ordered=[];for(const t of ranks?.[g.group]||[]){const row=byTeam.get(teamKey(t));if(row&&!ordered.includes(row))ordered.push(row)}for(const row of g.teams||[])if(!ordered.includes(row))ordered.push(row);return {group:g.group,teams:ordered}})}
+function groupsObjFromRows(groups){let out={};for(const g of groups||[]){const rows=g.teams||[];out[g.group]={winner:rows[0]?.team||'',second:rows[1]?.team||'',top2:rows.slice(0,2).map(x=>x.team).filter(Boolean)}}return out}
+function representativeBestThirds(groups,qualSet,P,limit){if(!limit)return [];const out=[];for(const g of groups||[]){const row=(g.teams||[])[2];if(row?.team&&setHasTeam(qualSet,row.team)){out.push({team:row.team,group:g.group,third_prob:Number(row.third_prob||0),r32_prob:Number(row.r32_prob||0),rankScore:Number(row.rankScore||0),power:Number(P[row.team]?.koPower||0)})}}return out.slice(0,limit)}
+function markBestThirdFlags(groups,bestThirds){const keys=new Set((bestThirds||[]).map(x=>teamKey(x.team)));for(const g of groups||[])for(let i=0;i<(g.teams||[]).length;i++)g.teams[i].best_third=i===2&&keys.has(teamKey(g.teams[i].team));}
 function validateGroupProjection(pred){
   const errors=[];
   const bestThirdGroups={};
@@ -1960,7 +2096,7 @@ function evaluate(pred,year){
 function run(year,sims,seed,s){
   const P=buildProfiles(year,s);
   let counts={r32:{},r16:{},qf:{},sf:{},finalists:{},champ:{},runner:{},third:{},fourth:{}};
-  let gw={},gq={},rankCounts={},thirdQual={},finalScores={};
+  let gw={},gq={},rankCounts={},thirdQual={},finalScores={},finalOutcomeCounts={},semiSetCounts={},thirdOutcomeCounts={};
   const tournament=DATA.TOURNAMENTS[year];
   for(const g of Object.keys(tournament.groups)){gw[g]={};gq[g]={};rankCounts[g]={}}
   for(let n=0;n<sims;n++){
@@ -1977,6 +2113,9 @@ function run(year,sims,seed,s){
     for(const t of res.finalists)inc(counts.finalists,t);
     inc(counts.champ,res.champ);inc(counts.runner,res.runner);inc(counts.third,res.third);inc(counts.fourth,res.fourth);
     inc(finalScores,fmtScore(res.finalM));
+    inc(finalOutcomeCounts,orderedOutcomeKey(res.champ,res.runner));
+    inc(semiSetCounts,setKey(res.sfset));
+    inc(thirdOutcomeCounts,orderedOutcomeKey(res.third,res.fourth));
   }
   const teams=Object.keys(P);
   let groups=[],groupsObj={};
@@ -1990,35 +2129,38 @@ function run(year,sims,seed,s){
     groupsObj[g]={winner:rows[0].team,second:rows[1].team,top2:[rows[0].team,rows[1].team]};
   }
   const thirdLimit=tournament.format===24?4:(tournament.format===48?8:0);
+  const stageCounts={r32:counts.r32,r16:counts.r16,qf:counts.qf,sf:counts.sf,final:counts.finalists,champ:counts.champ,third:counts.third,sims};
+  const projectionChampion=topKey(counts.champ);
+  const projectionFinalOutcome=topOutcomeForWinner(finalOutcomeCounts,projectionChampion);
+  const projectionRunner=splitOutcomeKey(projectionFinalOutcome).runner;
   const thirdCandidates=groups.map(g=>{
     const row=g.teams&&g.teams[2];
-    if(!row?.team)return null;
-    return {
-      team:row.team,
-      group:g.group,
-      third_prob:Number(row.third_prob||0),
-      r32_prob:Number(row.r32_prob||0),
-      rankScore:Number(row.rankScore||0),
-      power:Number(P[row.team]?.koPower||0)
-    };
+    return row?.team?{team:row.team,group:g.group,third_prob:Number(row.third_prob||0),r32_prob:Number(row.r32_prob||0),rankScore:Number(row.rankScore||0),power:Number(P[row.team]?.koPower||0)}:null;
   }).filter(Boolean);
-  const bestThirds=thirdCandidates
-    .sort((a,b)=>b.third_prob-a.third_prob||b.r32_prob-a.r32_prob||b.rankScore-a.rankScore||b.power-a.power||String(a.group).localeCompare(String(b.group)))
-    .slice(0,thirdLimit);
-  const bestThirdKeys=new Set(bestThirds.map(x=>teamKey(x.team)));
-  for(const g of groups)for(let i=0;i<g.teams.length;i++)g.teams[i].best_third=i===2&&bestThirdKeys.has(teamKey(g.teams[i].team));
-
-  const bracket=deterministicBracket(year,groups,bestThirds,P,s);
+  let bestThirds=thirdCandidates.sort((a,b)=>b.third_prob-a.third_prob||b.r32_prob-a.r32_prob||b.rankScore-a.rankScore||b.power-a.power||String(a.group).localeCompare(String(b.group))).slice(0,thirdLimit);
+  markBestThirdFlags(groups,bestThirds);
+  groupsObj=groupsObjFromRows(groups);
+  // Keep the displayed bracket slot-stable. Do not reselect a full representative
+  // simulation path after every manual odds edit, because that can swap unrelated
+  // games on the opposite side of the bracket even when the displayed group order
+  // did not change. The bracket display is now built from the visible aggregate
+  // group projection and stage probabilities, while Champion Race remains the
+  // full Monte Carlo title-probability list.
+  let bracket=deterministicBracket(year,groups,bestThirds,P,s,stageCounts);
   const pick=bracketProjection(bracket,tournament.format);
+  const projectedChampion=pick.champion||projectionChampion;
+  const projectedRunner=pick.runner_up||projectionRunner;
+  const projectedFinalists=pick.finalists&&pick.finalists.length?pick.finalists:[projectedRunner,projectedChampion].filter(Boolean);
   let pred={
     year,groups,groupsObj,
-    r32:pick.r32,r16:pick.r16,quarter_finalists:pick.quarter_finalists,semi_finalists:pick.semi_finalists,finalists:pick.finalists,
-    champion:pick.champion,runner_up:pick.runner_up,third:pick.third,fourth:pick.fourth,
-    champion_prob:(counts.champ[pick.champion]||0)/sims,
-    runner_up_prob:(counts.runner[pick.runner_up]||0)/sims,
+    r32:pick.r32,r16:pick.r16,quarter_finalists:pick.quarter_finalists,semi_finalists:pick.semi_finalists,finalists:projectedFinalists,
+    champion:projectedChampion,runner_up:projectedRunner,third:pick.third,fourth:pick.fourth,
+    champion_prob:(counts.champ[projectedChampion]||0)/sims,
+    runner_up_prob:(counts.runner[projectedRunner]||0)/sims,
     third_prob:(counts.third[pick.third]||0)/sims,
-    final_score:pick.finalGame?.score||bestFinalScore(pick.champion,pick.runner_up,finalScores),
-    team_probs:{},bestThirds,profiles:P,bracket
+    final_score:pick.finalGame?.score||bestFinalScore(projectedChampion,projectedRunner,finalScores),
+    team_probs:{},bestThirds,profiles:P,bracket,
+    projection_counts:{final_outcome:projectionFinalOutcome,final_outcome_count:finalOutcomeCounts[projectionFinalOutcome]||0,semi_set:topKey(semiSetCounts),semi_set_count:semiSetCounts[topKey(semiSetCounts)]||0,third_outcome:topKey(thirdOutcomeCounts),third_outcome_count:thirdOutcomeCounts[topKey(thirdOutcomeCounts)]||0}
   };
   for(const t of teams){
     pred.team_probs[t]={r32:(counts.r32[t]||0)/sims,r16:(counts.r16[t]||0)/sims,qf:(counts.qf[t]||0)/sims,sf:(counts.sf[t]||0)/sims,final:(counts.finalists[t]||0)/sims,champ:(counts.champ[t]||0)/sims,third:(counts.third[t]||0)/sims};
@@ -3036,68 +3178,66 @@ const MANUAL_FIELD_GROUPS={
 };
 const MANUAL_PRESETS={
   Nerf:{overall:-30,group:-20,knockout:-20,attack:-15,defense:-15,form:-15,clutch:-15,consistency:-15,penalty:-15,lowEvent:-15},
-  Soft:{overall:-8,group:-5,knockout:-5,attack:-4,defense:-4,form:-4,clutch:-4,consistency:-3,penalty:-3,lowEvent:-2},
-  Fade:{overall:-12,group:-2,knockout:-6,attack:-2,defense:0,form:-5,clutch:-4,consistency:-3,penalty:-2,lowEvent:0},
-  'Group-':{overall:-5,group:-12,knockout:0,attack:-3,defense:-2,form:-6,clutch:0,consistency:-4,penalty:0,lowEvent:0},
-  'KO-':{overall:-5,group:0,knockout:-12,attack:-2,defense:-3,form:-2,clutch:-8,consistency:-4,penalty:-6,lowEvent:-2},
-  'Att-':{overall:-3,group:-2,knockout:-2,attack:-12,defense:0,form:-3,clutch:0,consistency:0,penalty:0,lowEvent:3},
-  'Def-':{overall:-3,group:-2,knockout:-4,attack:0,defense:-12,form:0,clutch:-2,consistency:-5,penalty:-2,lowEvent:-5},
-  FavTrap:{overall:-8,group:-2,knockout:-10,attack:-2,defense:-5,form:-4,clutch:-8,consistency:-8,penalty:-4,lowEvent:-4},
-  Scar:{overall:-7,group:-3,knockout:-8,attack:-1,defense:-2,form:-4,clutch:-6,consistency:-5,penalty:-4,lowEvent:-1},
-  Reset:{overall:0,group:0,knockout:0,attack:0,defense:0,form:0,clutch:0,consistency:0,penalty:0,lowEvent:0},
-  Half:{_action:'half'},
-  'Stage↺':{_resetFields:['group','knockout']},
-  'Traits↺':{_resetFields:['form','clutch','consistency']},
-  'Style↺':{_resetFields:['attack','defense','penalty','lowEvent']},
-  Chaos:{overall:0,group:-2,knockout:5,attack:5,defense:-4,form:0,clutch:4,consistency:-10,penalty:8,lowEvent:8},
+  'Light Cut':{overall:-8,group:-5,knockout:-5,attack:-4,defense:-4,form:-4,clutch:-3,consistency:-3,penalty:-2,lowEvent:-2},
+  'Group Cut':{overall:-5,group:-12,knockout:0,attack:-3,defense:-2,form:-6,clutch:0,consistency:-4,penalty:0,lowEvent:0},
+  'KO Cut':{overall:-5,group:0,knockout:-12,attack:-2,defense:-3,form:-2,clutch:-8,consistency:-4,penalty:-6,lowEvent:-2},
+  'Attack Cut':{overall:-3,group:-2,knockout:-2,attack:-12,defense:0,form:-3,clutch:0,consistency:0,penalty:0,lowEvent:3},
+  'Defense Cut':{overall:-3,group:-2,knockout:-4,attack:0,defense:-12,form:0,clutch:-2,consistency:-5,penalty:-2,lowEvent:-5},
+  'Form Dip':{overall:-6,group:-5,knockout:-3,attack:-2,defense:-2,form:-12,clutch:-4,consistency:-5,penalty:-2,lowEvent:0},
+  'Pressure Risk':{overall:-7,group:-2,knockout:-9,attack:-1,defense:-3,form:-3,clutch:-10,consistency:-7,penalty:-8,lowEvent:-2},
+  'Favorite Risk':{overall:-8,group:-2,knockout:-10,attack:-2,defense:-5,form:-4,clutch:-8,consistency:-8,penalty:-4,lowEvent:-4},
+  Neutral:{overall:0,group:0,knockout:0,attack:0,defense:0,form:0,clutch:0,consistency:0,penalty:0,lowEvent:0},
+  'Half Move':{_action:'half'},
+  'Clear Stage':{_resetFields:['group','knockout']},
+  'Clear Traits':{_resetFields:['form','clutch','consistency']},
+  'Clear Style':{_resetFields:['attack','defense','penalty','lowEvent']},
+  Balanced:{overall:0,group:0,knockout:0,attack:0,defense:0,form:0,clutch:0,consistency:5,penalty:0,lowEvent:2},
+  Volatile:{overall:0,group:-2,knockout:5,attack:5,defense:-4,form:0,clutch:4,consistency:-10,penalty:8,lowEvent:8},
+  'Attack Tilt':{overall:0,group:2,knockout:1,attack:10,defense:-5,form:2,clutch:0,consistency:-2,penalty:1,lowEvent:-5},
+  'Defense Tilt':{overall:0,group:2,knockout:2,attack:-5,defense:10,form:1,clutch:2,consistency:4,penalty:2,lowEvent:7},
   Max:{overall:30,group:20,knockout:20,attack:15,defense:15,form:15,clutch:15,consistency:15,penalty:15,lowEvent:15},
-  Boost:{overall:10,group:3,knockout:6,attack:4,defense:3,form:5,clutch:3,consistency:3,penalty:2,lowEvent:0},
-  'Group+':{overall:4,group:12,knockout:0,attack:4,defense:4,form:7,clutch:0,consistency:4,penalty:0,lowEvent:0},
-  'KO+':{overall:4,group:0,knockout:12,attack:2,defense:5,form:2,clutch:8,consistency:4,penalty:6,lowEvent:2},
-  'Att+':{overall:3,group:3,knockout:2,attack:12,defense:0,form:4,clutch:0,consistency:0,penalty:0,lowEvent:-3},
-  'Def+':{overall:3,group:3,knockout:4,attack:0,defense:12,form:0,clutch:2,consistency:5,penalty:2,lowEvent:5},
-  Clutch:{overall:4,group:0,knockout:10,attack:2,defense:4,form:2,clutch:12,consistency:5,penalty:8,lowEvent:2},
-  Safe:{overall:4,group:5,knockout:5,attack:-2,defense:8,form:2,clutch:3,consistency:12,penalty:4,lowEvent:6},
-  'D.Horse':{overall:4,group:6,knockout:8,attack:-1,defense:8,form:4,clutch:6,consistency:4,penalty:7,lowEvent:8},
-  Host:{overall:5,group:10,knockout:4,attack:2,defense:2,form:5,clutch:2,consistency:3,penalty:1,lowEvent:0},
-  Closer:{overall:5,group:1,knockout:10,attack:2,defense:5,form:3,clutch:10,consistency:6,penalty:10,lowEvent:3},
-  LowEvt:{overall:3,group:3,knockout:5,attack:-4,defense:8,form:1,clutch:4,consistency:7,penalty:3,lowEvent:12},
-  Upset:{overall:3,group:5,knockout:7,attack:5,defense:1,form:5,clutch:5,consistency:-5,penalty:7,lowEvent:5}
+  'Light Boost':{overall:8,group:5,knockout:5,attack:4,defense:4,form:4,clutch:3,consistency:3,penalty:2,lowEvent:2},
+  'Group Boost':{overall:4,group:12,knockout:0,attack:4,defense:4,form:7,clutch:0,consistency:4,penalty:0,lowEvent:0},
+  'KO Boost':{overall:4,group:0,knockout:12,attack:2,defense:5,form:2,clutch:8,consistency:4,penalty:6,lowEvent:2},
+  'Attack Boost':{overall:3,group:3,knockout:2,attack:12,defense:0,form:4,clutch:0,consistency:0,penalty:0,lowEvent:-3},
+  'Defense Boost':{overall:3,group:3,knockout:4,attack:0,defense:12,form:0,clutch:2,consistency:5,penalty:2,lowEvent:5},
+  'Form Boost':{overall:6,group:6,knockout:3,attack:3,defense:3,form:12,clutch:3,consistency:4,penalty:1,lowEvent:0},
+  'Clutch Boost':{overall:4,group:0,knockout:10,attack:2,defense:4,form:2,clutch:12,consistency:5,penalty:8,lowEvent:2},
+  'Stable Boost':{overall:4,group:5,knockout:5,attack:-2,defense:8,form:2,clutch:3,consistency:12,penalty:4,lowEvent:6}
 };
 const MANUAL_PRESET_TIPS={
-  Nerf:'Move this team to the lowest setting on every odds dial.',
-  Soft:'Light negative adjustment across all dials without crushing the team.',
-  Fade:'Slightly lower this team without fully nerfing it.',
-  'Group-':'Lower this team mostly in group-stage results.',
-  'KO-':'Lower this team mostly in knockout rounds, clutch, and penalties.',
-  'Att-':'Lower attacking upside and scoring strength.',
-  'Def-':'Lower defensive strength and tight-game control.',
-  FavTrap:'Favorite trap profile: lower a strong team that feels risky or likely to disappoint.',
-  Scar:'Scar-tissue profile: lower teams carrying collapse, pressure, or tournament baggage.',
-  Reset:'Clear this team\'s custom odds and return every dial to zero.',
-  Half:'Cut the current custom odds in half while keeping the same direction.',
-  'Stage↺':'Reset only Group and Knockout dials; keep the other custom odds.',
-  'Traits↺':'Reset only Form, Clutch, and Consistency; keep the other custom odds.',
-  'Style↺':'Reset only Attack, Defense, Penalty, and Low-event; keep the other custom odds.',
-  Chaos:'Make this team more volatile with higher upset/penalty swings.',
-  Max:'Move this team to the highest setting on every odds dial.',
-  Boost:'Give this team a mild, balanced lift without maxing anything out.',
-  'Group+':'Improve this team mostly in group-stage results.',
-  'KO+':'Improve this team mostly in knockout rounds.',
-  'Att+':'Boost attacking upside and scoring strength.',
-  'Def+':'Boost defensive strength and low-scoring control.',
-  Clutch:'Boost late-game, penalty, and knockout survival traits.',
-  Safe:'Make this team more steady and less fragile.',
-  'D.Horse':'Dark-horse profile: better survival, defense, penalties, and low-event upset chances.',
-  Host:'Host-style lift: stronger group-stage comfort with a small overall boost.',
-  Closer:'Closer profile: better knockout, late-game, and penalty survival.',
-  LowEvt:'Low-event profile: stronger defense and tight-game survival, less open attacking upside.',
-  Upset:'Upset profile: more volatile team with better upset and penalty swing potential.'
+  Nerf:'Set every odds dial to its lowest value for this team.',
+  'Light Cut':'Apply a small negative adjustment across the main odds dials.',
+  'Group Cut':'Lower this team mainly in group-stage projections.',
+  'KO Cut':'Lower this team mainly in knockout-round projections.',
+  'Attack Cut':'Reduce attacking and scoring upside.',
+  'Defense Cut':'Reduce defensive strength and tight-game control.',
+  'Form Dip':'Lower current form, consistency, and related momentum.',
+  'Pressure Risk':'Lower knockout, clutch, penalty, and pressure-related traits.',
+  'Favorite Risk':'Lower a highly rated team that feels overvalued or risky.',
+  Neutral:'Clear this team\'s custom odds and return every dial to zero.',
+  'Half Move':'Cut the current custom odds in half while keeping the same direction.',
+  'Clear Stage':'Reset only Group and Knockout dials.',
+  'Clear Traits':'Reset only Form, Clutch, and Consistency dials.',
+  'Clear Style':'Reset only Attack, Defense, Penalty, and Low-event dials.',
+  Balanced:'Apply a steady profile with a small consistency/control lean.',
+  Volatile:'Create a higher-variance profile with more swing and less consistency.',
+  'Attack Tilt':'Shift the profile toward attack while reducing defensive control.',
+  'Defense Tilt':'Shift the profile toward defense and low-event control.',
+  Max:'Set every odds dial to its highest value for this team.',
+  'Light Boost':'Apply a small positive adjustment across the main odds dials.',
+  'Group Boost':'Improve this team mainly in group-stage projections.',
+  'KO Boost':'Improve this team mainly in knockout-round projections.',
+  'Attack Boost':'Increase attacking and scoring upside.',
+  'Defense Boost':'Increase defensive strength and tight-game control.',
+  'Form Boost':'Increase current form, momentum, and consistency.',
+  'Clutch Boost':'Increase knockout, clutch, and penalty survival traits.',
+  'Stable Boost':'Make this team more reliable and harder to upset.'
 };
 const MANUAL_PRESET_GROUPS={
-  negative:['Nerf','Soft','Fade','Group-','KO-','Att-','Def-','FavTrap','Scar'],
-  neutral:['Reset','Half','Stage↺','Traits↺','Style↺','Chaos'],
-  positive:['Max','Boost','Group+','KO+','Att+','Def+','Clutch','Safe','D.Horse','Host','Closer','LowEvt','Upset']
+  negative:['Nerf','Light Cut','Group Cut','KO Cut','Attack Cut','Defense Cut','Form Dip','Pressure Risk','Favorite Risk'],
+  neutral:['Neutral','Half Move','Clear Stage','Clear Traits','Clear Style','Balanced','Volatile','Attack Tilt','Defense Tilt'],
+  positive:['Max','Light Boost','Group Boost','KO Boost','Attack Boost','Defense Boost','Form Boost','Clutch Boost','Stable Boost']
 };
 function manualPresetButton(name){
   const tip=MANUAL_PRESET_TIPS[name]||`Apply ${name} preset.`;
@@ -3632,13 +3772,20 @@ function setupPresetTuningPopup(){
   document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 }
 let basePresetValue='balanced';
+let activeBaselinePreset='BALANCED';
+let modelBaselineValues=null;
 let applyingPresetDials=false;
+function syncModelBaselinePresetState(){
+  document.querySelectorAll('[data-model-preset]').forEach(btn=>btn.classList.toggle('active',btn.dataset.modelPreset===activeBaselinePreset));
+}
 function markPresetCustom(){
   const preset=$('preset');
+  if(!applyingPresetDials){activeBaselinePreset='CUSTOM';syncModelBaselinePresetState()}
   if(!preset||applyingPresetDials)return;
   if(preset.value!=='custom'){basePresetValue=preset.value||'balanced';preset.value='custom'}
 }
-function sliderValue(k){const sl=SLIDERS.find(x=>x.k===k);const el=$('s_'+k);const n=el?Number(el.value):Number(sl?.v);return Number.isFinite(n)?n:1}
+function storedSliderValue(k){const sl=SLIDERS.find(x=>x.k===k);const n=modelBaselineValues&&Object.prototype.hasOwnProperty.call(modelBaselineValues,k)?Number(modelBaselineValues[k]):Number(sl?.v);return Number.isFinite(n)?n:1}
+function sliderValue(k){const sl=SLIDERS.find(x=>x.k===k);const el=$('s_'+k);const n=el?Number(el.value):NaN;return Number.isFinite(n)?n:storedSliderValue(k)}
 function buildControls(){
   const years=Object.keys(DATA.TOURNAMENTS).map(Number).sort((a,b)=>a-b);
   $('year').innerHTML=years.map(y=>`<option value="${y}" ${y===2026?'selected':''}>${y} · ${yearModeFor(y)}</option>`).join('');
@@ -3646,7 +3793,7 @@ function buildControls(){
   const sliderRoot=$('sliders');
   if(sliderRoot){
     sliderRoot.innerHTML=SLIDERS.map(sl=>`<div class="field tuning-field"><label>${esc(sl.name)} <span id="val_${sl.k}" class="value">${sl.v.toFixed(2)}</span></label><input type="range" id="s_${sl.k}" min="${sl.min}" max="${sl.max}" step="${sl.step}" value="${sl.v}"><div class="help">${esc(sl.desc)}</div></div>`).join('');
-    for(const sl of SLIDERS){const e=$('s_'+sl.k);e?.addEventListener('input',()=>{markPresetCustom();$('val_'+sl.k).textContent=Number(e.value).toFixed(2);queueRun()})}
+    for(const sl of SLIDERS){const e=$('s_'+sl.k);e?.addEventListener('input',()=>{if(!modelBaselineValues)modelBaselineValues=sliderDefaults();modelBaselineValues[sl.k]=Number(e.value)||sl.v;markPresetCustom();$('val_'+sl.k).textContent=Number(e.value).toFixed(2);queueRun()})}
   }
   $('preset')?.addEventListener('change',()=>{const val=$('preset').value;if(val==='custom'){queueRun(50);return}basePresetValue=val;applyPreset(val)});
   $('resetPresetDials')?.addEventListener('click',resetDialsToCurrentPreset);
@@ -3661,7 +3808,7 @@ function applyPreset(forcePreset){
   const key=forcePreset||$('preset')?.value||basePresetValue||'balanced';
   const p=PRESETS[key]||{};
   applyingPresetDials=true;
-  for(const sl of SLIDERS){const v=p[sl.k]??sl.v;const input=$('s_'+sl.k),label=$('val_'+sl.k);if(input)input.value=v;if(label)label.textContent=Number(v).toFixed(2)}
+  setSliderValues({...sliderDefaults(),...p},true);
   applyingPresetDials=false;
   queueRun(50);
 }
@@ -3704,7 +3851,7 @@ function initWorker(){
   worker.postMessage({type:'init',data:DATA});
 }
 function badges(flags){return (flags||[]).map(f=>`<span class="pill signal ${esc(f)}" data-ui-tip="${esc(signalTitle(f))}" tabindex="0">${esc(f)}</span>`).join('')||'<span class="muted">—</span>'}
-function signalTitle(f){return {LOW_EVENT:'Defensive/keeper profile that increases draw and penalty risk.',SCAR_TISSUE:'Prior tournament trauma or redemption pressure.',FAVORITE_TRAP:'High reputation with fragility or disruption.',DARK_HORSE:'Tighter dark-horse filter: under-the-radar team with strong defensive and penalty-game survival traits.',HOST:'Host or home-region advantage.',CLOSER:'Recent trophy/final proof.',MY_ODDS:'Manual My Odds override is active for this team.'}[f]||f}
+function signalTitle(f){return {LOW_EVENT:'Defensive/keeper profile that raises draw, extra-time, and penalty risk.',SCAR_TISSUE:'Past tournament failure or pressure lowers confidence.',FAVORITE_TRAP:'Highly rated team with form, disruption, or fragility concerns.',DARK_HORSE:'Underrated team with defensive and penalty-game survival traits.',HOST:'Host or home-region advantage.',CLOSER:'Recent proof in finals, trophies, or late tournament stages.',MY_ODDS:'Custom My Odds adjustment is active for this team.'}[f]||f}
 
 let activeUiTipTarget=null;
 function ensureUiTip(){
@@ -3871,13 +4018,106 @@ function groupAdvanceInfo(d,g,team,i,isBestThird){
 function gameTargetSet(d,roundName){const a=actualFor(d);if(roundName==='Round of 32'&&hasActualSet(a,'r16'))return new Set(a.r16);if(roundName==='Round of 16'&&hasActualSet(a,'quarter_finalists'))return new Set(a.quarter_finalists);if(roundName==='Quarterfinals'&&hasActualSet(a,'semi_finalists'))return new Set(a.semi_finalists);if(roundName==='Semifinals'&&hasActualSet(a,'finalists'))return new Set(a.finalists);return null}
 function actualRowsForRound(d,roundName){const year=String(d.year);return ((ACTUAL_MATCH_SCORES[year]||{})[roundName])||[]}
 function rowHasTeam(row,team){return row&&(sameTeamName(row.a,team)||sameTeamName(row.b,team))}
-function gameAccuracyValue(d,roundName,g){
+function rowMatchesPair(row,a,b){return !!row&&((sameTeamName(row.a,a)&&sameTeamName(row.b,b))||(sameTeamName(row.a,b)&&sameTeamName(row.b,a)))}
+const ACTUAL_PAIR32_SLOTS=[['1A','2B'],['1C','2D'],['1E','2F'],['1G','2H'],['1B','2A'],['1D','2C'],['1F','2E'],['1H','2G']];
+const ACTUAL_R16_24_SLOTS=[['1A','3x0'],['2C','2D'],['1E','2F'],['1B','3x1'],['1F','2E'],['2A','2B'],['1C','3x2'],['1D','3x3']];
+const ACTUAL_R32_48_SLOTS=[['1A','3x0'],['2B','2F'],['1D','3x1'],['2C','2E'],['1G','3x2'],['2H','2I'],['1K','3x3'],['2J','2L'],['1B','3x4'],['1F','2A'],['1E','3x5'],['1C','2D'],['1I','3x6'],['1H','2G'],['1L','3x7'],['1J','2K']];
+const ACTUAL_SLOT_ROW_CACHE=new Map();
+function findUnusedActualRow(rows,a,b,used){
+  if(!a||!b)return null;
+  for(let i=0;i<(rows||[]).length;i++){
+    if(used&&used.has(i))continue;
+    if(rowMatchesPair(rows[i],a,b)){if(used)used.add(i);return rows[i];}
+  }
+  return null;
+}
+function actualFirstRoundNameFor(d){return Number(DATA.TOURNAMENTS?.[d.year]?.format)===48?'Round of 32':'Round of 16'}
+function actualFirstSlotDefsFor(d){
+  const fmt=Number(DATA.TOURNAMENTS?.[d.year]?.format);
+  if(fmt===48)return ACTUAL_R32_48_SLOTS;
+  if(fmt===24)return ACTUAL_R16_24_SLOTS;
+  return ACTUAL_PAIR32_SLOTS;
+}
+function actualSlotTeamMap(d,firstTeams){
+  const actual=actualFor(d),slots={};
+  for(const [g,top2] of Object.entries(actual.group_top2||{})){
+    if(Array.isArray(top2)){slots['1'+g]=canonicalTeamName(top2[0]);slots['2'+g]=canonicalTeamName(top2[1]);}
+  }
+  const direct=new Set(Object.values(slots).filter(Boolean).map(teamKey));
+  let tx=0;
+  for(const t of firstTeams||[]){
+    const clean=canonicalTeamName(t);
+    if(clean&&!direct.has(teamKey(clean)))slots['3x'+(tx++)]=clean;
+  }
+  return slots;
+}
+function loserFromRow(row){if(!row)return'';return sameTeamName(row.w,row.a)?canonicalTeamName(row.b):canonicalTeamName(row.a)}
+function actualSlotRowsMap(d){
+  const year=String(d.year);
+  const cacheKey=year;
+  if(ACTUAL_SLOT_ROW_CACHE.has(cacheKey))return ACTUAL_SLOT_ROW_CACHE.get(cacheKey);
+  const scores=ACTUAL_MATCH_SCORES[year]||{};
+  const out={};
+  const firstName=actualFirstRoundNameFor(d);
+  const firstRows=scores[firstName]||[];
+  const actual=actualFor(d);
+  const firstTeams=Number(DATA.TOURNAMENTS?.[d.year]?.format)===48?(actual.r32||[]):(actual.r16||[]);
+  const defs=actualFirstSlotDefsFor(d);
+  if(firstRows.length&&actual.group_top2){
+    const slots=actualSlotTeamMap(d,firstTeams);
+    const used=new Set();
+    out[firstName]=defs.map(pair=>findUnusedActualRow(firstRows,slots[pair[0]],slots[pair[1]],used));
+  }
+  const deriveWinners=(name,prevName)=>{
+    const rows=scores[name]||[],prev=out[prevName]||[];
+    if(!rows.length||!prev.length)return;
+    const used=new Set(),mapped=[];
+    for(let i=0;i<prev.length;i+=2){
+      const a=canonicalTeamName(prev[i]?.w),b=canonicalTeamName(prev[i+1]?.w);
+      mapped.push(findUnusedActualRow(rows,a,b,used));
+    }
+    if(mapped.some(Boolean))out[name]=mapped;
+  };
+  const deriveThird=()=>{
+    const rows=scores['Third-place game']||[],sf=out['Semifinals']||[];
+    if(!rows.length||sf.length<2)return;
+    const a=loserFromRow(sf[0]),b=loserFromRow(sf[1]);
+    const row=findUnusedActualRow(rows,a,b,new Set());
+    if(row)out['Third-place game']=[row];
+  };
+  if(firstName==='Round of 32')deriveWinners('Round of 16','Round of 32');
+  deriveWinners('Quarterfinals','Round of 16');
+  deriveWinners('Semifinals','Quarterfinals');
+  deriveWinners('Final','Semifinals');
+  deriveThird();
+  ACTUAL_SLOT_ROW_CACHE.set(cacheKey,out);
+  return out;
+}
+function actualRowForSlot(d,roundName,gameIndex){
+  const mapped=actualSlotRowsMap(d)[roundName]||[];
+  if(Number.isInteger(gameIndex)&&gameIndex>=0&&mapped.length)return mapped[gameIndex]||null;
+  const rows=actualRowsForRound(d,roundName);
+  return Number.isInteger(gameIndex)&&gameIndex>=0&&gameIndex<rows.length?rows[gameIndex]:null;
+}
+function rowMatchesGame(row,g){
+  return !!(row&&g)&&((sameTeamName(row.a,g.a)&&sameTeamName(row.b,g.b))||(sameTeamName(row.a,g.b)&&sameTeamName(row.b,g.a)));
+}
+function gameAccuracyValue(d,roundName,g,gameIndex=null){
   const rows=actualRowsForRound(d,roundName);
   if(rows.length){
-    const exact=actualScoreFor(d,roundName,g);
+    const exact=actualScoreFor(d,roundName,g,gameIndex);
     if(exact){
       if(!sameTeamName(exact.w,g.w))return .35;
       return scoreExact(g,exact)?1:.88;
+    }
+    const slotRow=actualRowForSlot(d,roundName,gameIndex);
+    if(slotRow){
+      const slotHits=(rowHasTeam(slotRow,g.a)?1:0)+(rowHasTeam(slotRow,g.b)?1:0);
+      const globalHits=(rows.some(x=>rowHasTeam(x,g.a))?1:0)+(rows.some(x=>rowHasTeam(x,g.b))?1:0);
+      const winnerInSlot=rowHasTeam(slotRow,g.w)?1:0;
+      if(!slotHits&&!globalHits)return 0;
+      if(slotHits)return Math.min(.65,(slotHits*.24)+(winnerInSlot*.16));
+      return Math.min(.45,.24+(globalHits*.08));
     }
     const teamHits=(rows.some(x=>rowHasTeam(x,g.a))?1:0)+(rows.some(x=>rowHasTeam(x,g.b))?1:0);
     const winnerHit=rows.some(x=>sameTeamName(x.w,g.w))?1:0;
@@ -3891,9 +4131,9 @@ function gameAccuracyValue(d,roundName,g){
   return setHasTeam(set,g.w) ? .55 : 0;
 }
 function resultClassFromValue(v){if(v===null||v===undefined)return'';if(v>=.80)return'result-correct';if(v<=.20)return'result-wrong';return'result-partial'}
-function bracketPickClass(d,roundName,g){return resultClassFromValue(gameAccuracyValue(d,roundName,g))}
-function bracketLineClass(d,roundName,g,team){
-  const status=teamLineStatus(d,roundName,g,team);
+function bracketPickClass(d,roundName,g,gameIndex=null){return resultClassFromValue(gameAccuracyValue(d,roundName,g,gameIndex))}
+function bracketLineClass(d,roundName,g,team,gameIndex=null){
+  const status=teamLineStatus(d,roundName,g,team,gameIndex);
   if(status==='ok')return'pick-correct winner-right';
   if(status==='partial')return'pick-partial';
   if(status==='bad')return'pick-wrong winner-wrong';
@@ -3941,12 +4181,25 @@ function actualOpponentFromRow(row,team){
   if(sameTeamName(row.b,team))return canonicalTeamName(row.a);
   return'';
 }
-function bracketCorrectSlotTip(d,roundName,team,g,slot){
+function bracketCorrectSlotTip(d,roundName,team,g,slot,gameIndex=null){
   const rows=actualRowsForRound(d,roundName);
   if(!rows.length||!g||!slot)return'';
 
-  // If this exact matchup happened, do not invent a slot correction.
-  // Actual row order is not reliable enough to treat a/b as visual slot truth.
+  const slotRow=actualRowForSlot(d,roundName,gameIndex);
+  if(slotRow){
+    if(rowMatchesGame(slotRow,g))return'';
+    const slotA=canonicalTeamName(slotRow.a);
+    const slotB=canonicalTeamName(slotRow.b);
+    const clean=canonicalTeamName(team);
+    if(rows.some(r=>rowMatchesGame(r,g))){
+      return `Matchup happened in a different bracket slot. Correct slot: ${slotA} vs ${slotB}`;
+    }
+    if(rows.some(r=>rowHasTeam(r,clean))){
+      return `${clean} reached ${roundName}, but in a different bracket slot. Correct slot: ${slotA} vs ${slotB}`;
+    }
+    return `Correct slot: ${slotA} vs ${slotB}`;
+  }
+
   if(actualScoreRaw(d,roundName,g))return'';
 
   const clean=canonicalTeamName(team);
@@ -3981,10 +4234,16 @@ function roundActualTeamSet(d,roundName){
   if(roundName==='Third-place game'&&a.third&&a.fourth)return new Set([a.third,a.fourth]);
   return null;
 }
-function teamLineStatus(d,roundName,g,team){
+function teamLineStatus(d,roundName,g,team,gameIndex=null){
   const rows=actualRowsForRound(d,roundName);
   if(rows.length){
-    const exact=actualScoreFor(d,roundName,g);
+    const slotRow=actualRowForSlot(d,roundName,gameIndex);
+    if(slotRow){
+      if(rowHasTeam(slotRow,team))return'ok';
+      if(rows.some(r=>rowHasTeam(r,team)))return'partial';
+      return'bad';
+    }
+    const exact=actualScoreFor(d,roundName,g,gameIndex);
     if(exact)return rowHasTeam(exact,team)?'ok':'bad';
     if(rows.some(r=>rowHasTeam(r,team)))return'partial';
     return'bad';
@@ -3993,7 +4252,7 @@ function teamLineStatus(d,roundName,g,team){
   if(set)return setHasTeam(set,team)?'ok':'bad';
   return'';
 }
-function thirdPickClass(d,g){return resultClassFromValue(gameAccuracyValue(d,'Third-place game',g))}
+function thirdPickClass(d,g,gameIndex=0){return resultClassFromValue(gameAccuracyValue(d,'Third-place game',g,gameIndex))}
 function listTeams(list){return (list||[]).length?(list||[]).map(teamLabel).join(', '):'—'}
 function plainTeam(team){return team?teamLabel(team):'—'}
 function accuracyRow(d,label){return (d.accuracy||[]).find(x=>x.stage===label)||null}
@@ -4083,47 +4342,66 @@ function render(d,ms){
   else finishPreviewRender();
 }
 function scoreNum(g,team){if(!g)return'';if(sameTeamName(team,g.a)&&g.aScore!==undefined)return g.aScore;if(sameTeamName(team,g.b)&&g.bScore!==undefined)return g.bScore;return''}
-function actualScoreRaw(d,roundName,g){const year=String(d.year);const rows=((ACTUAL_MATCH_SCORES[year]||{})[roundName])||[];return rows.find(x=>(sameTeamName(x.a,g.a)&&sameTeamName(x.b,g.b))||(sameTeamName(x.a,g.b)&&sameTeamName(x.b,g.a)))||null}
+function actualScoreRaw(d,roundName,g,gameIndex=null){
+  const hasSlotIndex=Number.isInteger(gameIndex)&&gameIndex>=0;
+  const mapped=actualSlotRowsMap(d)[roundName]||[];
+  const slotRow=hasSlotIndex&&mapped.length?mapped[gameIndex]:null;
+  if(hasSlotIndex&&mapped.length)return rowMatchesGame(slotRow,g)?slotRow:null;
+  if(slotRow)return rowMatchesGame(slotRow,g)?slotRow:null;
+  const rows=actualRowsForRound(d,roundName);
+  return rows.find(x=>rowMatchesGame(x,g))||null;
+}
 function orientScore(x,g){if(!x)return null;if(sameTeamName(x.a,g.a)&&sameTeamName(x.b,g.b))return {...x,a:g.a,b:g.b};return {a:g.a,b:g.b,aScore:x.bScore,bScore:x.aScore,w:x.w,pens:!!x.pens,aet:!!x.aet}}
-function actualScoreFor(d,roundName,g){return orientScore(actualScoreRaw(d,roundName,g),g)}
+function actualScoreFor(d,roundName,g,gameIndex=null){return orientScore(actualScoreRaw(d,roundName,g,gameIndex),g)}
 function scoreOnly(g){if(!g)return'—';return `${esc(scoreNum(g,g.a))}–${esc(scoreNum(g,g.b))}`}
 function scoreNote(g){if(!g)return'';if(g.pens)return `${esc(g.w)} pens`;if(g.aet)return 'AET';return''}
 function scoreExact(pred,actual){if(!pred||!actual)return false;return Number(scoreNum(pred,pred.a))===Number(actual.aScore)&&Number(scoreNum(pred,pred.b))===Number(actual.bScore)&&sameTeamName(pred.w,actual.w)&&!!pred.pens===!!actual.pens}
 function scoreCompareClass(pred,actual){if(!actual)return'neutral';if(scoreExact(pred,actual))return'result-exact';if(pred&&actual&&sameTeamName(pred.w,actual.w))return'result-ok';return'result-bad'}
 function actualScoreNum(pred,actual,team){if(!actual)return'';if(sameTeamName(team,pred.a))return actual.aScore;if(sameTeamName(team,pred.b))return actual.bScore;return''}
-function bracketTeamLabel(team,d,roundName,g,correctTip=''){
+function bracketTeamLabel(team,d,roundName,g,gameIndex=null,correctTip=''){
   const clean=canonicalTeamName(team);
-  const st=teamLineStatus(d,roundName,g,team);
-  const title=st==='ok'?'Predicted team matched':(st==='partial'?'Team reached this round':'Predicted team missed');
+  const st=teamLineStatus(d,roundName,g,team,gameIndex);
+  const title=st==='ok'?'Predicted team matched this slot':(st==='partial'?'Team reached this round in another slot':'Predicted team missed this slot');
   const mark=st?statusMark(st,title,'flag-corner'):'';
   const fullTitle=correctTip?`${clean} · ${title} · ${correctTip}`:`${clean} · ${title} · click to edit My Odds`;
   return `<span class="team bracket-team" data-team-edit="${esc(clean)}"${uiTipAttr(correctTip)} title="${esc(fullTitle)}"><span class="flag">${flagMarkup(clean)}${mark}</span><span>${esc(clean)}</span></span>`;
 }
-function teamScoreLine(g,team,d,roundName,gameIndex=null,slot=''){
-  const correctTip=bracketCorrectSlotTip(d,roundName,team,g,slot);
-  const actual=actualScoreFor(d,roundName,g);
+function teamScoreLine(g,team,d,roundName,gameIndex=null,slot='',opts={}){
+  const correctTip=bracketCorrectSlotTip(d,roundName,team,g,slot,gameIndex);
+  const actual=actualScoreFor(d,roundName,g,gameIndex);
   const pred=scoreNum(g,team);
   const act=actualScoreNum(g,actual,team);
   let scoreStatus='';
   if(actual&&act!=='')scoreStatus=String(pred)===String(act)?'ok':'bad';
-  const scoreTitle=scoreStatus==='ok'?'Score matched':'Score differed';
+  const scoreTitle=scoreStatus==='ok'?'Score matched this slot':'Score differed from this slot';
   const scoreMark=scoreStatus?statusMark(scoreStatus,scoreTitle,'score-corner'):'';
   const scoreCls=scoreStatus?`score-${scoreStatus}`:'';
+  const label=bracketTeamLabel(team,d,roundName,g,gameIndex,correctTip);
+  if(opts.mode==='predOnly'){
+    return `<span class="team-scoreline">${label}<span class="score-pair single-score"><span class="score-wrap"><span class="score-pill pred ${scoreCls}" title="Predicted score"><span class="score-prefix">P</span>${esc(pred)}</span>${scoreMark}</span></span></span>`;
+  }
+  if(opts.mode==='actualOnly'){
+    return `<span class="team-scoreline">${label}<span class="score-pair single-score"><span class="score-wrap"><span class="score-pill actual" title="Actual score"><span class="score-prefix">A</span>${esc(pred)}</span></span></span></span>`;
+  }
   const actualPill=act!==''?`<span class="score-wrap"><span class="score-pill actual ${scoreCls}" title="Actual score"><span class="score-prefix">A</span>${esc(act)}</span></span>`:`<span class="score-wrap"><span class="score-pill actual no-actual" title="Actual score unavailable"><span class="score-prefix">A</span>-</span></span>`;
-  return `<span class="team-scoreline">${bracketTeamLabel(team,d,roundName,g,correctTip)}<span class="score-pair"><span class="score-wrap"><span class="score-pill pred ${scoreCls}" title="Predicted score"><span class="score-prefix">P</span>${esc(pred)}</span>${scoreMark}</span>${actualPill}</span></span>`;
+  return `<span class="team-scoreline">${label}<span class="score-pair"><span class="score-wrap"><span class="score-pill pred ${scoreCls}" title="Predicted score"><span class="score-prefix">P</span>${esc(pred)}</span>${scoreMark}</span>${actualPill}</span></span>`;
 }
 
 function actualFlipGameForSlot(d,roundName,g,gameIndex=null){
   const rows=actualRowsForRound(d,roundName);
   if(!rows.length||!g)return null;
-  if(Number.isInteger(gameIndex)&&rows[gameIndex])return rows[gameIndex];
-  return actualScoreRaw(d,roundName,g);
+  const slotRow=actualRowForSlot(d,roundName,gameIndex);
+  if(slotRow)return slotRow;
+  return actualScoreRaw(d,roundName,g,gameIndex);
+}
+function footerNote(text){
+  if(!text)return'';
+  return `<span class="footer-note" title="${esc(text)}">${esc(text)}</span>`;
 }
 function actualGameFooter(row){
-  if(!row)return'Actual result';
-  if(row.pens)return `<span class="actual-text">${esc(row.w)} pens</span>`;
-  if(row.aet)return '<span class="actual-text">AET</span>';
-  return 'Actual result';
+  if(!row)return'';
+  const note=row.pens?`${canonicalTeamName(row.w)} pens`:(row.aet?'AET':'');
+  return footerNote(note);
 }
 function actualFlipCardFace(d,roundName,row,gameIndex=0){
   const actualGame={
@@ -4137,21 +4415,29 @@ function actualFlipCardFace(d,roundName,row,gameIndex=0){
     pa:1
   };
   const lineState=(winner,team)=>winner?(sameTeamName(winner,team)?'winner':'loser'):'';
-  return `<div class="game-line ${lineState(actualGame.w,actualGame.a)} pick-correct" data-preview-team="${esc(canonicalTeamName(actualGame.a))}"><span>${teamScoreLine(actualGame,actualGame.a,d,roundName,gameIndex,'a')}</span></div><div class="game-line ${lineState(actualGame.w,actualGame.b)} pick-correct" data-preview-team="${esc(canonicalTeamName(actualGame.b))}"><span>${teamScoreLine(actualGame,actualGame.b,d,roundName,gameIndex,'b')}</span></div><div class="game-footer">${actualGameFooter(actualGame)}</div>`;
+  const opts={mode:'actualOnly'};
+  return `<div class="game-line ${lineState(actualGame.w,actualGame.a)} pick-correct" data-preview-team="${esc(canonicalTeamName(actualGame.a))}"><span>${teamScoreLine(actualGame,actualGame.a,d,roundName,gameIndex,'a',opts)}</span></div><div class="game-line ${lineState(actualGame.w,actualGame.b)} pick-correct" data-preview-team="${esc(canonicalTeamName(actualGame.b))}"><span>${teamScoreLine(actualGame,actualGame.b,d,roundName,gameIndex,'b',opts)}</span></div><div class="game-footer">${actualGameFooter(actualGame)}</div>`;
 }
 function actualGameFlipMarkup(d,roundName,g,gameIndex=null){
   const row=actualFlipGameForSlot(d,roundName,g,gameIndex);
   if(!row)return'';
   return `<button type="button" class="actual-flip-btn" data-actual-flip aria-label="Show actual teams" aria-expanded="false" title="Show actual teams">↻</button><div class="actual-flip-panel" aria-hidden="true">${actualFlipCardFace(d,roundName,row,gameIndex??0)}</div>`;
 }
-function bracketFooterContent(g,d,roundName,fallback){
-  const actual=actualScoreFor(d,roundName,g);
+function actualChampionFlipFace(d){
+  const actual=actualFor(d);
+  if(!actual?.champion)return'';
+  return `<div class="champion-card"><div class="champion-cup" aria-hidden="true">🏆</div><div class="champion-team">${teamLabel(actual.champion)}</div></div>`;
+}
+function actualChampionFlipMarkup(d){
+  const face=actualChampionFlipFace(d);
+  if(!face)return'';
+  return `<button type="button" class="actual-flip-btn" data-actual-flip aria-label="Show actual champion" aria-expanded="false" title="Show actual champion">↻</button><div class="actual-flip-panel" aria-hidden="true">${face}</div>`;
+}
+function bracketFooterContent(g,d,roundName,fallback,gameIndex=null,opts={}){
+  const actual=actualScoreFor(d,roundName,g,gameIndex);
   const predNote=scoreNote(g);
-  const actualNote=actual?(actual.pens?`${esc(actual.w)} pens`:(actual.aet?'AET':'')):'';
-  const parts=[];
-  if(predNote)parts.push(`<span><b>P</b> ${esc(predNote)}</span>`);
-  if(actualNote)parts.push(`<span class="actual-text"><b>A</b> ${actualNote}</span>`);
-  return parts.length?parts.join('<span> · </span>'):esc(fallback||'');
+  const actualNote=opts.predOnly?'':(actual?(actual.pens?`${canonicalTeamName(actual.w)} pens`:(actual.aet?'AET':'')):'');
+  return footerNote(predNote||actualNote);
 }
 function scoreCompare(g,d,roundName){
   if(!g)return'—';
@@ -4177,7 +4463,7 @@ function overviewContenders(d,key='champ'){
   if(!rows.length)return '<div class="note">Run a prediction first.</div>';
   const max=Math.max(.001,...rows.map(r=>r.prob));
   const label=PROBABILITY_LABELS[key]||'Probability';
-  return `<div class="contender-list">${rows.map(r=>`<div><div class="contender-row"><div class="contender-name">${teamLabel(r.team)}</div><div class="contender-prob">${pct(r.prob)}</div><div class="contender-bar" title="${esc(canonicalTeamName(r.team))} ${esc(label)}"><i style="width:${Math.max(4,Math.round((r.prob/max)*100))}%"></i></div></div></div>`).join('')}</div>`;
+  return `<div class="race-list">${rows.map((r,i)=>`<div class="race-row"><div class="race-rank">${i+1}</div><div class="race-team">${teamLabel(r.team)}</div><div class="race-prob">${pct(r.prob)}</div><div class="race-bar" title="${esc(canonicalTeamName(r.team))} ${esc(label)}"><i style="width:${Math.max(4,Math.round((r.prob/max)*100))}%"></i></div></div>`).join('')}</div>`;
 }
 function overviewStageCard(name,label,d){
   const row=accuracyRow(d,label);
@@ -4190,7 +4476,8 @@ function renderOverview(d,ms){
   const actualKnown=!!(d.overall&&d.overall[1]);
   const overallPct=actualKnown?pct(d.overall[0]/d.overall[1]):'—';
   const overall=actualKnown?`${d.overall[0]}/${d.overall[1]} (${overallPct})`:'No actual results yet';
-  const semis=(d.semi_finalists||[]).map(teamLabel).join(', ')||'—';
+  const semisList=d.semi_finalists||[];
+  const semis=semisList.length?semisList.map(t=>`<span class="overview-team-chip">${teamLabel(t)}</span>`).join(''):'—';
   const final=(d.finalists||[]).map(teamLabel).join(' vs ')||'—';
   const finalGame=d.bracket?.rounds?.[d.bracket.rounds.length-1]?.games?.[0];
   const thirdGame=d.bracket?.third;
@@ -4202,33 +4489,34 @@ function renderOverview(d,ms){
   const championStatus=championCls?boxStatusMark(championCls):'';
   const finalCls=finalGame?bracketPickClass(d,'Final',finalGame):'';
   const finalStatus=finalCls?boxStatusMark(finalCls):'';
-  const actualFinalLine=hasActualSet(actual,'finalists')||actual.champion?`<span class="overview-actual-line"><b>Actual:</b> ${hasActualSet(actual,'finalists')?listTeams(actual.finalists):'—'}${actual.champion?` · Champion: ${teamLabel(actual.champion)}`:''}</span>`:'';
+  const actualFinalLine=hasActualSet(actual,'finalists')||actual.champion?`<div class="overview-final-row"><b>Actual</b><span>${hasActualSet(actual,'finalists')?listTeams(actual.finalists):'—'}${actual.champion?` · Champion: ${teamLabel(actual.champion)}`:''}</span></div>`:'';
   const stageCards=[
     ['Overall','Overall'],['Group','Group top-2 teams'],['R16','Round of 16 teams'],['QF','Quarterfinal teams'],['SF','Semifinal teams'],['Final','Finalists'],['Champ','Champion']
   ].map(([name,label])=>label==='Overall'?`<div class="stage-card ${actualKnown?'spectrum':''}" ${spectrumStyle(actualKnown?d.overall[0]/d.overall[1]:null)}><div class="stage-name">Overall</div><div class="stage-score">${esc(actualKnown?`${d.overall[0]}/${d.overall[1]}`:'—')}</div><div class="stage-note">${esc(actualKnown?overallPct:'Future tournament')}</div></div>`:overviewStageCard(name,label,d)).join('');
   const details=overviewAccuracyRows(d);
-  const detailsHtml=details.length?`<div class="card overview-details"><div class="overview-section-title"><h2>Full backtest comparison</h2><span class="pill">Predicted vs actual</span></div><div class="overview-results">${details.map(x=>`<div class="overview-result ${x.cls}" ${spectrumStyle(accValue(x.row))}><div class="ov-head"><div class="ov-stage">${esc(x.stage)}</div><div class="ov-score ${scoreClass(x.row)}" ${spectrumStyle(accValue(x.row))}>${esc(x.score)}</div></div><div class="ov-line"><b>Pred</b><span>${x.pred}</span></div><div class="ov-line"><b>Actual</b><span>${x.actual}</span></div></div>`).join('')}</div></div>`:'';
-  $('overview').innerHTML=`<div class="overview-dashboard">
-    <div class="overview-hero">
-      <div class="overview-main-pick ${championCls}">
-        <div class="overview-eyebrow">Projected champion ${championStatus}</div>
-        <div class="overview-champion">${teamLabel(d.champion)}</div>
-        <div class="overview-chance"><b>${pct(d.champion_prob)}</b> title chance · Runner-up: ${teamLabel(d.runner_up)} <span class="muted">${pct(d.runner_up_prob)}</span></div>
-        <div class="overview-final-line ${finalCls}"><b>Final:</b> ${final} ${finalStatus}<br><b>Predicted score:</b> ${scoreSummary(finalGame,d,'Final')}${actualFinalLine}</div>
-      </div>
-      <div class="overview-side-grid">
-        <div class="overview-card"><h3>Semifinal picture</h3><div class="big">${semis}</div><div class="small">Most likely final four from the simulation.</div></div>
-        <div class="overview-card"><h3>Third-place game</h3><div class="big">${thirdLine}</div><div class="small">${scoreSummary(thirdGame,d,'Third-place game')}</div></div>
-        <div class="overview-card"><h3>Run context</h3><div class="big">${actualKnown?`Backtest ${overall}`:'Prediction mode'}</div><div class="small">${runInfo} · My Odds: ${myOdds?`${myOdds} adjusted`:'off'}</div></div>
+  const detailsHtml=details.length?`<div class="card overview-details"><div class="overview-section-title"><h2>Backtest details</h2><span class="pill">Predicted vs actual</span></div><div class="overview-results">${details.map(x=>`<div class="overview-result ${x.cls}" ${spectrumStyle(accValue(x.row))}><div class="ov-head"><div class="ov-stage">${esc(x.stage)}</div><div class="ov-score ${scoreClass(x.row)}" ${spectrumStyle(accValue(x.row))}>${esc(x.score)}</div></div><div class="ov-line"><b>Pred</b><span>${x.pred}</span></div><div class="ov-line"><b>Actual</b><span>${x.actual}</span></div></div>`).join('')}</div></div>`:'';
+  const accuracyHtml=actualKnown?`<div class="card overview-accuracy-card"><div class="overview-section-title"><h2>Accuracy snapshot</h2><span class="pill">Backtest</span></div><div class="overview-stage-grid">${stageCards}</div><div class="note" style="margin-top:10px">Prediction vs. loaded actual results.</div></div>`:'';
+  $('overview').innerHTML=`<div class="overview-dashboard clean-overview">
+    <div class="overview-main-pick ${championCls}">
+      <div class="overview-eyebrow">Projected champion ${championStatus}</div>
+      <div class="overview-champion">${teamLabel(d.champion)}</div>
+      <div class="overview-chance"><b>${pct(d.champion_prob)}</b> title chance</div>
+      <div class="overview-final-line ${finalCls}">
+        <div class="overview-final-row"><b>Final</b><span>${final} ${finalStatus}</span></div>
+        <div class="overview-final-row"><b>Score</b><span>${scoreSummary(finalGame,d,'Final')}</span></div>
+        ${actualFinalLine}
       </div>
     </div>
-    <div class="overview-two-col">
+    <div class="overview-clean-grid">
+      <div class="card overview-quick-card">
+        <div class="overview-mini-section"><h3>Final four</h3><div class="overview-chip-list">${semis}</div></div>
+        <div class="overview-mini-section"><h3>Third-place game</h3><div class="overview-third-line">${thirdLine}</div><div class="small">${scoreSummary(thirdGame,d,'Third-place game')}</div></div>
+        <div class="overview-run-line">${runInfo} · My Odds: ${myOdds?`${myOdds} adjusted`:'off'}</div>
+      </div>
       <div class="card"><div class="overview-section-title"><h2>Champion race</h2><span class="pill">Champ %</span></div>${overviewContenders(d,'champ')}</div>
-      <div class="card"><div class="overview-section-title"><h2>${actualKnown?'Accuracy snapshot':'Prediction checkpoint'}</h2><span class="pill">${actualKnown?'Backtest':'No actuals yet'}</span></div><div class="overview-stage-grid">${stageCards}</div><div class="note" style="margin-top:10px">${actualKnown?'Prediction vs. loaded actual results.':'Actual results will appear here once loaded.'}</div></div>
     </div>
-    <div class="card"><div class="overview-section-title"><h2>Final race</h2><span class="pill">Final %</span></div>${overviewContenders(d,'final')}</div>
+    ${accuracyHtml}
     ${detailsHtml}
-    <div class="card">${resultLegend()}<div class="note" style="margin-top:8px">P = prediction. A = actual.</div></div>
   </div>`;
 }
 function renderGroups(d){
@@ -4248,7 +4536,7 @@ function renderGroups(d){
     const chip=advanceChip(info);
     const correctTip=groupCorrectSlotTip(d,g.group,t.team,i);
     const liveLine=liveGroupLabel(d,g.group,t.team);
-    return `<div class="teamrow ${info.cls} ${previewTeamClass(t.team)}" data-preview-team="${esc(canonicalTeamName(t.team))}"${uiTipAttr(correctTip)} ${pickStyle(info.cls)}><div class="group-team-line"><span class="rank">${i+1}</span><span class="group-team-name ${info.predictedAdvance?'winner':''}">${teamLabel(t.team)}</span><span class="group-status-slot">${chip||''}</span></div>${liveLine}<div class="group-probs"><span>Win <b>${pct(t.winner_prob)}</b></span><span>Adv <b>${pct(t.r32_prob)}</b></span><span>Top 2 <b>${pct(t.qual_prob)}</b></span>${thirdLimit?`<span>3rd <b>${pct(t.third_prob)}</b></span>`:''}</div></div>`;
+    return `<div class="teamrow ${info.cls} ${previewTeamClass(t.team)}" data-preview-team="${esc(canonicalTeamName(t.team))}"${uiTipAttr(correctTip)} ${pickStyle(info.cls)}><div class="group-team-line"><span class="rank">${i+1}</span><span class="group-team-name ${info.predictedAdvance?'winner':''}">${teamLabel(t.team)}</span><span class="group-status-slot">${chip||''}</span></div>${liveLine}<div class="group-probs"><span>1st <b>${pct(t.winner_prob)}</b></span><span>Top 2 <b>${pct(t.qual_prob)}</b></span><span>Adv <b>${pct(t.r32_prob)}</b></span>${thirdLimit?`<span>3rd Q <b>${pct(t.third_prob)}</b></span>`:''}</div></div>`;
   }).join('')}</div></div>`).join('')}</div>`;
   $('groups').innerHTML=rules+groups+thirds;
 }
@@ -4381,6 +4669,14 @@ function scheduleBracketConnectorDraw(){
   setTimeout(drawBracketConnectors,220);
 }
 
+const BRACKET_STAGE_FOOTERS={r16:'R16 chance',qf:'QF chance',sf:'SF chance',final:'Final chance',champ:'Champ chance',third:'3rd game chance'};
+function bracketGameFallback(g){
+  if(g&&g.stageKey&&Number.isFinite(Number(g.pickStageProb))&&Number(g.pickStageProb)>0){
+    return `${pct(Number(g.pickStageProb))} ${BRACKET_STAGE_FOOTERS[g.stageKey]||'stage chance'}`;
+  }
+  return `${pct(g?.pa||0)} match edge`;
+}
+
 function renderBracket(d){
   const rounds=d.bracket.rounds||[];
   const finalRound=rounds[rounds.length-1]||{name:'Final',games:[]};
@@ -4393,18 +4689,18 @@ function renderBracket(d){
   };
   const lineState=(winner,team)=>winner?(sameTeamName(winner,team)?'winner':'loser'):'';
   const gameHtml=(g,roundName,extraCls='',start=1,span=1,gameIndex=0)=>{
-    const cls=extraCls||bracketPickClass(d,roundName,g);
+    const cls=extraCls||bracketPickClass(d,roundName,g,gameIndex);
     const flip=actualGameFlipMarkup(d,roundName,g,gameIndex);
-    const aLine=bracketLineClass(d,roundName,g,g.a);
-    const bLine=bracketLineClass(d,roundName,g,g.b);
+    const aLine=bracketLineClass(d,roundName,g,g.a,gameIndex);
+    const bLine=bracketLineClass(d,roundName,g,g.b,gameIndex);
     const aState=lineState(g.w,g.a);
     const bState=lineState(g.w,g.b);
     return `<div class="game ${cls} ${flip?'has-actual-flip':''}" ${styleAttr(cls,start,span)}>
       ${flip}
       <div class="game-front">
-        <div class="game-line ${aState} ${aLine} ${previewTeamClass(g.a)}" data-preview-team="${esc(canonicalTeamName(g.a))}"><span>${teamScoreLine(g,g.a,d,roundName,gameIndex,'a')}</span></div>
-        <div class="game-line ${bState} ${bLine} ${previewTeamClass(g.b)}" data-preview-team="${esc(canonicalTeamName(g.b))}"><span>${teamScoreLine(g,g.b,d,roundName,gameIndex,'b')}</span></div>
-        <div class="game-footer">${bracketFooterContent(g,d,roundName,`${pct(g.pa)} top-team chance`)}</div>
+        <div class="game-line ${aState} ${aLine} ${previewTeamClass(g.a)}" data-preview-team="${esc(canonicalTeamName(g.a))}"><span>${teamScoreLine(g,g.a,d,roundName,gameIndex,'a',flip?{mode:'predOnly'}:{})}</span></div>
+        <div class="game-line ${bState} ${bLine} ${previewTeamClass(g.b)}" data-preview-team="${esc(canonicalTeamName(g.b))}"><span>${teamScoreLine(g,g.b,d,roundName,gameIndex,'b',flip?{mode:'predOnly'}:{})}</span></div>
+        <div class="game-footer">${bracketFooterContent(g,d,roundName,bracketGameFallback(g),gameIndex,flip?{predOnly:true}:{})}</div>
       </div>
     </div>`;
   };
@@ -4419,24 +4715,25 @@ function renderBracket(d){
   const leftHtml=pathRounds.map((r,ri)=>sideRoundHtml(r,ri,'left')).join('');
   const rightHtml=pathRounds.map((r,ri)=>sideRoundHtml(r,ri,'right')).reverse().join('');
   const finalGame=finalRound.games?.[0]||null;
-  const finalCls=finalGame?bracketPickClass(d,finalRound.name,finalGame):'';
+  const finalCls=finalGame?bracketPickClass(d,finalRound.name,finalGame,0):'';
   const finalFlip=finalGame?actualGameFlipMarkup(d,finalRound.name,finalGame,0):'';
   const finalHtml=finalGame?`<div class="round round-final"><h3>${esc(finalRound.name)}</h3><div class="round-content"><div class="game ${finalCls} ${finalFlip?'has-actual-flip':''}" ${styleAttr(finalCls,1,1)}>
       ${finalFlip}
       <div class="game-front">
-        <div class="game-line ${lineState(finalGame.w,finalGame.a)} ${bracketLineClass(d,finalRound.name,finalGame,finalGame.a)} ${previewTeamClass(finalGame.a)}" data-preview-team="${esc(canonicalTeamName(finalGame.a))}"><span>${teamScoreLine(finalGame,finalGame.a,d,finalRound.name,0,'a')}</span></div>
-        <div class="game-line ${lineState(finalGame.w,finalGame.b)} ${bracketLineClass(d,finalRound.name,finalGame,finalGame.b)} ${previewTeamClass(finalGame.b)}" data-preview-team="${esc(canonicalTeamName(finalGame.b))}"><span>${teamScoreLine(finalGame,finalGame.b,d,finalRound.name,0,'b')}</span></div>
-        <div class="game-footer">${bracketFooterContent(finalGame,d,finalRound.name,'Final prediction')}</div>
+        <div class="game-line ${lineState(finalGame.w,finalGame.a)} ${bracketLineClass(d,finalRound.name,finalGame,finalGame.a,0)} ${previewTeamClass(finalGame.a)}" data-preview-team="${esc(canonicalTeamName(finalGame.a))}"><span>${teamScoreLine(finalGame,finalGame.a,d,finalRound.name,0,'a',finalFlip?{mode:'predOnly'}:{})}</span></div>
+        <div class="game-line ${lineState(finalGame.w,finalGame.b)} ${bracketLineClass(d,finalRound.name,finalGame,finalGame.b,0)} ${previewTeamClass(finalGame.b)}" data-preview-team="${esc(canonicalTeamName(finalGame.b))}"><span>${teamScoreLine(finalGame,finalGame.b,d,finalRound.name,0,'b',finalFlip?{mode:'predOnly'}:{})}</span></div>
+        <div class="game-footer">${bracketFooterContent(finalGame,d,finalRound.name,bracketGameFallback(finalGame),0,finalFlip?{predOnly:true}:{})}</div>
       </div>
     </div></div></div>`:'';
   const actual=actualFor(d);
   const championCls=actual&&actual.champion?(sameTeamName(d.champion,actual.champion)?'result-correct':'result-wrong'):'';
   const championAttr=styleAttr(championCls,1,1);
-  const championHtml=`<div class="round round-champion"><h3>Champion 🏆</h3><div class="round-content"><div class="game champion ${championCls} ${previewTeamClass(d.champion)}" data-preview-team="${esc(canonicalTeamName(d.champion))}" ${championAttr}>${championCls?boxStatusMark(championCls):''}<div class="champion-card"><div class="champion-cup" aria-hidden="true">🏆</div><div class="champion-team">${teamLabel(d.champion)}</div><div class="champion-prob"><b>${pct(d.champion_prob)}</b> title chance</div></div></div></div></div>`;
+  const championFlip=actualChampionFlipMarkup(d);
+  const championHtml=`<div class="round round-champion"><h3>Champion 🏆</h3><div class="round-content"><div class="game champion ${championCls} ${championFlip?'has-actual-flip':''} ${previewTeamClass(d.champion)}" data-preview-team="${esc(canonicalTeamName(d.champion))}" ${championAttr}>${championFlip}${championCls?boxStatusMark(championCls):''}<div class="game-front"><div class="champion-card"><div class="champion-cup" aria-hidden="true">🏆</div><div class="champion-team">${teamLabel(d.champion)}</div><div class="champion-prob"><b>${pct(d.champion_prob)}</b> title chance</div></div></div></div></div></div>`;
   const tg=d.bracket.third||(d.third&&d.fourth?{a:d.third,b:d.fourth,w:d.third,aScore:1,bScore:0,pa:1}:null);
-  const tcls=tg?thirdPickClass(d,tg):'';
+  const tcls=tg?thirdPickClass(d,tg,0):'';
   const thirdFlip=tg?actualGameFlipMarkup(d,'Third-place game',tg,0):'';
-  const thirdHtml=tg?`<div class="round round-third"><h3>Third-place game</h3><div class="round-content"><div class="game third ${tcls} ${thirdFlip?'has-actual-flip':''}" ${styleAttr(tcls,1,1)}>${thirdFlip}<div class="game-front"><div class="game-line ${lineState(tg.w,tg.a)} ${bracketLineClass(d,'Third-place game',tg,tg.a)} ${previewTeamClass(tg.a)}" data-preview-team="${esc(canonicalTeamName(tg.a))}"><span>${teamScoreLine(tg,tg.a,d,'Third-place game',0,'a')}</span></div><div class="game-line ${lineState(tg.w,tg.b)} ${bracketLineClass(d,'Third-place game',tg,tg.b)} ${previewTeamClass(tg.b)}" data-preview-team="${esc(canonicalTeamName(tg.b))}"><span>${teamScoreLine(tg,tg.b,d,'Third-place game',0,'b')}</span></div><div class="game-footer">${bracketFooterContent(tg,d,'Third-place game','Third-place prediction')}</div></div></div></div></div>`:'';
+  const thirdHtml=tg?`<div class="round round-third"><h3>Third-place game</h3><div class="round-content"><div class="game third ${tcls} ${thirdFlip?'has-actual-flip':''}" ${styleAttr(tcls,1,1)}>${thirdFlip}<div class="game-front"><div class="game-line ${lineState(tg.w,tg.a)} ${bracketLineClass(d,'Third-place game',tg,tg.a,0)} ${previewTeamClass(tg.a)}" data-preview-team="${esc(canonicalTeamName(tg.a))}"><span>${teamScoreLine(tg,tg.a,d,'Third-place game',0,'a',thirdFlip?{mode:'predOnly'}:{})}</span></div><div class="game-line ${lineState(tg.w,tg.b)} ${bracketLineClass(d,'Third-place game',tg,tg.b,0)} ${previewTeamClass(tg.b)}" data-preview-team="${esc(canonicalTeamName(tg.b))}"><span>${teamScoreLine(tg,tg.b,d,'Third-place game',0,'b',thirdFlip?{mode:'predOnly'}:{})}</span></div><div class="game-footer">${bracketFooterContent(tg,d,'Third-place game',bracketGameFallback(tg),0,thirdFlip?{predOnly:true}:{})}</div></div></div></div></div>`:'';
   $('bracket').innerHTML=`<div class="bracket-wrap"><div class="bracket mirror-bracket" style="--bracket-slots:${baseSlots}">${leftHtml}<div class="mirror-center">${championHtml}${finalHtml}${thirdHtml}</div>${rightHtml}</div></div>`;
   syncBracketStage();
   scheduleBracketConnectorDraw();
@@ -4549,8 +4846,33 @@ function renderTeams(d){
   refreshManualUI();
 }
 function renderAccuracy(d){if(!d.accuracy.length){$('accuracy').innerHTML='<div class="card"><h2>Accuracy</h2><p class="note">No actual results loaded yet.</p></div>';return}const total=d.overall;const ov=total[1]?total[0]/total[1]:null;$('accuracy').innerHTML=`<div class="card"><h2>Backtest accuracy</h2><table class="accuracy-table"><thead><tr><th>Stage</th><th class="num">Correct</th><th class="num">Total</th><th class="num">Accuracy</th></tr></thead><tbody>${d.accuracy.map(r=>`<tr class="spectrum-row" ${spectrumStyle(r.pct)}><td>${esc(r.stage)}</td><td class="num">${r.correct}</td><td class="num">${r.total}</td><td class="num">${pct(r.pct)}</td></tr>`).join('')}<tr class="spectrum-row" ${spectrumStyle(ov)}><th>Overall</th><th class="num">${total[0]}</th><th class="num">${total[1]}</th><th class="num">${pct(ov)}</th></tr></tbody></table></div>`}
-function methodSignalGuideHTML(){return `<div class="method-signal-grid"><div class="method-signal"><span class="pill signal LOW_EVENT" data-ui-tip="${esc(signalTitle('LOW_EVENT'))}" tabindex="0">LOW_EVENT</span><span>Low-scoring profile. More draw, extra-time, and penalty risk.</span></div><div class="method-signal"><span class="pill signal SCAR_TISSUE" data-ui-tip="${esc(signalTitle('SCAR_TISSUE'))}" tabindex="0">SCAR_TISSUE</span><span>Past tournament failure or pressure may lower confidence.</span></div><div class="method-signal"><span class="pill signal FAVORITE_TRAP" data-ui-tip="${esc(signalTitle('FAVORITE_TRAP'))}" tabindex="0">FAVORITE_TRAP</span><span>Highly rated team with form, disruption, or fragility concerns.</span></div><div class="method-signal"><span class="pill signal DARK_HORSE" data-ui-tip="${esc(signalTitle('DARK_HORSE'))}" tabindex="0">DARK_HORSE</span><span>Underrated team with survival traits.</span></div><div class="method-signal"><span class="pill signal CLOSER" data-ui-tip="${esc(signalTitle('CLOSER'))}" tabindex="0">CLOSER</span><span>Recent proof in finals, trophies, or late tournament stages.</span></div><div class="method-signal"><span class="pill signal HOST" data-ui-tip="${esc(signalTitle('HOST'))}" tabindex="0">HOST</span><span>Home or near-home advantage.</span></div><div class="method-signal"><span class="pill signal MY_ODDS" data-ui-tip="${esc(signalTitle('MY_ODDS'))}" tabindex="0">MY_ODDS</span><span>Custom team odds are active.</span></div></div>`}
-function renderMethod(d){$('method').innerHTML=`<div class="card"><h2>Method</h2><p class="note">The engine runs seeded Monte Carlo simulations in a Web Worker.</p><p class="note">The model blends team strength, form, history, player quality, host/travel context, disruption risk, penalty risk, low-event risk, and My Odds adjustments.</p><p class="note"><b>Data:</b> ${esc(dataSourceLabel())}. Live checks update schedules, groups, results, rankings, form, and penalty context. If a feed is blocked, the app uses embedded data.</p></div><div class="card"><h2>Signal guide</h2>${methodSignalGuideHTML()}</div><div class="card"><h2>Model baseline</h2><p class="note">Baseline weights used by the model. Team-specific changes happen through My Odds.</p><table><tbody>${SLIDERS.map(sl=>`<tr><th>${esc(sl.name)}</th><td class="num">${sliderValue(sl.k).toFixed(2)}</td><td>${esc(sl.desc)}</td></tr>`).join('')}</tbody></table></div>`}
+function methodSignalGuideHTML(){const signals=['LOW_EVENT','SCAR_TISSUE','FAVORITE_TRAP','DARK_HORSE','CLOSER','HOST','MY_ODDS'];return `<div class="method-signal-grid">${signals.map(f=>`<div class="method-signal"><span class="pill signal ${esc(f)}" data-ui-tip="${esc(signalTitle(f))}" tabindex="0">${esc(f)}</span></div>`).join('')}</div>`}
+function modelBaselinePresetTip(key){return {BALANCED:'Default baseline weights.',CUSTOM:'Manual baseline weights.',MY_ODDS:'Softer baseline so My Odds adjustments carry more influence.'}[key]||signalTitle(key)}
+function modelBaselinePresetValues(key){return {...sliderDefaults(),...(MODEL_BASELINE_PRESET_VALUES[key]||{})}}
+function modelBaselinePresetsHTML(){return `<div class="model-baseline-presets" aria-label="Model baseline presets">${MODEL_BASELINE_PRESETS.map(key=>`<button type="button" class="model-baseline-preset ${esc(key)} ${activeBaselinePreset===key?'active':''}" data-model-preset="${esc(key)}" data-ui-tip="${esc(modelBaselinePresetTip(key))}">${esc(key)}</button>`).join('')}</div>`}
+function modelBaselineRowsHTML(){return SLIDERS.map(sl=>{const v=sliderValue(sl.k);return `<tr><th>${esc(sl.name)}</th><td class="model-baseline-value"><input class="model-weight-input" id="s_${esc(sl.k)}" data-model-weight="${esc(sl.k)}" type="number" min="${sl.min}" max="${sl.max}" step="${sl.step}" value="${Number(v).toFixed(2)}"><span id="val_${esc(sl.k)}" class="value" hidden>${Number(v).toFixed(2)}</span></td><td>${esc(sl.desc)}</td></tr>`}).join('')}
+function applyModelBaselinePreset(key){
+  if(key==='CUSTOM'){activeBaselinePreset='CUSTOM';syncModelBaselinePresetState();return}
+  activeBaselinePreset=key;
+  applyingPresetDials=true;
+  setSliderValues(modelBaselinePresetValues(key),true);
+  applyingPresetDials=false;
+  syncModelBaselinePresetState();
+  queueRun(50);
+}
+function bindModelBaselineControls(){
+  document.querySelectorAll('[data-model-preset]').forEach(btn=>btn.addEventListener('click',()=>applyModelBaselinePreset(btn.dataset.modelPreset)));
+  document.querySelectorAll('[data-model-weight]').forEach(input=>input.addEventListener('input',()=>{
+    const k=input.dataset.modelWeight,n=Number(input.value);
+    if(!modelBaselineValues)modelBaselineValues=sliderDefaults();
+    if(Number.isFinite(n))modelBaselineValues[k]=n;
+    const label=$('val_'+k);if(label)label.textContent=Number.isFinite(n)?n.toFixed(2):'';
+    markPresetCustom();
+    queueRun();
+  }));
+  syncModelBaselinePresetState();
+}
+function renderMethod(d){$('method').innerHTML=`<div class="card"><h2>Method</h2><p class="note">The engine runs seeded Monte Carlo simulations in a Web Worker.</p><p class="note">The model blends team strength, form, history, player quality, host/travel context, disruption risk, penalty risk, low-event risk, and My Odds adjustments.</p><p class="note"><b>Data:</b> ${esc(dataSourceLabel())}. Live checks update schedules, groups, results, rankings, form, and penalty context. If a feed is blocked, the app uses embedded data.</p></div><div class="card"><h2>Signal guide</h2>${methodSignalGuideHTML()}</div><div class="card"><h2>Model baseline</h2>${modelBaselinePresetsHTML()}<table class="model-baseline-table"><tbody>${modelBaselineRowsHTML()}</tbody></table></div>`;bindModelBaselineControls()}
 function downloadCSV(){if(!lastResult)return;const rows=Object.entries(lastResult.team_probs).map(([team,p])=>{const prof=lastResult.profiles[team],m=cleanManual(prof.manual||{});return {team,group:prof.group,manual_overall:m.overall,manual_group:m.group,manual_knockout:m.knockout,manual_attack:m.attack,manual_defense:m.defense,manual_form:m.form,manual_clutch:m.clutch,manual_consistency:m.consistency,manual_penalty:m.penalty,manual_low_event:m.lowEvent,signals:prof.flags.join('|'),player:prof.player.toFixed(4),closer:prof.closer.toFixed(4),cycle:prof.form.toFixed(4),first_ko:p.r32.toFixed(4),r16:p.r16.toFixed(4),qf:p.qf.toFixed(4),sf:p.sf.toFixed(4),final:p.final.toFixed(4),third:p.third.toFixed(4),champion:p.champ.toFixed(4)}});const cols=Object.keys(rows[0]);const csv=[cols.join(','),...rows.map(r=>cols.map(c=>'"'+String(r[c]).replaceAll('"','""')+'"').join(','))].join('\n');downloadBlob(new Blob([csv],{type:'text/csv'}),datedDownloadName('wc'+lastResult.year+'_team_probabilities','csv'))}
 
 const SHARE_VERSION=3;
@@ -4654,7 +4976,19 @@ function currentSharePayload(){
 function encodeSharePayload(payload){return utf8ToBase64Url(JSON.stringify(payload))}
 function decodeSharePayload(code){const payload=JSON.parse(base64UrlToUtf8(String(code||'').trim()));if(!payload||typeof payload!=='object')throw new Error('Invalid prediction code');return payload}
 function shareCodeNow(){return encodeSharePayload(currentSharePayload())}
-function setSliderValues(vals={}){for(const sl of SLIDERS){const raw=vals[sl.k];const v=Number(raw);if(!Number.isFinite(v))continue;const input=$('s_'+sl.k),label=$('val_'+sl.k);if(input)input.value=v;if(label)label.textContent=v.toFixed(2)}}
+function setSliderValues(vals={},resetMissing=false){
+  const base=resetMissing?sliderDefaults():{...sliderDefaults(),...(modelBaselineValues||{})};
+  modelBaselineValues={...base};
+  for(const sl of SLIDERS){
+    const raw=Object.prototype.hasOwnProperty.call(vals,sl.k)?vals[sl.k]:base[sl.k];
+    const v=Number(raw);
+    if(!Number.isFinite(v))continue;
+    modelBaselineValues[sl.k]=v;
+    const input=$('s_'+sl.k),label=$('val_'+sl.k);
+    if(input)input.value=v;
+    if(label)label.textContent=v.toFixed(2);
+  }
+}
 function normalizeSharePayload(payload){
   if(!payload||payload.a!=='wcp'||(payload.mt!==undefined&&!Array.isArray(payload.mt)))throw new Error('Invalid prediction code');
   return {year:payload.y,sims:payload.s,seed:payload.sd,preset:payload.p,basePreset:payload.bp,fast:!!payload.f,sliders:expandSliders(payload.d||{}),manualTeams:expandManualPacked(payload.mt||[],payload.y)};
@@ -4666,7 +5000,7 @@ function applySharePayload(payload){
   if(payload.seed!==undefined&&$('seed'))$('seed').value=String(payload.seed);
   if(payload.basePreset)basePresetValue=String(payload.basePreset);if(payload.preset!==undefined&&$('preset'))$('preset').value=String(payload.preset);
   if(payload.fast!==undefined&&$('fast'))$('fast').checked=!!payload.fast;
-  setSliderValues(payload.sliders||{});
+  setSliderValues({...sliderDefaults(),...(payload.sliders||{})},true);activeBaselinePreset=Object.keys(payload.sliders||{}).length?'CUSTOM':'BALANCED';
   const y=String(payload.year||currentYear());
   manualSettingsByYear[y]={};
   for(const [team,vals] of Object.entries(payload.manualTeams||{})){const clean=cleanManual(vals);if(hasManualValues(clean))manualSettingsByYear[y][canonicalTeamName(team)]=clean}
