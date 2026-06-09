@@ -1540,14 +1540,796 @@ body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-
 .manual-squad-fitness.fit:before{content:"";width:10px;height:10px;border-radius:999px;background:#22c55e;box-shadow:0 0 0 2px #22c55e22}
 .manual-squad-fitness.injured{width:22px;height:22px;border:1px solid #e5e7eb;border-radius:5px;background:#fff;color:#dc2626;font-size:16px;font-weight:950;box-shadow:0 0 0 1px #ffffff55}
 @media(max-width:520px){.manual-preview-controls{grid-template-columns:repeat(4,minmax(0,1fr))!important}.manual-squad-head{gap:6px}.manual-squad-meta{gap:5px}.manual-squad-player{grid-template-columns:30px minmax(0,1fr) 26px}.manual-squad-list{max-height:46vh}}
+
+
+/* v178: cleaner Overview tab layout and spacing */
+#overview .overview-dashboard.overview-v178{gap:16px}
+#overview .overview-v178 .card{margin-bottom:0;overflow:visible}
+#overview .overview-top-grid{display:grid;grid-template-columns:minmax(320px,1.05fr) minmax(300px,.95fr);gap:14px;align-items:stretch}
+#overview .overview-main-pick{display:flex;flex-direction:column;min-height:198px;padding:16px!important}
+#overview .overview-main-pick:after{right:18px;top:10px;font-size:60px;opacity:.10}
+#overview .overview-eyebrow{margin-bottom:8px!important}
+#overview .overview-champion{font-size:24px!important;line-height:1.15}
+#overview .overview-chance{margin-top:7px!important}
+#overview .overview-final-line{margin-top:auto!important;padding-top:12px!important;border-top:1px dashed rgba(250,204,21,.45);gap:8px!important}
+#overview .overview-final-row{grid-template-columns:62px minmax(0,1fr);gap:10px;line-height:1.35}
+#overview .overview-summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}
+#overview .overview-summary-card{display:flex;flex-direction:column;gap:8px;min-height:112px;padding:13px!important;background:#0b1222!important}
+#overview .overview-summary-card h3{margin:0;font-size:11px;color:#93c5fd;text-transform:uppercase;letter-spacing:.06em}
+#overview .overview-summary-note{color:var(--muted);font-size:12px;line-height:1.35}
+#overview .overview-run-line{border-top:0;padding-top:0;font-size:12px;line-height:1.4;color:#cbd5e1}
+#overview .overview-race-card{padding:14px!important}
+#overview .race-row{padding:8px 0}
+#overview .overview-stage-grid{gap:10px}
+#overview .overview-card-note{margin-top:10px}
+#overview .overview-details .overview-results{gap:12px}
+@media(max-width:920px){
+  #overview .overview-top-grid,#overview .overview-summary-grid{grid-template-columns:1fr}
+  #overview .overview-main-pick{min-height:0}
+}
+@media(max-width:520px){
+  #overview .overview-dashboard.overview-v178{gap:12px}
+  #overview .overview-main-pick{padding:13px!important}
+  #overview .overview-champion{font-size:20px!important}
+  #overview .overview-final-row{grid-template-columns:52px minmax(0,1fr);gap:8px}
+  #overview .overview-summary-card{min-height:0;padding:12px!important}
+}
+
+
+
+/* v186: overview cards + always-visible mini final */
+.brand-title-row{display:flex;align-items:center;gap:10px;min-width:0;flex-wrap:wrap}
+.top-final-card{display:inline-flex;align-items:center;gap:7px;min-width:0;max-width:360px;height:30px;padding:4px 9px;border:1px solid #facc1577;border-radius:999px;background:linear-gradient(135deg,#2a2208cc,#0b1222 76%);box-shadow:0 8px 22px #0005;color:#fde68a;font-size:11px;font-weight:950;white-space:nowrap;overflow:hidden}
+.top-final-card[hidden]{display:none!important}.top-final-label{color:#93c5fd;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase}.top-final-winner{display:inline-flex;align-items:center;gap:5px;min-width:0;overflow:hidden;text-overflow:ellipsis}.top-final-winner .team{max-width:145px}.top-final-winner .team>span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.top-final-score{color:#cbd5e1;font-size:10.5px;font-weight:900;font-variant-numeric:tabular-nums}.top-final-cup{font-size:14px;line-height:1}
+#overview .overview-dashboard.overview-v186{gap:14px}
+#overview .ov-title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;min-width:0}
+#overview .ov-title-row h2,#overview .ov-title-row h3{margin:0;font-size:13px;color:#93c5fd;text-transform:uppercase;letter-spacing:.07em}
+#overview .ov-card{background:linear-gradient(180deg,#111827,#0b1222);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 12px 34px #0005;min-width:0;overflow:visible}
+#overview .ov-card.gold{border-color:#facc1599;background:linear-gradient(135deg,#2a2208,#0b1222 72%)}
+#overview .ov-card.good{border-color:#22c55e99;background:linear-gradient(135deg,#14532d55,#0b1222 76%)}
+#overview .ov-main-grid{display:grid;grid-template-columns:minmax(300px,1fr) minmax(300px,1fr);gap:14px;align-items:stretch}
+#overview .ov-champ-card{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;min-height:152px}
+#overview .ov-champ-card:after{content:"🏆";position:absolute;right:16px;top:12px;font-size:64px;opacity:.11;line-height:1}
+#overview .ov-eyebrow{font-size:11px;font-weight:950;letter-spacing:.08em;text-transform:uppercase;color:#fde68a;margin-bottom:8px}
+#overview .ov-champ-name{display:flex;align-items:center;gap:8px;min-width:0;font-size:24px;font-weight:950;color:#fde68a;position:relative;z-index:1}.ov-champ-name .team{max-width:100%}.ov-champ-name .team>span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#overview .ov-champ-sub{margin-top:8px;color:#cbd5e1;font-size:13px;position:relative;z-index:1}.ov-champ-sub b{color:#fde68a}
+#overview .ov-stack{display:grid;gap:12px}
+#overview .ov-chip-list{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.ov-stage-chip{display:inline-flex;align-items:center;gap:6px;min-width:0;max-width:100%;border:1px solid #334155;background:#0f172a;border-radius:999px;padding:6px 10px;font-size:13px;font-weight:900;color:#e0f2fe}.ov-stage-chip .team{max-width:100%}.ov-stage-chip .team>span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#overview .ov-game{display:grid;gap:7px}.ov-game-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;min-height:31px;padding:4px 6px;border:1px solid transparent;border-radius:11px}.ov-game-row.winner{background:#14532d35;border-color:#22c55e66}.ov-game-row.loser{background:#7f1d1d24;border-color:#ef44443f;color:#94a3b8}.ov-game-row.loser .team>span:last-child{text-decoration:line-through;text-decoration-thickness:1.8px;text-decoration-color:#ef4444cc;opacity:.82}.ov-game-row.loser .flag{opacity:.72;filter:saturate(.85)}.ov-game-score{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:24px;border:1px solid #475569;border-radius:8px;background:#020617;color:#e0f2fe;font-size:12px;font-weight:950;font-variant-numeric:tabular-nums}.ov-game-meta{display:grid;grid-template-columns:34px minmax(0,1fr);gap:8px;align-items:center;color:#94a3b8;font-size:12px;line-height:1.25;margin-top:2px}.ov-game-meta b{color:#93c5fd;text-transform:uppercase;letter-spacing:.06em;font-size:10px}.ov-game-note{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ov-empty{color:var(--muted);font-size:12px;line-height:1.35}
+#overview .ov-info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.ov-run-line{display:flex;flex-wrap:wrap;gap:7px}.ov-run-pill{display:inline-flex;align-items:center;border:1px solid #334155;background:#0f172a;border-radius:999px;padding:5px 8px;color:#cbd5e1;font-size:12px;font-weight:850}.ov-muted-line{color:var(--muted);font-size:12px;line-height:1.35;margin-top:8px}
+#overview .overview-race-card,#overview .overview-accuracy-card,#overview .overview-details{margin-bottom:0!important}
+@media(max-width:920px){#overview .ov-main-grid,#overview .ov-info-grid{grid-template-columns:1fr}.top-final-card{max-width:260px}.top-final-winner .team{max-width:110px}}
+@media(max-width:760px){.brand-title-row{justify-content:space-between}.top-final-card{height:28px;max-width:190px;padding:4px 7px}.top-final-label{display:none}.top-final-winner .team{max-width:105px}.top-final-score{display:none}}
+@media(max-width:430px){.brand-title-row{display:grid;grid-template-columns:minmax(0,1fr) auto}.top-final-card{max-width:150px}.top-final-cup{display:none}#overview .ov-champ-name{font-size:20px}}
+
+
+/* v187: smaller top winner pill + remove redundant overview info cards */
+.top-final-card{gap:5px!important;max-width:230px!important;height:24px!important;padding:2px 7px!important;border-color:#facc1555!important;background:#0f172a!important;box-shadow:none!important;font-size:10px!important}
+.top-final-card .flag,.top-final-card .flag-img,.top-final-card .flag svg,.top-final-card .flag-fallback{width:18px!important;min-width:18px!important;height:12px!important}
+.top-final-winner{gap:4px!important}.top-final-winner .team{grid-template-columns:18px minmax(0,1fr)!important;gap:4px!important;max-width:145px!important}.top-final-winner .team>span:last-child{font-size:11px!important;line-height:1!important}
+.top-final-cup{font-size:12px!important;opacity:.9}.top-final-label,.top-final-score{display:none!important}
+#overview .ov-info-grid{grid-template-columns:minmax(300px,1fr)!important}
+#overview .ov-info-grid .ov-card{margin-bottom:0!important}
+@media(max-width:760px){.top-final-card{max-width:150px!important;height:22px!important;padding:2px 6px!important}.top-final-winner .team{max-width:105px!important}.top-final-winner .team>span:last-child{font-size:10.5px!important}}
+@media(max-width:430px){.top-final-card{max-width:118px!important}.top-final-cup{display:none!important}}
+
+
+/* v190: version sync fix */
+.brand-title-row{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:8px!important;width:100%!important}
+.brand-title-row h1{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+.top-final-card{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;max-width:260px!important;height:20px!important;min-height:20px!important;padding:1px 6px!important;gap:4px!important;border-radius:999px!important;border-color:#334155!important;background:#0b1222!important;box-shadow:none!important;color:#cbd5e1!important;font-size:10px!important;line-height:1!important}
+.top-final-card[hidden]{display:none!important}
+.top-final-match{display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;align-items:center!important;gap:4px!important;min-width:0!important;width:100%!important}
+.top-final-team{display:inline-grid!important;grid-template-columns:16px minmax(0,1fr)!important;align-items:center!important;gap:3px!important;min-width:0!important;max-width:96px!important;overflow:hidden!important;color:#cbd5e1!important;font-weight:850!important}
+.top-final-team.winner{color:#fde68a!important}.top-final-team.loser .top-final-name{text-decoration:line-through;text-decoration-thickness:1.4px;text-decoration-color:#ef4444cc;opacity:.78}
+.top-final-team .flag,.top-final-team .flag-img,.top-final-team .flag svg,.top-final-team .flag-fallback{width:16px!important;min-width:16px!important;height:10px!important;border-radius:2px!important}
+.top-final-name{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:10.5px!important;line-height:1!important}
+.top-final-score{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:28px!important;height:16px!important;padding:0 4px!important;border:1px solid #475569!important;border-radius:999px!important;background:#020617!important;color:#e0f2fe!important;font-size:10px!important;font-weight:950!important;font-variant-numeric:tabular-nums!important;line-height:1!important}
+@media(max-width:760px){
+  .top-final-card{max-width:205px!important;height:20px!important;padding:1px 5px!important}
+  .top-final-team{max-width:78px!important;grid-template-columns:15px minmax(0,1fr)!important}
+  .top-final-team .flag,.top-final-team .flag-img,.top-final-team .flag svg,.top-final-team .flag-fallback{width:15px!important;min-width:15px!important;height:10px!important}
+  .top-final-name{font-size:10px!important}
+  .top-final-score{min-width:26px!important;height:15px!important;font-size:9.5px!important;padding:0 3px!important}
+}
+@media(max-width:430px){
+  .brand-title-row{gap:5px!important}
+  .brand-title-row h1{font-size:16px!important;letter-spacing:-.2px!important}
+  .brand-by{display:none!important}
+  .top-final-card{max-width:174px!important;height:19px!important;padding:1px 4px!important}
+  .top-final-match{gap:3px!important}
+  .top-final-team{max-width:64px!important;grid-template-columns:14px minmax(0,1fr)!important;gap:2px!important}
+  .top-final-team .flag,.top-final-team .flag-img,.top-final-team .flag svg,.top-final-team .flag-fallback{width:14px!important;min-width:14px!important;height:9px!important}
+  .top-final-name{font-size:9.5px!important}
+  .top-final-score{min-width:24px!important;height:14px!important;font-size:9px!important;padding:0 2px!important}
+}
+@media(max-width:360px){
+  .top-final-card{max-width:150px!important}
+  .top-final-team{max-width:52px!important}
+}
+
+
+/* v191: cleaner header, data pill aligned above gear */
+.brand-title-row{display:grid!important;grid-template-columns:minmax(0,auto) auto!important;align-items:center!important;justify-content:start!important;gap:8px!important;width:100%!important}
+.brand-title-row h1{display:inline-flex!important;align-items:center!important;gap:7px!important;min-width:0!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+.brand-by{display:none!important}
+.app-version{display:inline-flex!important;align-items:center!important;width:max-content!important;margin:0!important;border:1px solid #334155!important;background:#0f172a!important;color:#93c5fd!important;border-radius:999px!important;padding:1px 6px!important;font-size:10px!important;font-weight:950!important;letter-spacing:.02em!important;line-height:1.25!important;vertical-align:middle!important;flex:0 0 auto!important}
+.app-header{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:start!important;gap:12px!important}
+.header-right{display:grid!important;grid-template-columns:auto!important;grid-template-areas:"live" "controls" "status"!important;justify-items:end!important;align-items:start!important;gap:6px!important;min-width:0!important}
+.header-live-row{grid-area:live!important;display:flex!important;justify-content:flex-end!important;align-items:center!important;width:100%!important;min-width:0!important}
+.header-live-row .data-source{height:23px!important;max-width:190px!important;padding:3px 8px!important;font-size:10.5px!important;justify-content:center!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+.header-controls{grid-area:controls!important}.header-status{grid-area:status!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:6px!important;min-width:0!important;width:100%!important}.header-status .status{margin:0!important;text-align:right!important;font-size:11px!important}
+.app-footer{margin:6px 12px 14px;padding:10px 12px;border-top:1px solid rgba(47,59,82,.82);color:#94a3b8;font-size:11px;font-weight:800;letter-spacing:.03em;text-align:center;text-transform:uppercase}.app-footer span{color:#475569;margin:0 5px}
+@media(max-width:760px){
+  .app-header{grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
+  .header-right{width:100%!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"controls live" "status status"!important;align-items:end!important;gap:6px!important}
+  .header-live-row{width:auto!important;align-self:end!important}.header-live-row .data-source{max-width:132px!important;height:25px!important;font-size:10px!important;padding:3px 7px!important}
+  .header-controls{width:100%!important}.header-status{margin-top:0!important}.brand-title-row{grid-template-columns:minmax(0,1fr) auto!important}.brand-title-row h1{font-size:17px!important}
+  .app-version{font-size:9.5px!important;padding:1px 5px!important}.app-footer{margin:4px 10px 12px;padding:9px 10px;font-size:10px}
+}
+@media(max-width:520px){
+  .header-right{grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"controls live" "status status"!important}
+  .header-live-row .data-source{max-width:112px!important;width:auto!important}.brand-title-row h1{font-size:16px!important;letter-spacing:-.2px!important}.app-version{font-size:9px!important}
+}
+
+
+/* v191: cleaner top bar + data pill stacked above gear */
+.app-header{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:start!important;
+  gap:14px!important;
+  padding:11px 16px!important;
+}
+.brand-block{min-width:0!important}
+.brand-title-row{
+  display:flex!important;
+  align-items:center!important;
+  gap:9px!important;
+  min-width:0!important;
+  width:100%!important;
+}
+.brand-title-row h1{
+  flex:0 1 auto!important;
+  min-width:0!important;
+  max-width:100%!important;
+}
+#topFinalCard{flex:0 1 auto!important}
+.header-right{
+  display:grid!important;
+  grid-template-columns:minmax(128px,168px) 42px 42px!important;
+  grid-template-areas:
+    ". . live"
+    "year share gear"
+    "status status status"!important;
+  gap:5px 8px!important;
+  justify-content:end!important;
+  align-items:end!important;
+  min-width:0!important;
+}
+.header-live-row{
+  grid-area:live!important;
+  display:flex!important;
+  justify-content:flex-end!important;
+  align-items:center!important;
+  width:42px!important;
+  min-width:42px!important;
+  overflow:visible!important;
+  justify-self:end!important;
+}
+.header-live-row .data-source{
+  height:20px!important;
+  max-width:138px!important;
+  padding:2px 7px!important;
+  font-size:9.5px!important;
+  line-height:1!important;
+  justify-content:center!important;
+  transform-origin:right center!important;
+  justify-self:end!important;
+}
+.header-live-row .data-source:before{width:6px!important;height:6px!important;flex:0 0 6px!important}
+.header-controls{
+  grid-column:1 / -1!important;
+  grid-row:2!important;
+  display:contents!important;
+}
+.header-controls .year-field,
+.header-controls .header-year-control{grid-area:year!important;width:100%!important;min-width:0!important;margin:0!important}
+#shareBtn.header-action-btn{grid-area:share!important;width:42px!important;min-width:42px!important;padding:0!important;font-size:0!important}
+#shareBtn.header-action-btn:before{content:"↗";font-size:16px;line-height:1}
+.header-settings-wrap{grid-area:gear!important;width:42px!important;height:36px!important;justify-self:end!important;align-self:end!important}
+.settings-gear-btn{width:42px!important;min-width:42px!important;height:36px!important;min-height:36px!important}
+.header-status{grid-area:status!important;justify-self:end!important;width:auto!important;margin-top:0!important;min-width:0!important}
+.header-status .status{display:none!important}
+.header-status .global-odds-indicator{height:22px!important;font-size:10px!important;padding:3px 8px!important}
+.header-year-control label{height:13px!important;margin-bottom:2px!important;font-size:9.5px!important}
+.header-year-control select{height:36px!important;min-height:36px!important}
+@media(max-width:760px){
+  .app-header{grid-template-columns:1fr!important;gap:8px!important;padding:10px!important}
+  .brand-title-row{gap:7px!important;align-items:center!important}
+  .header-right{
+    width:100%!important;
+    grid-template-columns:minmax(0,1fr) 40px 40px!important;
+    grid-template-areas:
+      ". . live"
+      "year share gear"
+      "status status status"!important;
+    gap:5px 6px!important;
+  }
+  .header-live-row{width:40px!important;min-width:40px!important}
+  .header-live-row .data-source{max-width:124px!important;height:20px!important;font-size:9px!important;padding:2px 6px!important}
+  #shareBtn.header-action-btn,.header-settings-wrap,.settings-gear-btn{width:40px!important;min-width:40px!important}
+  .brand-block .subtitle{display:none!important}
+}
+@media(max-width:430px){
+  .brand-title-row{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:5px!important}
+  .brand-title-row h1{font-size:16px!important}
+  .header-live-row .data-source{max-width:112px!important;font-size:8.5px!important}
+  .app-version{font-size:8.5px!important;padding:1px 4px!important}
+}
+
+
+/* v193: mobile header rows + compact green data button */
+@media(max-width:760px){
+  .app-header{
+    grid-template-columns:1fr!important;
+    gap:7px!important;
+    padding:9px 10px!important;
+  }
+  .brand-block{width:100%!important;min-width:0!important}
+  .brand-title-row{
+    display:grid!important;
+    grid-template-columns:minmax(0,auto) auto!important;
+    justify-content:start!important;
+    align-items:center!important;
+    gap:6px!important;
+    width:100%!important;
+    min-width:0!important;
+  }
+  .brand-title-row h1{
+    display:inline-flex!important;
+    align-items:center!important;
+    gap:5px!important;
+    min-width:0!important;
+    max-width:100%!important;
+    font-size:16px!important;
+    line-height:1.1!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  .app-version{
+    font-size:8.5px!important;
+    padding:1px 4px!important;
+    line-height:1.1!important;
+  }
+  #topFinalCard{
+    justify-self:start!important;
+    max-width:178px!important;
+    height:20px!important;
+    min-height:20px!important;
+  }
+  .header-right{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 40px 40px 40px!important;
+    grid-template-areas:"year share gear live" "status status status status"!important;
+    align-items:end!important;
+    gap:6px!important;
+  }
+  .header-controls{display:contents!important}
+  .header-controls .year-field,
+  .header-controls .header-year-control{
+    grid-area:year!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+  }
+  .header-year-control label{height:12px!important;margin-bottom:2px!important;font-size:9px!important}
+  .header-year-control select{height:34px!important;min-height:34px!important;font-size:12px!important;padding:5px 7px!important}
+  #shareBtn.header-action-btn{
+    grid-area:share!important;
+    width:40px!important;
+    min-width:40px!important;
+    height:34px!important;
+    min-height:34px!important;
+    padding:0!important;
+    font-size:0!important;
+  }
+  #shareBtn.header-action-btn:before{font-size:15px!important}
+  .header-settings-wrap{
+    grid-area:gear!important;
+    width:40px!important;
+    height:34px!important;
+    justify-self:end!important;
+    align-self:end!important;
+  }
+  .settings-gear-btn{
+    width:40px!important;
+    min-width:40px!important;
+    height:34px!important;
+    min-height:34px!important;
+  }
+  .header-live-row{
+    grid-area:live!important;
+    width:40px!important;
+    min-width:40px!important;
+    height:34px!important;
+    justify-self:end!important;
+    align-self:end!important;
+    overflow:visible!important;
+  }
+  #dataSource.data-source{
+    width:40px!important;
+    min-width:40px!important;
+    max-width:40px!important;
+    height:34px!important;
+    min-height:34px!important;
+    padding:0!important;
+    border-radius:10px!important;
+    border:1px solid #22c55e99!important;
+    background:#14532d!important;
+    color:transparent!important;
+    font-size:0!important;
+    line-height:0!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    box-shadow:none!important;
+    overflow:hidden!important;
+  }
+  #dataSource.data-source:before{
+    content:""!important;
+    width:10px!important;
+    height:10px!important;
+    flex:0 0 10px!important;
+    border-radius:999px!important;
+    background:#22c55e!important;
+    box-shadow:0 0 0 3px #22c55e22!important;
+  }
+  #dataSource.data-source.offline:before{background:#f59e0b!important;box-shadow:0 0 0 3px #f59e0b22!important}
+  #dataSource.data-source.offline{border-color:#f59e0b99!important;background:#78350f!important}
+  #dataSource.data-source.checking:before{background:#38bdf8!important;box-shadow:0 0 0 3px #38bdf822!important}
+  #dataSource.data-source.checking{border-color:#38bdf899!important;background:#082f49!important}
+  .header-status{grid-area:status!important;width:100%!important;justify-content:flex-end!important;margin:0!important}
+}
+@media(max-width:430px){
+  .brand-title-row{grid-template-columns:minmax(0,1fr) auto!important}
+  #topFinalCard{max-width:158px!important}
+  .top-final-team{max-width:55px!important}
+  .top-final-name{font-size:9.2px!important}
+  .top-final-score{min-width:24px!important}
+}
+
+
+/* v193: put the final pill below the mobile control row so it never overlays content */
+.app-header{
+  grid-template-columns:minmax(0,1fr) auto auto!important;
+  grid-template-areas:"brand final right"!important;
+  align-items:start!important;
+}
+.app-header .brand-block{grid-area:brand!important}
+.app-header .header-right{grid-area:right!important}
+.app-header > #topFinalCard.top-final-card{
+  grid-area:final!important;
+  align-self:start!important;
+  justify-self:end!important;
+  margin-top:2px!important;
+}
+@media(max-width:760px){
+  .app-header{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    grid-template-areas:
+      "brand"
+      "right"
+      "final"!important;
+    gap:6px!important;
+    padding:9px 10px!important;
+  }
+  .app-header .brand-block{grid-area:brand!important}
+  .app-header .header-right{grid-area:right!important}
+  .app-header > #topFinalCard.top-final-card{
+    grid-area:final!important;
+    justify-self:stretch!important;
+    width:100%!important;
+    max-width:none!important;
+    height:23px!important;
+    min-height:23px!important;
+    margin:0!important;
+    padding:2px 7px!important;
+    overflow:hidden!important;
+  }
+  .app-header > #topFinalCard .top-final-match{
+    width:100%!important;
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;
+    gap:6px!important;
+  }
+  .app-header > #topFinalCard .top-final-team{
+    max-width:none!important;
+    grid-template-columns:16px minmax(0,1fr)!important;
+  }
+  .app-header > #topFinalCard .top-final-name{font-size:10px!important}
+  .app-header > #topFinalCard .top-final-score{min-width:30px!important;height:16px!important;font-size:9.5px!important}
+}
+@media(max-width:430px){
+  .app-header > #topFinalCard.top-final-card{max-width:none!important}
+  .app-header > #topFinalCard .top-final-team{max-width:none!important;grid-template-columns:14px minmax(0,1fr)!important}
+  .app-header > #topFinalCard .top-final-name{font-size:9.4px!important}
+}
+
+
+
+/* v194: desktop header alignment - centered final pill, data button to the right of settings */
+@media(min-width:761px){
+  .app-header{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(240px,auto) minmax(0,1fr)!important;
+    grid-template-areas:"brand final right"!important;
+    align-items:start!important;
+    column-gap:14px!important;
+  }
+  .app-header .brand-block{grid-area:brand!important;justify-self:start!important;min-width:0!important}
+  .app-header > #topFinalCard.top-final-card{
+    grid-area:final!important;
+    justify-self:center!important;
+    align-self:start!important;
+    margin-top:3px!important;
+    max-width:320px!important;
+    width:min(320px,32vw)!important;
+    height:24px!important;
+    min-height:24px!important;
+  }
+  .app-header .header-right{
+    grid-area:right!important;
+    justify-self:end!important;
+    display:grid!important;
+    grid-template-columns:minmax(116px,150px) 42px 42px 42px!important;
+    grid-template-areas:"year share gear live" "status status status status"!important;
+    align-items:end!important;
+    justify-content:end!important;
+    gap:5px 8px!important;
+    min-width:0!important;
+  }
+  .header-controls{display:contents!important}
+  .header-controls .year-field,
+  .header-controls .header-year-control{grid-area:year!important;width:100%!important;min-width:0!important;margin:0!important}
+  #shareBtn.header-action-btn{grid-area:share!important;width:42px!important;min-width:42px!important;height:36px!important;min-height:36px!important;padding:0!important;font-size:0!important}
+  #shareBtn.header-action-btn:before{content:"↗";font-size:16px!important;line-height:1!important}
+  .header-settings-wrap{grid-area:gear!important;width:42px!important;height:36px!important;justify-self:end!important;align-self:end!important}
+  .settings-gear-btn{width:42px!important;min-width:42px!important;height:36px!important;min-height:36px!important}
+  .header-live-row{grid-area:live!important;width:42px!important;min-width:42px!important;height:36px!important;justify-self:end!important;align-self:end!important;overflow:visible!important}
+  #dataSource.data-source{
+    width:42px!important;
+    min-width:42px!important;
+    max-width:42px!important;
+    height:36px!important;
+    min-height:36px!important;
+    padding:0!important;
+    border-radius:10px!important;
+    border:1px solid #22c55e99!important;
+    background:#14532d!important;
+    color:transparent!important;
+    font-size:0!important;
+    line-height:0!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    box-shadow:none!important;
+    overflow:hidden!important;
+  }
+  #dataSource.data-source:before{
+    content:""!important;
+    width:10px!important;
+    height:10px!important;
+    flex:0 0 10px!important;
+    border-radius:999px!important;
+    background:#22c55e!important;
+    box-shadow:0 0 0 3px #22c55e22!important;
+  }
+  #dataSource.data-source.offline:before{background:#f59e0b!important;box-shadow:0 0 0 3px #f59e0b22!important}
+  #dataSource.data-source.offline{border-color:#f59e0b99!important;background:#78350f!important}
+  #dataSource.data-source.checking:before{background:#38bdf8!important;box-shadow:0 0 0 3px #38bdf822!important}
+  #dataSource.data-source.checking{border-color:#38bdf899!important;background:#082f49!important}
+  .header-status{grid-area:status!important;justify-content:flex-end!important;width:100%!important;margin:0!important}
+}
+@media(min-width:761px) and (max-width:1060px){
+  .app-header{grid-template-columns:minmax(0,.9fr) minmax(220px,auto) minmax(0,1.1fr)!important;column-gap:10px!important}
+  .app-header > #topFinalCard.top-final-card{width:min(280px,30vw)!important;max-width:280px!important}
+  .app-header .header-right{grid-template-columns:minmax(104px,132px) 38px 38px 38px!important;gap:5px 6px!important}
+  #shareBtn.header-action-btn,.header-settings-wrap,.settings-gear-btn,.header-live-row,#dataSource.data-source{width:38px!important;min-width:38px!important}
+}
+
+
+/* v195: evenly space final pill teams around the centered score */
+.app-header > #topFinalCard.top-final-card{
+  justify-content:stretch!important;
+}
+.app-header > #topFinalCard .top-final-match{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;
+  align-items:center!important;
+  column-gap:10px!important;
+}
+.app-header > #topFinalCard .top-final-team{
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+}
+.app-header > #topFinalCard .top-final-match > .top-final-team:first-child{
+  justify-self:start!important;
+  justify-content:start!important;
+}
+.app-header > #topFinalCard .top-final-match > .top-final-team:first-child .top-final-name{
+  text-align:left!important;
+}
+.app-header > #topFinalCard .top-final-match > .top-final-team:last-child{
+  justify-self:end!important;
+  justify-content:end!important;
+  grid-template-columns:minmax(0,1fr) 16px!important;
+}
+.app-header > #topFinalCard .top-final-match > .top-final-team:last-child .top-final-name{
+  grid-column:1!important;
+  grid-row:1!important;
+  text-align:right!important;
+}
+.app-header > #topFinalCard .top-final-match > .top-final-team:last-child .flag{
+  grid-column:2!important;
+  grid-row:1!important;
+}
+.app-header > #topFinalCard .top-final-score{
+  justify-self:center!important;
+}
+@media(min-width:761px){
+  .app-header > #topFinalCard.top-final-card{
+    width:min(360px,34vw)!important;
+    max-width:360px!important;
+  }
+}
+@media(max-width:760px){
+  .app-header > #topFinalCard .top-final-match{
+    column-gap:8px!important;
+  }
+  .app-header > #topFinalCard .top-final-match > .top-final-team:last-child{
+    grid-template-columns:minmax(0,1fr) 14px!important;
+  }
+}
+
+
+/* v197: odds button after year, centered header buttons */
+.global-odds-indicator[hidden]{display:inline-flex!important}
+.global-odds-indicator{
+  width:42px!important;
+  min-width:42px!important;
+  max-width:42px!important;
+  height:36px!important;
+  min-height:36px!important;
+  padding:0!important;
+  border-radius:10px!important;
+  font-size:17px!important;
+  font-weight:950!important;
+  line-height:1!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  box-shadow:none!important;
+  gap:0!important;
+}
+.global-odds-indicator:before{display:none!important}
+.global-odds-indicator.off{border-color:#475569!important;background:#111827!important;color:#cbd5e1!important}
+.global-odds-indicator.active{border-color:#f59e0b99!important;background:#78350f!important;color:#fde68a!important}
+.global-odds-indicator:hover,.global-odds-indicator:focus-visible{filter:brightness(1.12);outline:none!important}
+#shareBtn.header-action-btn,.settings-gear-btn,#dataSource.data-source,.global-odds-indicator{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+#shareBtn.header-action-btn:before{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;line-height:1!important}
+.settings-gear-btn{line-height:1!important}
+#dataSource.data-source:before{margin:0!important}
+@media(min-width:761px){
+  .app-header .header-right{
+    grid-template-columns:minmax(116px,150px) 42px 42px 42px 42px!important;
+    grid-template-areas:"year odds share gear live" "status status status status status"!important;
+  }
+  #globalOddsIndicator{grid-area:odds!important}
+}
+@media(min-width:761px) and (max-width:1060px){
+  .app-header .header-right{grid-template-columns:minmax(104px,132px) 38px 38px 38px 38px!important}
+  #globalOddsIndicator{width:38px!important;min-width:38px!important;max-width:38px!important}
+}
+@media(max-width:760px){
+  .header-right{
+    grid-template-columns:minmax(0,1fr) 40px 40px 40px 40px!important;
+    grid-template-areas:"year odds share gear live" "status status status status status"!important;
+  }
+  #globalOddsIndicator{grid-area:odds!important;width:40px!important;min-width:40px!important;max-width:40px!important;height:34px!important;min-height:34px!important}
+}
+@media(max-width:430px){
+  .header-right{grid-template-columns:minmax(0,1fr) 37px 37px 37px 37px!important;gap:5px!important}
+  #globalOddsIndicator,#shareBtn.header-action-btn,.header-settings-wrap,.settings-gear-btn,.header-live-row,#dataSource.data-source{width:37px!important;min-width:37px!important;max-width:37px!important}
+  #globalOddsIndicator{font-size:16px!important}
+}
+
+
+/* v197: compact Odds symbol and live data top-right actions */
+#globalOddsIndicator.global-odds-indicator{
+  font-size:17px!important;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif!important;
+  line-height:1!important;
+}
+.live-panel-head{
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+}
+.live-panel-head>div:first-child{min-width:0!important}
+.live-panel-actions{
+  margin-left:auto!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:flex-end!important;
+  gap:6px!important;
+  flex-wrap:nowrap!important;
+}
+.live-panel-actions button{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+.live-refresh-icon-btn{
+  width:30px!important;
+  min-width:30px!important;
+  height:28px!important;
+  padding:0!important;
+  font-size:15px!important;
+  line-height:1!important;
+}
+.live-panel-close{
+  align-self:flex-start!important;
+  order:3!important;
+}
+@media(max-width:520px){
+  .live-panel-head{display:flex!important;align-items:flex-start!important;gap:8px!important}
+  .live-panel-actions{margin-top:0!important;margin-left:auto!important;justify-content:flex-end!important;flex-wrap:wrap!important;max-width:178px!important}
+  .live-panel-actions .live-offline-toggle{height:28px!important;padding:0 8px!important}
+  .live-refresh-icon-btn,.live-panel-close{width:28px!important;min-width:28px!important;height:28px!important;padding:0!important}
+}
+
+
+/* v198: fixed live panel action sizes + simple offline toggle */
+.live-panel-actions{
+  display:grid!important;
+  grid-template-columns:46px 30px 30px!important;
+  align-items:start!important;
+  justify-content:end!important;
+  gap:6px!important;
+  min-width:124px!important;
+  flex:0 0 124px!important;
+}
+.live-panel-actions button{
+  margin:0!important;
+  box-sizing:border-box!important;
+  flex:0 0 auto!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  line-height:1!important;
+}
+.live-offline-toggle{
+  width:46px!important;
+  min-width:46px!important;
+  max-width:46px!important;
+  height:28px!important;
+  min-height:28px!important;
+  padding:0!important;
+  border-radius:999px!important;
+  border:1px solid #475569!important;
+  background:#1f2937!important;
+  color:transparent!important;
+  position:relative!important;
+  overflow:hidden!important;
+}
+.live-offline-toggle:before{
+  content:"";
+  position:absolute;
+  left:5px;
+  top:50%;
+  width:18px;
+  height:18px;
+  border-radius:999px;
+  background:#94a3b8;
+  transform:translateY(-50%);
+  transition:left .16s ease,background .16s ease;
+  box-shadow:0 1px 5px #0007;
+}
+.live-offline-toggle.active{
+  border-color:#f59e0b99!important;
+  background:#78350f55!important;
+  color:transparent!important;
+}
+.live-offline-toggle.active:before{
+  left:22px;
+  background:#f59e0b;
+}
+.live-refresh-icon-btn,.live-panel-close{
+  width:30px!important;
+  min-width:30px!important;
+  max-width:30px!important;
+  height:28px!important;
+  min-height:28px!important;
+  padding:0!important;
+}
+.live-refresh-icon-btn:disabled{opacity:.45!important}
+@media(max-width:520px){
+  .live-panel-actions{
+    grid-template-columns:46px 30px 30px!important;
+    min-width:124px!important;
+    max-width:124px!important;
+    flex:0 0 124px!important;
+    flex-wrap:nowrap!important;
+  }
+  .live-panel-actions .live-offline-toggle{width:46px!important;min-width:46px!important;max-width:46px!important;height:28px!important;padding:0!important}
+  .live-refresh-icon-btn,.live-panel-close{width:30px!important;min-width:30px!important;max-width:30px!important;height:28px!important;padding:0!important}
+}
+
+
+/* v201: odds-off popup + labeled fixed live toggle */
+.live-panel-actions{
+  grid-template-columns:74px 30px 30px!important;
+  min-width:146px!important;
+  max-width:146px!important;
+  flex:0 0 146px!important;
+}
+.live-offline-toggle{
+  width:74px!important;
+  min-width:74px!important;
+  max-width:74px!important;
+  color:#bbf7d0!important;
+  border-color:#22c55e99!important;
+  background:#14532d55!important;
+  font-size:10px!important;
+  font-weight:950!important;
+  letter-spacing:.02em!important;
+  text-transform:uppercase!important;
+  padding:0 7px!important;
+}
+.live-offline-toggle:before{display:none!important;content:none!important}
+.live-offline-toggle.active{
+  color:#fde68a!important;
+  border-color:#f59e0b99!important;
+  background:#78350f55!important;
+}
+@media(max-width:520px){
+  .live-panel-actions{grid-template-columns:74px 30px 30px!important;min-width:146px!important;max-width:146px!important;flex:0 0 146px!important}
+  .live-panel-actions .live-offline-toggle{width:74px!important;min-width:74px!important;max-width:74px!important;height:28px!important;padding:0 7px!important}
+}
+
+
+/* v201: live data loading states + inactive offline resource rows */
+.live-badge.idle{border-color:#475569!important;color:#94a3b8!important;background:#1f293755!important}
+.live-source.inactive{opacity:.62;filter:saturate(.35)}
+.live-source.loading{border-color:#38bdf877;background:#082f4933}
+.live-spinner{display:inline-flex;align-items:center;justify-content:center;width:12px;height:12px;margin-right:4px;animation:liveSpin .85s linear infinite;font-size:11px;line-height:1}
+@keyframes liveSpin{to{transform:rotate(360deg)}}
+.live-refresh-icon-btn.is-running{border-color:#38bdf899!important;background:#082f49!important;color:#bae6fd!important}
+
 </style>
 </head>
 <body>
 <header class="app-header">
-  <div class="brand-block"><h1>🏆 World Cup Prediktor <span class="brand-by">by kia</span></h1><div class="subtitle">Pick a year, adjust odds if needed, then save or share your prediction.</div><div class="app-version">v185</div></div>
+  <div class="brand-block"><div class="brand-title-row"><h1>🏆 World Cup Prediktor <span class="app-version">v201</span></h1></div><div class="subtitle">Pick a year, adjust odds if needed, then save or share your prediction.</div></div>
   <div class="header-right">
+    <div class="header-live-row"><div id="dataSource" class="data-source checking" title="Open data source panel">Data: checking</div></div>
     <div class="header-controls" aria-label="Main controls">
       <div class="header-year-control quick-field year-field"><label><span id="yearMode">Predict</span> year</label><select id="year"></select></div>
+      <button id="globalOddsIndicator" class="global-odds-indicator off" type="button" aria-label="My Odds are off">±</button>
       <button id="shareBtn" class="header-action-btn" type="button" title="Share prediction">Share</button>
       <div class="header-settings-wrap">
         <button id="settingsGearBtn" class="settings-gear-btn" type="button" title="Settings" aria-label="Settings" aria-haspopup="dialog" aria-expanded="false">⚙</button>
@@ -1558,17 +2340,13 @@ body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-
             <div class="field"><label>Simulations</label><input id="sims" type="number" min="500" max="120000" step="500" value="15000"></div>
             <div class="field"><label>Seed</label><input id="seed" type="number" value="42"></div>
           </div>
-          <div class="checks option-row compact-checks">
-            <label><input id="fast" type="checkbox"> Fast mode</label>
-            <label><input id="offlineMode" type="checkbox"> Offline mode</label>
-          </div>
-          <div class="help compact-help">Fast mode shortens large runs. Offline uses embedded data only.</div>
 
         </div>
       </div>
     </div>
-    <div class="header-status"><div id="status" class="status">Ready</div><button id="globalOddsIndicator" class="global-odds-indicator" type="button" hidden>My Odds: Off</button><div id="dataSource" class="data-source checking" title="Open data source panel">Data: checking</div></div>
+    <div class="header-status"><div id="status" class="status">Ready</div></div>
   </div>
+  <div id="topFinalCard" class="top-final-card" hidden></div>
 </header>
 <div id="liveDataPanel" class="live-panel" aria-hidden="true"></div>
 <div class="layout app-layout">
@@ -1577,6 +2355,7 @@ body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-
   <section id="overview" class="tabpane active"></section><section id="teams" class="tabpane"></section><section id="groups" class="tabpane"></section><section id="bracket" class="tabpane"></section><section id="accuracy" class="tabpane"></section><section id="method" class="tabpane"></section>
 </main>
 </div>
+<footer class="app-footer">World Cup Prediktor <span>·</span> by Kia</footer>
 
 
 <div id="manualDrawerBackdrop" class="manual-drawer-backdrop"></div>
@@ -1634,7 +2413,7 @@ body.manual-preview-open.manual-preview-has-target #bracket.active .game.manual-
 </div>
 <div id="toast" class="toast" hidden></div>
 <script>
-const APP_VERSION = 'v185';
+const APP_VERSION = 'v201';
 const DATA = {"TOURNAMENTS":{"1994":{"start":"1994-06-17","hosts":["United States"],"host_confed":"CONCACAF","format":24,"groups":{"A":["United States","Switzerland","Colombia","Romania"],"B":["Brazil","Russia","Cameroon","Sweden"],"C":["Germany","Bolivia","Spain","South Korea"],"D":["Argentina","Greece","Nigeria","Bulgaria"],"E":["Italy","Ireland","Norway","Mexico"],"F":["Belgium","Morocco","Netherlands","Saudi Arabia"]},"actual":{"group_top2":{"A":["Romania","Switzerland"],"B":["Brazil","Sweden"],"C":["Germany","Spain"],"D":["Nigeria","Bulgaria"],"E":["Mexico","Ireland"],"F":["Netherlands","Saudi Arabia"]},"r16":["Germany","Belgium","Spain","Switzerland","Saudi Arabia","Sweden","Romania","Argentina","Netherlands","Ireland","Brazil","United States","Nigeria","Italy","Mexico","Bulgaria"],"quarter_finalists":["Germany","Spain","Sweden","Romania","Netherlands","Brazil","Italy","Bulgaria"],"semi_finalists":["Brazil","Sweden","Bulgaria","Italy"],"finalists":["Brazil","Italy"],"champion":"Brazil","runner_up":"Italy","third":"Sweden","fourth":"Bulgaria"}},"1998":{"start":"1998-06-10","hosts":["France"],"host_confed":"UEFA","format":32,"groups":{"A":["Brazil","Scotland","Morocco","Norway"],"B":["Italy","Chile","Cameroon","Austria"],"C":["France","South Africa","Saudi Arabia","Denmark"],"D":["Spain","Nigeria","Paraguay","Bulgaria"],"E":["Netherlands","Belgium","South Korea","Mexico"],"F":["Germany","United States","Yugoslavia","Iran"],"G":["Romania","Colombia","England","Tunisia"],"H":["Argentina","Japan","Jamaica","Croatia"]},"actual":{"group_top2":{"A":["Brazil","Norway"],"B":["Italy","Chile"],"C":["France","Denmark"],"D":["Nigeria","Paraguay"],"E":["Netherlands","Mexico"],"F":["Germany","Yugoslavia"],"G":["Romania","England"],"H":["Argentina","Croatia"]},"r16":["Brazil","Chile","Denmark","Nigeria","Netherlands","Yugoslavia","Argentina","England","Italy","Norway","France","Paraguay","Germany","Mexico","Romania","Croatia"],"quarter_finalists":["Brazil","Denmark","Netherlands","Argentina","Italy","France","Germany","Croatia"],"semi_finalists":["Brazil","Netherlands","France","Croatia"],"finalists":["France","Brazil"],"champion":"France","runner_up":"Brazil","third":"Croatia","fourth":"Netherlands"}},"2002":{"start":"2002-05-31","hosts":["South Korea","Japan"],"host_confed":"AFC","format":32,"groups":{"A":["France","Senegal","Uruguay","Denmark"],"B":["Spain","Slovenia","Paraguay","South Africa"],"C":["Brazil","Turkey","China","Costa Rica"],"D":["South Korea","Poland","United States","Portugal"],"E":["Germany","Saudi Arabia","Ireland","Cameroon"],"F":["Argentina","Nigeria","England","Sweden"],"G":["Italy","Ecuador","Croatia","Mexico"],"H":["Japan","Belgium","Russia","Tunisia"]},"actual":{"group_top2":{"A":["Denmark","Senegal"],"B":["Spain","Paraguay"],"C":["Brazil","Turkey"],"D":["South Korea","United States"],"E":["Germany","Ireland"],"F":["Sweden","England"],"G":["Mexico","Italy"],"H":["Japan","Belgium"]},"r16":["Denmark","Senegal","Spain","Paraguay","Brazil","Turkey","South Korea","United States","Germany","Ireland","Sweden","England","Mexico","Italy","Japan","Belgium"],"quarter_finalists":["Senegal","Turkey","Brazil","England","Germany","United States","Spain","South Korea"],"semi_finalists":["Germany","South Korea","Brazil","Turkey"],"finalists":["Brazil","Germany"],"champion":"Brazil","runner_up":"Germany","third":"Turkey","fourth":"South Korea"}},"2006":{"start":"2006-06-09","hosts":["Germany"],"host_confed":"UEFA","format":32,"groups":{"A":["Germany","Costa Rica","Poland","Ecuador"],"B":["England","Paraguay","Trinidad and Tobago","Sweden"],"C":["Argentina","Ivory Coast","Serbia and Montenegro","Netherlands"],"D":["Mexico","Iran","Angola","Portugal"],"E":["Italy","Ghana","United States","Czech Republic"],"F":["Brazil","Croatia","Australia","Japan"],"G":["France","Switzerland","South Korea","Togo"],"H":["Spain","Ukraine","Tunisia","Saudi Arabia"]},"actual":{"group_top2":{"A":["Germany","Ecuador"],"B":["England","Sweden"],"C":["Argentina","Netherlands"],"D":["Portugal","Mexico"],"E":["Italy","Ghana"],"F":["Brazil","Australia"],"G":["Switzerland","France"],"H":["Spain","Ukraine"]},"r16":["Germany","Ecuador","England","Sweden","Argentina","Netherlands","Portugal","Mexico","Italy","Ghana","Brazil","Australia","Switzerland","France","Spain","Ukraine"],"quarter_finalists":["Germany","Argentina","Italy","Ukraine","England","Portugal","Brazil","France"],"semi_finalists":["Germany","Italy","Portugal","France"],"finalists":["Italy","France"],"champion":"Italy","runner_up":"France","third":"Germany","fourth":"Portugal"}},"2010":{"start":"2010-06-11","hosts":["South Africa"],"host_confed":"CAF","format":32,"groups":{"A":["South Africa","Mexico","Uruguay","France"],"B":["Argentina","Nigeria","South Korea","Greece"],"C":["England","United States","Algeria","Slovenia"],"D":["Germany","Australia","Serbia","Ghana"],"E":["Netherlands","Denmark","Japan","Cameroon"],"F":["Italy","Paraguay","New Zealand","Slovakia"],"G":["Brazil","North Korea","Ivory Coast","Portugal"],"H":["Spain","Switzerland","Honduras","Chile"]},"actual":{"group_top2":{"A":["Uruguay","Mexico"],"B":["Argentina","South Korea"],"C":["United States","England"],"D":["Germany","Ghana"],"E":["Netherlands","Japan"],"F":["Paraguay","Slovakia"],"G":["Brazil","Portugal"],"H":["Spain","Chile"]},"r16":["Uruguay","Mexico","Argentina","South Korea","United States","England","Germany","Ghana","Netherlands","Japan","Paraguay","Slovakia","Brazil","Portugal","Spain","Chile"],"quarter_finalists":["Uruguay","Ghana","Netherlands","Brazil","Argentina","Germany","Paraguay","Spain"],"semi_finalists":["Uruguay","Netherlands","Germany","Spain"],"finalists":["Netherlands","Spain"],"champion":"Spain","runner_up":"Netherlands","third":"Germany","fourth":"Uruguay"}},"2014":{"start":"2014-06-12","hosts":["Brazil"],"host_confed":"CONMEBOL","format":32,"groups":{"A":["Brazil","Croatia","Mexico","Cameroon"],"B":["Spain","Netherlands","Chile","Australia"],"C":["Colombia","Greece","Ivory Coast","Japan"],"D":["Uruguay","Costa Rica","England","Italy"],"E":["Switzerland","Ecuador","France","Honduras"],"F":["Argentina","Bosnia and Herzegovina","Iran","Nigeria"],"G":["Germany","Portugal","Ghana","United States"],"H":["Belgium","Algeria","Russia","South Korea"]},"actual":{"group_top2":{"A":["Brazil","Mexico"],"B":["Netherlands","Chile"],"C":["Colombia","Greece"],"D":["Costa Rica","Uruguay"],"E":["France","Switzerland"],"F":["Argentina","Nigeria"],"G":["Germany","United States"],"H":["Belgium","Algeria"]},"r16":["Brazil","Mexico","Netherlands","Chile","Colombia","Greece","Costa Rica","Uruguay","France","Switzerland","Argentina","Nigeria","Germany","United States","Belgium","Algeria"],"quarter_finalists":["Brazil","Colombia","France","Germany","Netherlands","Costa Rica","Argentina","Belgium"],"semi_finalists":["Brazil","Germany","Netherlands","Argentina"],"finalists":["Germany","Argentina"],"champion":"Germany","runner_up":"Argentina","third":"Netherlands","fourth":"Brazil"}},"2018":{"start":"2018-06-14","hosts":["Russia"],"host_confed":"UEFA","format":32,"groups":{"A":["Russia","Saudi Arabia","Egypt","Uruguay"],"B":["Portugal","Spain","Morocco","Iran"],"C":["France","Australia","Peru","Denmark"],"D":["Argentina","Iceland","Croatia","Nigeria"],"E":["Brazil","Switzerland","Costa Rica","Serbia"],"F":["Germany","Mexico","Sweden","South Korea"],"G":["Belgium","Panama","Tunisia","England"],"H":["Poland","Senegal","Colombia","Japan"]},"actual":{"group_top2":{"A":["Uruguay","Russia"],"B":["Spain","Portugal"],"C":["France","Denmark"],"D":["Croatia","Argentina"],"E":["Brazil","Switzerland"],"F":["Sweden","Mexico"],"G":["Belgium","England"],"H":["Colombia","Japan"]},"r16":["Uruguay","Russia","Spain","Portugal","France","Denmark","Croatia","Argentina","Brazil","Switzerland","Sweden","Mexico","Belgium","England","Colombia","Japan"],"quarter_finalists":["Uruguay","France","Brazil","Belgium","Sweden","England","Russia","Croatia"],"semi_finalists":["France","Belgium","Croatia","England"],"finalists":["France","Croatia"],"champion":"France","runner_up":"Croatia","third":"Belgium","fourth":"England"}},"2022":{"start":"2022-11-20","hosts":["Qatar"],"host_confed":"AFC","format":32,"groups":{"A":["Qatar","Ecuador","Senegal","Netherlands"],"B":["England","Iran","United States","Wales"],"C":["Argentina","Saudi Arabia","Mexico","Poland"],"D":["France","Australia","Denmark","Tunisia"],"E":["Spain","Costa Rica","Germany","Japan"],"F":["Belgium","Canada","Morocco","Croatia"],"G":["Brazil","Serbia","Switzerland","Cameroon"],"H":["Portugal","Ghana","Uruguay","South Korea"]},"actual":{"group_top2":{"A":["Netherlands","Senegal"],"B":["England","United States"],"C":["Argentina","Poland"],"D":["France","Australia"],"E":["Japan","Spain"],"F":["Morocco","Croatia"],"G":["Brazil","Switzerland"],"H":["Portugal","South Korea"]},"r16":["Netherlands","Senegal","England","United States","Argentina","Poland","France","Australia","Japan","Spain","Morocco","Croatia","Brazil","Switzerland","Portugal","South Korea"],"quarter_finalists":["Netherlands","Argentina","Croatia","Brazil","England","France","Morocco","Portugal"],"semi_finalists":["Argentina","Croatia","France","Morocco"],"finalists":["Argentina","France"],"champion":"Argentina","runner_up":"France","third":"Croatia","fourth":"Morocco"}},"2026":{"start":"2026-06-11","hosts":["Canada","Mexico","United States"],"host_confed":"CONCACAF","format":48,"groups":{"A":["Mexico","South Africa","South Korea","Czech Republic"],"B":["Canada","Bosnia and Herzegovina","Qatar","Switzerland"],"C":["Brazil","Morocco","Haiti","Scotland"],"D":["United States","Paraguay","Australia","Turkey"],"E":["Germany","Cura\u00e7ao","Ivory Coast","Ecuador"],"F":["Netherlands","Japan","Sweden","Tunisia"],"G":["Belgium","Egypt","Iran","New Zealand"],"H":["Spain","Cape Verde","Saudi Arabia","Uruguay"],"I":["France","Senegal","Iraq","Norway"],"J":["Argentina","Algeria","Austria","Jordan"],"K":["Portugal","DR Congo","Uzbekistan","Colombia"],"L":["England","Croatia","Ghana","Panama"]},"actual":{}}},"YEAR_ELO_PRIOR":{"1994":{"Brazil":1785,"Italy":1765,"Germany":1755,"Argentina":1740,"Netherlands":1715,"Spain":1700,"Sweden":1660,"Romania":1645,"Bulgaria":1630,"Nigeria":1625,"Mexico":1620,"Belgium":1615,"Colombia":1605,"Norway":1600,"Ireland":1585,"Russia":1580,"United States":1545,"Switzerland":1540,"Saudi Arabia":1490},"1998":{"Brazil":1840,"France":1785,"Italy":1765,"Netherlands":1755,"Argentina":1745,"Germany":1735,"Spain":1710,"England":1695,"Croatia":1665,"Yugoslavia":1660,"Denmark":1655,"Mexico":1640,"Norway":1635,"Nigeria":1625,"Romania":1620,"Paraguay":1605,"Chile":1600,"Morocco":1580},"2002":{"Brazil":1810,"France":1785,"Argentina":1775,"Italy":1740,"Germany":1710,"Spain":1705,"England":1695,"Portugal":1685,"Turkey":1635,"South Korea":1575},"2006":{"Brazil":1825,"Argentina":1765,"Italy":1755,"France":1735,"Germany":1730,"England":1725,"Netherlands":1715,"Portugal":1710,"Spain":1705,"Mexico":1660},"2010":{"Spain":1900,"Brazil":1720,"Netherlands":1840,"Germany":1790,"Argentina":1720,"Portugal":1720,"England":1705,"Uruguay":1695,"Italy":1680,"France":1625,"Ghana":1605,"Paraguay":1600},"2014":{"Germany":1830,"Argentina":1810,"Brazil":1785,"Netherlands":1760,"Spain":1740,"France":1740,"Belgium":1725,"Colombia":1715,"Chile":1690,"Uruguay":1680,"Costa Rica":1565},"2018":{"France":1820,"Brazil":1790,"Belgium":1785,"Croatia":1755,"England":1745,"Spain":1740,"Uruguay":1715,"Argentina":1705,"Portugal":1705,"Germany":1695,"Russia":1600},"2022":{"Argentina":1835,"France":1815,"Brazil":1790,"England":1765,"Netherlands":1760,"Spain":1745,"Portugal":1735,"Croatia":1725,"Morocco":1675,"Belgium":1665,"Germany":1660},"2026":{"Spain":1840,"Argentina":1830,"France":1825,"England":1810,"Brazil":1800,"Portugal":1785,"Netherlands":1775,"Germany":1760,"Croatia":1735,"Morocco":1720,"Colombia":1710,"Uruguay":1705,"Japan":1680,"United States":1665,"Mexico":1655,"Canada":1585}},"FIFA_RANKS":{"2026":{"Spain":1,"Argentina":2,"France":3,"England":4,"Brazil":5,"Portugal":6,"Netherlands":7,"Belgium":8,"Germany":9,"Croatia":10,"Morocco":11,"Colombia":13,"United States":14,"Mexico":15,"Uruguay":16,"Switzerland":17,"Japan":18,"Senegal":19,"Iran":20,"South Korea":22,"Ecuador":23,"Austria":24,"Australia":26,"Canada":27,"Norway":29,"Panama":30,"Egypt":34,"Algeria":35,"Scotland":36,"Paraguay":39,"Tunisia":40,"Ivory Coast":42,"Czech Republic":44,"Uzbekistan":50,"Qatar":51,"Saudi Arabia":60,"South Africa":61,"Jordan":66,"Cape Verde":68,"Ghana":72,"Cura\u00e7ao":82,"Haiti":84,"New Zealand":86,"Bosnia and Herzegovina":70,"Turkey":28,"Sweden":32,"Iraq":58,"DR Congo":63}},"TEAM_FLAG_CODES":{"Argentina":"ar","Brazil":"br","Uruguay":"uy","Paraguay":"py","Chile":"cl","Colombia":"co","Ecuador":"ec","Peru":"pe","Venezuela":"ve","Bolivia":"bo","Mexico":"mx","United States":"us","Canada":"ca","Costa Rica":"cr","Panama":"pa","Honduras":"hn","Trinidad and Tobago":"tt","Haiti":"ht","Jamaica":"jm","Cura\u00e7ao":"cw","Spain":"es","Germany":"de","France":"fr","England":"gb-eng","Netherlands":"nl","Portugal":"pt","Italy":"it","Belgium":"be","Croatia":"hr","Switzerland":"ch","Sweden":"se","Denmark":"dk","Poland":"pl","Serbia":"rs","Serbia and Montenegro":"rs","Russia":"ru","Ukraine":"ua","Greece":"gr","Slovenia":"si","Slovakia":"sk","Czech Republic":"cz","Turkey":"tr","Norway":"no","Austria":"at","Scotland":"gb-sct","Wales":"gb-wls","Bosnia and Herzegovina":"ba","Ireland":"ie","Romania":"ro","Kosovo":"xk","Japan":"jp","South Korea":"kr","North Korea":"kp","Australia":"au","Iran":"ir","Saudi Arabia":"sa","Qatar":"qa","Iraq":"iq","Jordan":"jo","Uzbekistan":"uz","China":"cn","Morocco":"ma","Senegal":"sn","Ghana":"gh","Ivory Coast":"ci","Cameroon":"cm","Nigeria":"ng","South Africa":"za","Tunisia":"tn","Algeria":"dz","Egypt":"eg","Angola":"ao","Togo":"tg","Cape Verde":"cv","DR Congo":"cd","New Zealand":"nz","Bulgaria":"bg","Yugoslavia":"rs","Iceland":"is","USA":"us","US":"us","U.S.A.":"us","United States of America":"us","Bosnia & Herzegovina":"ba","Bosnia-Herzegovina":"ba","Bosnia and Herz.":"ba","Czechia":"cz","T\u00fcrkiye":"tr","Korea Republic":"kr","Korea DPR":"kp","Congo DR":"cd","Democratic Republic of Congo":"cd","C\u00f4te d\u2019Ivoire":"ci","C\u00f4te d'Ivoire":"ci","Cote d'Ivoire":"ci","Curacao":"cw","Cape Verde Islands":"cv"},"CONFEDS":{"Argentina":"CONMEBOL","Brazil":"CONMEBOL","Uruguay":"CONMEBOL","Paraguay":"CONMEBOL","Chile":"CONMEBOL","Colombia":"CONMEBOL","Ecuador":"CONMEBOL","Peru":"CONMEBOL","Venezuela":"CONMEBOL","Bolivia":"CONMEBOL","Mexico":"CONCACAF","United States":"CONCACAF","Canada":"CONCACAF","Costa Rica":"CONCACAF","Panama":"CONCACAF","Honduras":"CONCACAF","Trinidad and Tobago":"CONCACAF","Haiti":"CONCACAF","Jamaica":"CONCACAF","Cura\u00e7ao":"CONCACAF","Spain":"UEFA","Germany":"UEFA","France":"UEFA","England":"UEFA","Netherlands":"UEFA","Portugal":"UEFA","Italy":"UEFA","Belgium":"UEFA","Croatia":"UEFA","Switzerland":"UEFA","Sweden":"UEFA","Denmark":"UEFA","Poland":"UEFA","Serbia":"UEFA","Serbia and Montenegro":"UEFA","Russia":"UEFA","Ukraine":"UEFA","Greece":"UEFA","Slovenia":"UEFA","Slovakia":"UEFA","Czech Republic":"UEFA","Turkey":"UEFA","Norway":"UEFA","Austria":"UEFA","Scotland":"UEFA","Wales":"UEFA","Bosnia and Herzegovina":"UEFA","Ireland":"UEFA","Romania":"UEFA","Kosovo":"UEFA","Japan":"AFC","South Korea":"AFC","North Korea":"AFC","Australia":"AFC","Iran":"AFC","Saudi Arabia":"AFC","Qatar":"AFC","Iraq":"AFC","Jordan":"AFC","Uzbekistan":"AFC","China":"AFC","Morocco":"CAF","Senegal":"CAF","Ghana":"CAF","Ivory Coast":"CAF","Cameroon":"CAF","Nigeria":"CAF","South Africa":"CAF","Tunisia":"CAF","Algeria":"CAF","Egypt":"CAF","Angola":"CAF","Togo":"CAF","Cape Verde":"CAF","DR Congo":"CAF","New Zealand":"OFC","Bulgaria":"UEFA","Yugoslavia":"UEFA","Iceland":"UEFA","USA":"CONCACAF","US":"CONCACAF","U.S.A.":"CONCACAF","United States of America":"CONCACAF","Bosnia & Herzegovina":"UEFA","Bosnia-Herzegovina":"UEFA","Bosnia and Herz.":"UEFA","Czechia":"UEFA","T\u00fcrkiye":"UEFA","Korea Republic":"AFC","Korea DPR":"AFC","Congo DR":"CAF","Democratic Republic of Congo":"CAF","C\u00f4te d\u2019Ivoire":"CAF","C\u00f4te d'Ivoire":"CAF","Cote d'Ivoire":"CAF","Curacao":"CONCACAF","Cape Verde Islands":"CAF"},"BASE_PRIOR":{"Brazil":1780,"Argentina":1775,"France":1765,"Spain":1760,"Germany":1745,"England":1725,"Netherlands":1720,"Portugal":1715,"Italy":1710,"Belgium":1695,"Uruguay":1685,"Croatia":1680,"Colombia":1665,"Morocco":1645,"Switzerland":1640,"Mexico":1635,"United States":1620,"Japan":1615,"Senegal":1605,"Denmark":1600,"Sweden":1595,"Chile":1590,"Serbia":1585,"Ecuador":1580,"Paraguay":1575,"Austria":1570,"Turkey":1570,"South Korea":1565,"Iran":1560,"Australia":1555,"Poland":1550,"Ghana":1545,"Ivory Coast":1545,"Nigeria":1545,"Cameroon":1535,"Tunisia":1530,"Algeria":1530,"Egypt":1530,"Canada":1525,"Scotland":1525,"Norway":1525,"Czech Republic":1525,"Wales":1515,"Qatar":1500,"Saudi Arabia":1490,"South Africa":1485,"New Zealand":1465,"Panama":1465,"Haiti":1455,"Cape Verde":1450,"Cura\u00e7ao":1445,"Jordan":1440,"Iraq":1470,"Uzbekistan":1480,"DR Congo":1495,"Bulgaria":1545,"Yugoslavia":1605,"Jamaica":1445,"Romania":1585,"Russia":1580,"Bolivia":1465,"Iceland":1510},"SCAR_EVENTS":{"2010|France":0.7,"2010|Italy":0.45,"2010|Brazil":0.45,"2014|Spain":0.55,"2018|Brazil":0.85,"2018|Germany":0.3,"2022|Germany":0.8,"2022|Belgium":0.4,"2026|Brazil":0.35,"2026|Germany":0.25,"2026|Belgium":0.3,"1994|Argentina":0.2,"1998|Brazil":0.25,"1998|Germany":0.2},"PRE_CONTEXT":{"1994":{"Brazil":{"player":0.92,"closer":0.88,"cycle":0.86},"Italy":{"player":0.9,"closer":0.82,"cycle":0.78},"Germany":{"player":0.87,"closer":0.82,"cycle":0.76,"burden":0.25},"Argentina":{"player":0.91,"closer":0.78,"cycle":0.76,"disruption":0.35},"Netherlands":{"player":0.86,"closer":0.76,"cycle":0.78},"Sweden":{"player":0.78,"closer":0.7,"cycle":0.78,"dark":0.62},"Bulgaria":{"player":0.74,"closer":0.62,"cycle":0.76,"dark":0.76},"Romania":{"player":0.76,"closer":0.66,"cycle":0.78,"dark":0.72},"Spain":{"player":0.83,"closer":0.72,"cycle":0.76},"Nigeria":{"player":0.73,"closer":0.6,"cycle":0.78,"dark":0.7},"United States":{"player":0.58,"closer":0.45,"cycle":0.68,"hostPulse":0.8},"Mexico":{"player":0.72,"closer":0.65,"cycle":0.72},"Belgium":{"player":0.76,"closer":0.68,"cycle":0.7},"Colombia":{"player":0.78,"closer":0.7,"cycle":0.72,"pressure":0.7}},"1998":{"France":{"player":0.92,"closer":0.82,"cycle":0.88},"Brazil":{"player":0.96,"closer":0.92,"cycle":0.86,"pressure":0.85},"Netherlands":{"player":0.9,"closer":0.82,"cycle":0.84},"Croatia":{"player":0.78,"closer":0.68,"cycle":0.78,"dark":0.78},"Italy":{"player":0.91,"closer":0.84,"cycle":0.8},"Germany":{"player":0.86,"closer":0.74,"cycle":0.7,"burden":0.35},"Argentina":{"player":0.88,"closer":0.74,"cycle":0.8},"Denmark":{"player":0.8,"closer":0.7,"cycle":0.76,"dark":0.62},"England":{"player":0.83,"closer":0.68,"cycle":0.72},"Yugoslavia":{"player":0.8,"closer":0.68,"cycle":0.74},"Norway":{"player":0.76,"closer":0.65,"cycle":0.74,"dark":0.65},"Nigeria":{"player":0.78,"closer":0.64,"cycle":0.72,"dark":0.66},"Paraguay":{"player":0.72,"closer":0.58,"cycle":0.7,"dark":0.68},"Mexico":{"player":0.74,"closer":0.68,"cycle":0.74},"Romania":{"player":0.77,"closer":0.68,"cycle":0.76},"Chile":{"player":0.75,"closer":0.66,"cycle":0.72}},"2002":{"Brazil":{"player":0.94,"closer":0.82,"cycle":0.78},"Germany":{"player":0.78,"closer":0.66,"cycle":0.64},"France":{"player":0.92,"closer":0.8,"cycle":0.7,"disruption":0.25},"Argentina":{"player":0.9,"closer":0.74,"cycle":0.68},"Senegal":{"player":0.62,"closer":0.45,"cycle":0.68,"dark":0.8},"Turkey":{"player":0.7,"closer":0.55,"cycle":0.67,"dark":0.72},"South Korea":{"player":0.64,"closer":0.5,"cycle":0.7,"dark":0.74}},"2006":{"Italy":{"player":0.91,"closer":0.8,"cycle":0.76},"France":{"player":0.89,"closer":0.7,"cycle":0.68},"Brazil":{"player":0.96,"closer":0.78,"cycle":0.72,"pressure":0.85},"Germany":{"player":0.83,"closer":0.7,"cycle":0.74},"Portugal":{"player":0.84,"closer":0.69,"cycle":0.72},"Argentina":{"player":0.89,"closer":0.73,"cycle":0.75},"Spain":{"player":0.86,"closer":0.7,"cycle":0.72}},"2010":{"Spain":{"player":0.96,"closer":0.95,"cycle":0.93},"Netherlands":{"player":0.91,"closer":0.82,"cycle":0.84},"Germany":{"player":0.88,"closer":0.78,"cycle":0.8},"Uruguay":{"player":0.78,"closer":0.72,"cycle":0.76,"dark":0.68},"Ghana":{"player":0.7,"closer":0.6,"cycle":0.7,"dark":0.74},"Brazil":{"player":0.93,"closer":0.78,"cycle":0.76},"Argentina":{"player":0.9,"closer":0.76,"cycle":0.75},"Italy":{"player":0.82,"closer":0.6,"cycle":0.48,"disruption":0.3},"France":{"player":0.78,"closer":0.5,"cycle":0.42,"disruption":0.8}},"2014":{"Germany":{"player":0.96,"closer":0.86,"cycle":0.88},"Argentina":{"player":0.92,"closer":0.82,"cycle":0.85},"Netherlands":{"player":0.86,"closer":0.78,"cycle":0.8},"Brazil":{"player":0.9,"closer":0.78,"cycle":0.8,"pressure":0.94,"disruption":0.2},"Spain":{"player":0.91,"closer":0.82,"cycle":0.62,"burden":0.65},"Colombia":{"player":0.8,"closer":0.72,"cycle":0.82,"dark":0.7},"Costa Rica":{"player":0.58,"closer":0.45,"cycle":0.66,"dark":0.86},"France":{"player":0.85,"closer":0.7,"cycle":0.76},"Belgium":{"player":0.84,"closer":0.68,"cycle":0.78}},"2018":{"France":{"player":0.95,"closer":0.84,"cycle":0.87},"Croatia":{"player":0.86,"closer":0.76,"cycle":0.8,"dark":0.66},"Belgium":{"player":0.92,"closer":0.78,"cycle":0.84},"England":{"player":0.86,"closer":0.72,"cycle":0.78},"Brazil":{"player":0.94,"closer":0.78,"cycle":0.79,"pressure":0.9},"Germany":{"player":0.9,"closer":0.68,"cycle":0.58,"burden":0.7,"disruption":0.35},"Argentina":{"player":0.87,"closer":0.66,"cycle":0.6,"disruption":0.45},"Russia":{"player":0.64,"closer":0.5,"cycle":0.68,"dark":0.76}},"2022":{"Argentina":{"player":0.94,"closer":0.97,"cycle":0.96},"France":{"player":0.96,"closer":0.88,"cycle":0.88,"burden":0.18},"Brazil":{"player":0.95,"closer":0.78,"cycle":0.83,"pressure":0.92},"Croatia":{"player":0.86,"closer":0.84,"cycle":0.82,"dark":0.7},"Morocco":{"player":0.78,"closer":0.66,"cycle":0.78,"dark":0.88},"England":{"player":0.9,"closer":0.8,"cycle":0.82},"Netherlands":{"player":0.88,"closer":0.76,"cycle":0.82},"Portugal":{"player":0.89,"closer":0.72,"cycle":0.76,"disruption":0.2},"Spain":{"player":0.89,"closer":0.7,"cycle":0.78},"Germany":{"player":0.88,"closer":0.6,"cycle":0.55,"disruption":0.42},"Belgium":{"player":0.85,"closer":0.6,"cycle":0.52,"disruption":0.54}},"2026":{"Spain":{"player":0.96,"closer":0.9,"cycle":0.9},"Argentina":{"player":0.94,"closer":0.94,"cycle":0.88,"burden":0.3},"France":{"player":0.96,"closer":0.88,"cycle":0.88},"England":{"player":0.94,"closer":0.84,"cycle":0.86},"Brazil":{"player":0.94,"closer":0.78,"cycle":0.82},"Portugal":{"player":0.92,"closer":0.86,"cycle":0.84},"Netherlands":{"player":0.9,"closer":0.8,"cycle":0.82},"Germany":{"player":0.89,"closer":0.76,"cycle":0.78},"Croatia":{"player":0.84,"closer":0.82,"cycle":0.76},"Morocco":{"player":0.8,"closer":0.76,"cycle":0.8,"dark":0.74},"Colombia":{"player":0.84,"closer":0.8,"cycle":0.84,"dark":0.65},"Uruguay":{"player":0.85,"closer":0.78,"cycle":0.82},"Japan":{"player":0.79,"closer":0.72,"cycle":0.8,"dark":0.72},"United States":{"player":0.78,"closer":0.7,"cycle":0.76,"hostPulse":0.8},"Mexico":{"player":0.76,"closer":0.74,"cycle":0.74,"hostPulse":0.82},"Canada":{"player":0.74,"closer":0.68,"cycle":0.72,"hostPulse":0.8}}}};
 
 const EMBEDDED_BASE_DATA = JSON.parse(JSON.stringify(DATA));
@@ -3264,6 +4043,25 @@ function applyShootoutStats(rows,year=2026){
   }
   return {changed:changes.length>0,verified:matchedRows>0,changes,matched:Object.keys(stats).length,matchCount:matchedRows,latestDate:latest};
 }
+function liveDefaultSources(status='checking'){
+  const inactive=status==='idle';
+  return [
+    {name:'OpenFootball groups + schedule + results',status:inactive?'idle':'checking',statusLabel:inactive?'inactive':'loading',detail:inactive?'Offline mode: resource is shown but not in use.':'Waiting to check groups, fixtures, and completed results.'},
+    {name:'FIFA ranking CSV + points',status:inactive?'idle':'checking',statusLabel:inactive?'inactive':'loading',detail:inactive?'Offline mode: resource is shown but not in use.':'Waiting to check FIFA ranking and points data.'},
+    {name:'Team form from recent results',status:inactive?'idle':'checking',statusLabel:inactive?'inactive':'loading',detail:inactive?'Offline mode: resource is shown but not in use.':'Waiting to check recent international results.'},
+    {name:'Squad/player lists',status:inactive?'idle':'checking',statusLabel:inactive?'inactive':'loading',detail:inactive?'Offline mode: resource is shown but not in use.':'Waiting to check squad and player lists.'},
+    {name:'Shootout history',status:inactive?'idle':'checking',statusLabel:inactive?'inactive':'loading',detail:inactive?'Offline mode: resource is shown but not in use.':'Waiting to check penalty shootout history.'}
+  ];
+}
+function syncLiveRunningSources(source){
+  if(!dataSourceState.running)return;
+  const current=Array.isArray(dataSourceState.sources)?dataSourceState.sources.slice():liveDefaultSources('checking');
+  const idx=current.findIndex(s=>s.name===source.name || s.name.replace(/ \+ results$/,'')===source.name || source.name.replace(/ \+ results$/,'')===s.name);
+  if(idx>=0)current[idx]=source;else current.push(source);
+  dataSourceState={...dataSourceState,sources:current};
+  const panel=$('liveDataPanel');
+  if(panel?.classList.contains('open'))renderLiveDataPanel();
+}
 function setLiveOffline(enabled,opts={}){
   liveOfflineEnabled=!!enabled;
   try{localStorage.setItem(LIVE_OFFLINE_KEY,liveOfflineEnabled?'1':'0')}catch(err){}
@@ -3274,10 +4072,10 @@ function setLiveOffline(enabled,opts={}){
     dataSourceState={
       ...dataSourceState,
       running:false,checkMode:'idle',
-      sources:[{name:'Offline mode',status:'warn',statusLabel:'offline',detail:'Live fetches are disabled. Fetched live data has been discarded and embedded base stats are being used.'}],
+      sources:liveDefaultSources('idle'),
       changes:[],errors:[],appliedCount:0,lastApplied:null
     };
-    setDataSource('offline','Data: offline','Offline mode is enabled. Fetched live data has been discarded; base stats are being used.');
+    setDataSource('offline','Data: offline','Offline mode is enabled. Resources are shown but not in use; embedded base stats are being used.');
     refreshManualUI?.();
     if(ready){
       worker?.postMessage({type:'init',data:DATA});
@@ -3307,7 +4105,10 @@ function liveRankChangeHTML(c){
   return `<div class="live-rank-item ${esc(p.kind||'applied')}" title="${esc(p.title+' · '+p.detail)}"><span class="flag">${flagMarkup(team)}</span><span class="live-rank-delta">${esc(p.detail)}</span></div>`;
 }
 function liveSourceHTML(s){
-  return `<div class="live-source"><span class="live-badge ${esc(s.status)}">${esc(s.statusLabel||s.status)}</span><div><b>${esc(s.name)}</b><small>${esc(s.detail||'')}</small></div></div>`;
+  const loading=s.status==='checking'||s.status==='loading';
+  const inactive=s.status==='idle'||s.status==='inactive';
+  const badge=loading?`<span class="live-spinner" aria-hidden="true">↻</span>${esc(s.statusLabel||'loading')}`:esc(s.statusLabel||s.status);
+  return `<div class="live-source ${loading?'loading':''} ${inactive?'inactive':''}"><span class="live-badge ${esc(s.status)}">${badge}</span><div><b>${esc(s.name)}</b><small>${esc(s.detail||'')}</small></div></div>`;
 }
 function liveUpdateRowParts(c){
   const p=liveChangeParts(c||{});
@@ -3360,14 +4161,15 @@ function renderLiveDataPanel(){
   const panel=$('liveDataPanel');
   if(!panel)return;
   const sources=dataSourceState.sources||[];
-  const runningText=dataSourceState.running?'Checking...':'Refresh all';
+  const runningText='↻';
+  const refreshTitle=dataSourceState.running?'Checking live data':'Refresh live data';
   const autoText=liveOfflineEnabled?'off':`every ${Math.round(LIVE_REFRESH_MS/60000)} min`;
-  const emptyText=liveOfflineEnabled?'Offline mode is enabled. Online feeds are paused and embedded base stats are being used.':'No online check has run yet.';
-  panel.innerHTML=`<div class="live-panel-head"><div><h3>Live Data</h3><div class="live-meta">Last check: ${esc(shortTime(dataSourceState.lastChecked))} · Last full: ${esc(shortTime(dataSourceState.lastFullChecked))} · Auto: ${esc(autoText)}</div></div><div class="live-panel-actions"><button id="liveOfflineBtn" class="btn2 live-offline-toggle ${liveOfflineEnabled?'active':''}" type="button">${liveOfflineEnabled?'Offline: On':'Offline: Off'}</button><button id="liveRefreshBtn" class="btn2" type="button" ${liveOfflineEnabled?'disabled':''}>${runningText}</button><button id="liveCloseBtn" class="live-panel-close" type="button" aria-label="Close">×</button></div></div>
+  const emptyText=liveOfflineEnabled?'Offline mode is enabled. Resources are listed below but not in use.':'No online check has run yet.';
+  panel.innerHTML=`<div class="live-panel-head"><div><h3>Live Data</h3><div class="live-meta">Last check: ${esc(shortTime(dataSourceState.lastChecked))} · Last full: ${esc(shortTime(dataSourceState.lastFullChecked))} · Auto: ${esc(autoText)}</div></div><div class="live-panel-actions"><button id="liveOfflineBtn" class="btn2 live-offline-toggle ${liveOfflineEnabled?'active':''}" type="button" title="${liveOfflineEnabled?'Switch to online mode':'Switch to offline mode'}" aria-label="${liveOfflineEnabled?'Offline mode enabled':'Online mode enabled'}" aria-pressed="${liveOfflineEnabled?'true':'false'}">${liveOfflineEnabled?'Offline':'Online'}</button><button id="liveRefreshBtn" class="btn2 live-refresh-icon-btn ${dataSourceState.running?'is-running':''}" type="button" title="${esc(refreshTitle)}" aria-label="${esc(refreshTitle)}">${runningText}</button><button id="liveCloseBtn" class="live-panel-close" type="button" aria-label="Close">×</button></div></div>
     <div class="live-section"><div class="live-section-title"><span>Sources</span><span>${sources.length} checked</span></div><div class="live-source-grid">${sources.map(liveSourceHTML).join('')||`<div class="live-empty">${esc(emptyText)}</div>`}</div></div>
     <div class="live-note"><b>Offline</b> disables online fetches, discards fetched live data, and uses embedded base stats. Team-specific changes are shown only in My Odds → Teams after selecting a team.</div>`;
-  $('liveOfflineBtn')?.addEventListener('click',()=>setLiveOffline(!liveOfflineEnabled));
-  $('liveRefreshBtn')?.addEventListener('click',()=>refreshOnlineData({manual:true,full:true}));
+  $('liveOfflineBtn')?.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();setLiveOffline(!liveOfflineEnabled,{refresh:false});toggleLiveDataPanel(true);if(!liveOfflineEnabled)refreshOnlineData({manual:true,full:true});});
+  $('liveRefreshBtn')?.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();toggleLiveDataPanel(true);refreshOnlineData({manual:true,full:true});});
   $('liveCloseBtn')?.addEventListener('click',()=>toggleLiveDataPanel(false));
 }
 function toggleLiveDataPanel(force){
@@ -3382,12 +4184,12 @@ function setupLiveDataUI(){
   $('dataSource')?.addEventListener('click',e=>{e.stopPropagation();toggleLiveDataPanel();if(!liveOfflineEnabled&&!dataSourceState.lastChecked&&!dataSourceState.running)refreshOnlineData({manual:true,full:true})});
   document.addEventListener('click',e=>{const panel=$('liveDataPanel');if(panel?.classList.contains('open')&&!e.target.closest('#liveDataPanel')&&!e.target.closest('#dataSource'))toggleLiveDataPanel(false)});
 }
-function markLiveSource(sources,name,status,statusLabel,detail){sources.push({name,status,statusLabel,detail})}
+function markLiveSource(sources,name,status,statusLabel,detail){const source={name,status,statusLabel,detail};sources.push(source);syncLiveRunningSources(source)}
 async function refreshOnlineData(opts={}){
   if(liveOfflineEnabled){
     resetDataToEmbeddedBase();
-    dataSourceState={...dataSourceState,running:false,checkMode:'idle',sources:[{name:'Offline mode',status:'warn',statusLabel:'offline',detail:'Live fetches are disabled. Fetched live data has been discarded and embedded base stats are being used.'}],changes:[],errors:[],appliedCount:0,lastApplied:null};
-    setDataSource('offline','Data: offline','Offline mode is enabled. Fetched live data has been discarded; base stats are being used.');
+    dataSourceState={...dataSourceState,running:false,checkMode:'idle',sources:liveDefaultSources('idle'),changes:[],errors:[],appliedCount:0,lastApplied:null};
+    setDataSource('offline','Data: offline','Offline mode is enabled. Resources are shown but not in use; embedded base stats are being used.');
     markInitialDataReady(true);
     renderLiveDataPanel();
     return;
@@ -3398,7 +4200,10 @@ async function refreshOnlineData(opts={}){
   let hardTimedOut=false;
   const thisLiveRefreshToken=++liveRefreshToken;
   const shouldStop=()=>hardTimedOut||thisLiveRefreshToken!==liveRefreshToken||liveOfflineEnabled;
-  dataSourceState={...dataSourceState,running:true,checkMode:full?'full':'quick'};
+  dataSourceState={...dataSourceState,running:true,checkMode:full?'full':'quick',sources:liveDefaultSources('checking')};
+  const livePanelWasOpen=$('liveDataPanel')?.classList.contains('open');
+  if(opts.manual||livePanelWasOpen)toggleLiveDataPanel(true);
+  else renderLiveDataPanel();
   setDataSource('checking','Data: checking','Live data is updating in the background. The app remains usable with embedded/current data.');
   const sources=[],changes=[],errors=[];
   let changed=false,modelChanged=false,verified=false;
@@ -3767,13 +4572,19 @@ function updateGlobalOddsIndicator(){
   const el=$('globalOddsIndicator');
   if(!el)return;
   const entries=manualChangeEntries();
-  if(!entries.length){el.hidden=true;el.textContent='';el.dataset.uiTip='';el.dataset.uiTipHtml='';el.removeAttribute('aria-label');el.className='global-odds-indicator';return}
   el.hidden=false;
-  el.textContent='Odds';
+  el.textContent='±';
+  el.tabIndex=0;
+  if(!entries.length){
+    el.dataset.uiTip='No odds are set. Click a team to change odds.';
+    el.dataset.uiTipHtml='';
+    el.setAttribute('aria-label','My Odds are off. No odds are set. Click a team to change odds.');
+    el.className='global-odds-indicator off';
+    return;
+  }
   el.dataset.uiTip='Adjusted odds';
   el.dataset.uiTipHtml=manualOddsIndicatorTipHTML();
   el.setAttribute('aria-label',`Adjusted odds: ${manualOddsIndicatorTip()}`);
-  el.tabIndex=0;
   el.className='global-odds-indicator active';
 }
 function manualScore(m){m=cleanManual(m);const d=k=>m[k]-MANUAL_DEFAULT[k];return d('overall')+d('group')*.25+d('knockout')*.25+d('attack')*.12+d('defense')*.12+d('form')*.14+d('clutch')*.14+d('consistency')*.10+d('penalty')*.08+d('lowEvent')*.08}
@@ -3906,6 +4717,17 @@ function bindManualOddsPanelControls(){
 }
 function setupManualOddsUI(){
   bindManualOddsPanelControls();
+  $('globalOddsIndicator')?.addEventListener('click',e=>{
+    e.preventDefault();
+    e.stopPropagation();
+    const btn=$('globalOddsIndicator');
+    if(!btn)return;
+    if(!manualChangeEntries().length){
+      btn.dataset.uiTip='No odds are set. Click a team to change odds.';
+      btn.dataset.uiTipHtml='';
+      showUiTip(btn);
+    }
+  });
   $('manualClose')?.addEventListener('click',closeManualDrawer);
   $('manualApplyClose')?.addEventListener('click',closeManualDrawer);
   $('manualDrawerBackdrop')?.addEventListener('click',closeManualDrawer);
@@ -4446,7 +5268,7 @@ function buildControls(){
   $('resetPresetDials')?.addEventListener('click',resetDialsToCurrentPreset);
   setupPresetTuningPopup();
   $('year')?.addEventListener('input',()=>{updateYearMode();refreshManualUI();queueRun()});
-  ['sims','seed','fast'].forEach(id=>$(id)?.addEventListener('input',queueRun));
+  ['sims','seed'].forEach(id=>$(id)?.addEventListener('input',queueRun));
   const offlineBox=$('offlineMode');if(offlineBox){offlineBox.checked=liveOfflineEnabled;offlineBox.addEventListener('change',()=>setLiveOffline(offlineBox.checked))}
   document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();setActiveTab(b.dataset.tab);if(['teams','groups','bracket'].includes(b.dataset.tab)){manualPreviewTab=b.dataset.tab;try{localStorage.setItem('wc_oracle_manual_preview_tab',manualPreviewTab)}catch(err){};syncManualPreviewButtons()}}));
 }
@@ -4467,7 +5289,7 @@ function resetDialsToCurrentPreset(){
   applyPreset(key);
 }
 function queueRun(delay=350){clearTimeout(pendingTimer);pendingTimer=setTimeout(runNow,delay)}
-function runNow(){if(!ready){status('Engine loading...');return}const sims=Number($('sims').value)||5000;const fast=$('fast').checked;const finalSims=fast?Math.min(sims,6000):sims;const id=++runId;status('Running '+finalSims.toLocaleString()+' simulations...');const btn=$('runBtn');if(btn)btn.disabled=true;worker.postMessage({id,year:Number($('year').value),sims:finalSims,seed:Number($('seed').value)||1,settings:settings()})}
+function runNow(){if(!ready){status('Engine loading...');return}const sims=Number($('sims').value)||5000;const fast=!!$('fast')?.checked;const finalSims=fast?Math.min(sims,6000):sims;const id=++runId;status('Running '+finalSims.toLocaleString()+' simulations...');const btn=$('runBtn');if(btn)btn.disabled=true;worker.postMessage({id,year:Number($('year').value),sims:finalSims,seed:Number($('seed').value)||1,settings:settings()})}
 function initWorker(){
   worker=new Worker(URL.createObjectURL(new Blob([WORKER_CODE],{type:'text/javascript'})));
   worker.onmessage=e=>{
@@ -5145,49 +5967,81 @@ function overviewStageCard(name,label,d){
   const note=row&&row.total?`${pct(v)} accuracy`:'No actuals';
   return `<div class="stage-card ${accuracyClass(row)}" ${spectrumStyle(v)}><div class="stage-name">${esc(name)}</div><div class="stage-score">${esc(score)}</div><div class="stage-note">${esc(note)}</div></div>`;
 }
+function overviewScoreFor(g,side){
+  if(!g)return '—';
+  const v=side==='a'?g.aScore:g.bScore;
+  return (v===undefined||v===null||v==='')?'—':String(v);
+}
+function overviewGameNote(g){
+  if(!g)return '';
+  return scoreNote(g)||'';
+}
+function overviewGameCard(title,g,d,roundName){
+  if(!g)return `<div class="ov-card"><div class="ov-title-row"><h3>${esc(title)}</h3></div><div class="ov-empty">Not available yet.</div></div>`;
+  const winner=canonicalTeamName(g.w||'');
+  const row=(team,side)=>{
+    const state=winner?(sameTeamName(winner,team)?'winner':'loser'):'';
+    return `<div class="ov-game-row ${state}"><span>${teamLabel(team)}</span><span class="ov-game-score">${esc(overviewScoreFor(g,side))}</span></div>`;
+  };
+  const note=overviewGameNote(g);
+  const cls=bracketPickClass(d,roundName,g)||'';
+  const status=cls?boxStatusMark(cls):'';
+  return `<div class="ov-card ${roundName==='Final'?'gold':''} ${cls}">
+    <div class="ov-title-row"><h3>${esc(title)}</h3>${status}</div>
+    <div class="ov-game">
+      ${row(g.a,'a')}
+      ${row(g.b,'b')}
+      <div class="ov-game-meta"><b>P</b><span class="ov-game-note">${esc(scoreOnly(g))}${note?` · ${esc(note)}`:''}</span></div>
+    </div>
+  </div>`;
+}
+function topFinalTeam(team,winner){
+  const clean=canonicalTeamName(team);
+  const isWinner=winner&&sameTeamName(clean,winner);
+  return `<span class="top-final-team ${isWinner?'winner':'loser'}" title="${esc(clean)}"><span class="flag">${flagMarkup(clean)}</span><span class="top-final-name">${esc(clean)}</span></span>`;
+}
+function renderHeaderFinal(d){
+  const el=$('topFinalCard');
+  if(!el)return;
+  const finalGame=d?.bracket?.rounds?.[d.bracket.rounds.length-1]?.games?.[0];
+  if(!d||!d.champion||!finalGame){el.hidden=true;el.innerHTML='';return;}
+  const winner=canonicalTeamName(finalGame.w||d.champion);
+  const score=`${overviewScoreFor(finalGame,'a')}–${overviewScoreFor(finalGame,'b')}`;
+  el.innerHTML=`<span class="top-final-match">${topFinalTeam(finalGame.a,winner)}<span class="top-final-score">${esc(score)}</span>${topFinalTeam(finalGame.b,winner)}</span>`;
+  el.hidden=false;
+}
 function renderOverview(d,ms){
+  renderHeaderFinal(d);
   const actualKnown=!!(d.overall&&d.overall[1]);
   const overallPct=actualKnown?pct(d.overall[0]/d.overall[1]):'—';
-  const overall=actualKnown?`${d.overall[0]}/${d.overall[1]} (${overallPct})`:'No actual results yet';
   const semisList=d.semi_finalists||[];
-  const semis=semisList.length?semisList.map(t=>`<span class="overview-team-chip">${teamLabel(t)}</span>`).join(''):'—';
-  const final=(d.finalists||[]).map(teamLabel).join(' vs ')||'—';
+  const semis=semisList.length?semisList.map(t=>`<span class="ov-stage-chip">${teamLabel(t)}</span>`).join(''):'<div class="ov-empty">Run a prediction first.</div>';
   const finalGame=d.bracket?.rounds?.[d.bracket.rounds.length-1]?.games?.[0];
   const thirdGame=d.bracket?.third;
-  const thirdLine=d.third?`${teamLabel(d.third)} <span class="muted">over</span> ${teamLabel(d.fourth)}`:(thirdGame?`${teamLabel(thirdGame.a)} vs ${teamLabel(thirdGame.b)}`:'—');
   const myOdds=manualCount(d.year);
-  const runInfo=[`${Number($('sims')?.value||0).toLocaleString()} sims`,`seed ${esc($('seed')?.value||'')}`,`${(ms/1000).toFixed(2)}s`,`cutoff ${esc(d.cutoff)}`].join(' · ');
+  const runParts=[`${Number($('sims')?.value||0).toLocaleString()} sims`,`seed ${esc($('seed')?.value||'')}`,`${(ms/1000).toFixed(2)}s`,`cutoff ${esc(d.cutoff)}`];
   const actual=actualFor(d);
   const championCls=actual&&actual.champion?(sameTeamName(d.champion,actual.champion)?'result-correct':'result-wrong'):'';
   const championStatus=championCls?boxStatusMark(championCls):'';
-  const finalCls=finalGame?bracketPickClass(d,'Final',finalGame):'';
-  const finalStatus=finalCls?boxStatusMark(finalCls):'';
-  const actualFinalLine=hasActualSet(actual,'finalists')||actual.champion?`<div class="overview-final-row"><b>Actual</b><span>${hasActualSet(actual,'finalists')?listTeams(actual.finalists):'—'}${actual.champion?` · Champion: ${teamLabel(actual.champion)}`:''}</span></div>`:'';
   const stageCards=[
     ['Overall','Overall'],['Group','Group top-2 teams'],['R16','Round of 16 teams'],['QF','Quarterfinal teams'],['SF','Semifinal teams'],['Final','Finalists'],['Champ','Champion']
   ].map(([name,label])=>label==='Overall'?`<div class="stage-card ${actualKnown?'spectrum':''}" ${spectrumStyle(actualKnown?d.overall[0]/d.overall[1]:null)}><div class="stage-name">Overall</div><div class="stage-score">${esc(actualKnown?`${d.overall[0]}/${d.overall[1]}`:'—')}</div><div class="stage-note">${esc(actualKnown?overallPct:'Future tournament')}</div></div>`:overviewStageCard(name,label,d)).join('');
   const details=overviewAccuracyRows(d);
-  const detailsHtml=details.length?`<div class="card overview-details"><div class="overview-section-title"><h2>Backtest details</h2><span class="pill">Predicted vs actual</span></div><div class="overview-results">${details.map(x=>`<div class="overview-result ${x.cls}" ${spectrumStyle(accValue(x.row))}><div class="ov-head"><div class="ov-stage">${esc(x.stage)}</div><div class="ov-score ${scoreClass(x.row)}" ${spectrumStyle(accValue(x.row))}>${esc(x.score)}</div></div><div class="ov-line"><b>Pred</b><span>${x.pred}</span></div><div class="ov-line"><b>Actual</b><span>${x.actual}</span></div></div>`).join('')}</div></div>`:'';
-  const accuracyHtml=actualKnown?`<div class="card overview-accuracy-card"><div class="overview-section-title"><h2>Accuracy snapshot</h2><span class="pill">Backtest</span></div><div class="overview-stage-grid">${stageCards}</div><div class="note" style="margin-top:10px">Prediction vs. loaded actual results.</div></div>`:'';
-  $('overview').innerHTML=`<div class="overview-dashboard clean-overview">
-    <div class="overview-main-pick ${championCls}">
-      <div class="overview-eyebrow">Projected champion ${championStatus}</div>
-      <div class="overview-champion">${teamLabel(d.champion)}</div>
-      <div class="overview-chance"><b>${pct(d.champion_prob)}</b> title chance</div>
-      <div class="overview-final-line ${finalCls}">
-        <div class="overview-final-row"><b>Final</b><span>${final} ${finalStatus}</span></div>
-        <div class="overview-final-row"><b>Score</b><span>${scoreSummary(finalGame,d,'Final')}</span></div>
-        ${actualFinalLine}
+  const detailsHtml=details.length?`<div class="card overview-details"><div class="overview-section-title"><h2>Backtest details</h2><span class="pill">Predicted / actual</span></div><div class="overview-results">${details.map(x=>`<div class="overview-result ${x.cls}" ${spectrumStyle(accValue(x.row))}><div class="ov-head"><div class="ov-stage">${esc(x.stage)}</div><div class="ov-score ${scoreClass(x.row)}" ${spectrumStyle(accValue(x.row))}>${esc(x.score)}</div></div><div class="ov-line"><b>Pred</b><span>${x.pred}</span></div><div class="ov-line"><b>Actual</b><span>${x.actual}</span></div></div>`).join('')}</div></div>`:'';
+  const accuracyHtml=actualKnown?`<div class="card overview-accuracy-card"><div class="overview-section-title"><h2>Accuracy snapshot</h2><span class="pill">Backtest</span></div><div class="overview-stage-grid">${stageCards}</div><div class="note overview-card-note">Prediction compared with loaded actual results.</div></div>`:'';
+  $('overview').innerHTML=`<div class="overview-dashboard overview-v186">
+    <div class="ov-main-grid">
+      <div class="ov-card gold ov-champ-card ${championCls}">
+        <div class="ov-eyebrow">Projected champion ${championStatus}</div>
+        <div class="ov-champ-name">${teamLabel(d.champion)}</div>
+        <div class="ov-champ-sub"><b>${pct(d.champion_prob)}</b> title chance</div>
       </div>
+      ${overviewGameCard('Final',finalGame,d,'Final')}
     </div>
-    <div class="overview-clean-grid">
-      <div class="card overview-quick-card">
-        <div class="overview-mini-section"><h3>Final four</h3><div class="overview-chip-list">${semis}</div></div>
-        <div class="overview-mini-section"><h3>Third-place game</h3><div class="overview-third-line">${thirdLine}</div><div class="small">${scoreSummary(thirdGame,d,'Third-place game')}</div></div>
-        <div class="overview-run-line">${runInfo} · My Odds: ${myOdds?`${myOdds} adjusted`:'off'}</div>
-      </div>
-      <div class="card"><div class="overview-section-title"><h2>Champion race</h2><span class="pill">Champ %</span></div>${overviewContenders(d,'champ')}</div>
+    <div class="ov-info-grid">
+      ${overviewGameCard('Third-place game',thirdGame,d,'Third-place game')}
     </div>
+    <div class="card overview-race-card"><div class="overview-section-title"><h2>Champion race</h2><span class="pill">Champ %</span></div>${overviewContenders(d,'champ')}</div>
     ${accuracyHtml}
     ${detailsHtml}
   </div>`;
